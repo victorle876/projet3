@@ -3,8 +3,8 @@ package joueur;
 public class joueur {
 
 	protected joueur adversaire;
-	protected ModeJeu modeJeu;
-	protected TypeJeu typeJeu;
+	protected ModeJeu ModeJeu;
+	protected TypeJeu TypeJeu;
 	
 	protected String proposition = "";
 	protected String resultat = "";

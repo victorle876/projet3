@@ -34,7 +34,7 @@ public class Ordinateur extends Joueur {
 			combinaisonATrouver = code;
 		} else if (TypeJeu == TypeJeu.MASTERMIND) {
 			String code = "";
-			int nbrChrCode = Options.getlongueurCodeMaster();
+			int nbrChrCode = Parametres.getlongueurCodeMaster();
 			
 			do {
 				Integer c = (int) (Math.random() * 10);
