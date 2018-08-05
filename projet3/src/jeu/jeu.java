@@ -5,9 +5,7 @@ public class jeu {
 	private String TypeJeu = "";
 	private String ModeJeu = "";
 	private String Joueur = "" ;
-	
-	
-	
+		
 	public void choisirJeu() {
 		if (TypeJeu == "PLUSOUMOINS") {
 			PlusouMoins();
