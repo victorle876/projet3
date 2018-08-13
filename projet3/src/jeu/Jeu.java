@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Jeu {
+public abstract class Jeu {
 	protected Code proposition ;
 	protected String resultat;
-	protected Code CodeaTrouver;
+	protected Code codeATrouver;
 	Code Code = new Code();
 	
-	
-
 public Code getProposition() {
 		return proposition;
 	}
@@ -37,31 +35,19 @@ public Code getProposition() {
 
 
 
-	public Code getCodeaTrouver() {
-		return CodeaTrouver;
+	public Code getcodeATrouver() {
+		return codeATrouver;
 	}
 
 
 
-	public void setCodeaTrouver(Code codeaTrouver) {
-		CodeaTrouver = codeaTrouver;
+	public void setcodeATrouver(Code codeATrouver) {
+		codeATrouver = codeATrouver;
 	}
 
 
 
-	public Code getCode() {
-		return Code;
-	}
-
-
-
-	public void setCode(Code code) {
-		this.Code = Code;
-	}
-
-
-
-public abstract Code ComparerCode();
-public abstract Code CreerCode();	
+public abstract String ComparerCode();
+//public abstract String CreerCode();	
 
 }
