@@ -10,7 +10,7 @@ public class Main {
 		
 //		Code code = new Code();
 		Code CodeaTrouver = new Code() ;
-//		int NombreEssaiMax;
+		int NombreEssaiMax;
 		int etendue;
 		boolean trouve = false;
 		
