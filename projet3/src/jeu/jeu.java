@@ -1,6 +1,9 @@
 package jeu;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Jeu {
 	protected Code proposition ;
@@ -59,6 +62,6 @@ public Code getProposition() {
 
 
 public abstract Code ComparerCode();
-	
+public abstract Code CreerCode();	
 
 }

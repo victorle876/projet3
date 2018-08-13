@@ -1,5 +1,8 @@
 package jeu;
 import java.util.Scanner;
+package jeu;
+import java.util.Scanner;
+
 
 public class Main {
 
@@ -10,17 +13,33 @@ public class Main {
 		Code CodeaTrouver = new Code() ;
 		Joueur joueur = new Joueur();
 		int NombreEssaiPlus;
+		int etendue;
+		boolean trouve = false;
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Qui est le joueur ");
 		
 		if  (Joueur = "humain")
 		{
-			System.out.print("Entrez les chiffres de votre code ");
-		    for (int i = 0; i < Code.Length; i++) {
-		    	      CodeaTrouver = scanner.nextInt();
+			
+			Code.genererNewCode(etendue);
+		
+			while (trouve = false) && (i< NombreEssaiPlus)
+		   {
+		   
+		    	      CodeaTrouver = Scanner.nextInt();
 		    	      Code.ComparerReponse(NombreEssaiPlus);
            }
+			
+			
+		}	
+			else
+			{
+				Code.creerCode();
+				Code.ProposerCode();
+				Code.comparer(NombreEssaiPlus);
+			}
+				
 		    
 		   
 			
