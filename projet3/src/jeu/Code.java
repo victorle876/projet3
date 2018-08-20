@@ -36,7 +36,6 @@ public class Code extends ArrayList<Integer> {
 	public static Code extractCode(String prop) throws IllegalArgumentException {
 		Code code = new Code();
 		for (int i = 0; i < prop.length(); i++) {
-			// code.add(r.nextInt(etendue));
 			if ((prop.charAt(i) >= '0') && (prop.charAt(i) <= '9')) {
 				code.add(prop.charAt(i) - '0');
 			}

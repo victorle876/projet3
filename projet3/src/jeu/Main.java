@@ -9,12 +9,15 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		// Code code = new Code();
+		Code code = new Code();
 		Code CodeaTrouver = new Code();
 		int NombreEssaiMax;
 		int etendue;
+		int taille;
 		boolean trouve = false;
 		int choice;
+		int i;
+		
 		Jeu jeu;
 		
 
@@ -31,6 +34,30 @@ public class Main {
 			break;
 		case 2:
 			jeu = new PlusouMoins();
+			i = 0 ;
+			NombreEssaiMax = 10;
+			while ((i < NombreEssaiMax) || (!trouve) ) {
+		    etendue = scanner.nextInt();
+		    taille = scanner.nextInt();
+		    code.genererNewCode(etendue, taille);
+			
+		       if (!trouve)
+		       {
+		    	       
+		    	       jeu.enterCode();
+		    	       jeu.ComparerCode();
+		    	       trouve = false;
+		    	       i+=1;
+		       }
+		       
+		       else
+		       {
+		    	      trouve = true;
+		       }
+
+				
+
+			}
 			break;
 
 		}
