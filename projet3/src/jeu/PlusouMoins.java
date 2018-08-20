@@ -1,8 +1,5 @@
 package jeu;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class PlusouMoins extends Jeu {
 
 

@@ -1,16 +1,15 @@
 package jeu;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Mastermind {
+
+public class Mastermind extends Jeu {
 	
 	@Override
 	public String ComparerCode() {
-//		String result = "";
+		String result = "";
 		boolean[] Place = new boolean[codeATrouver.size()];
 		boolean[] MalPlace = new boolean[codeATrouver.size()];
 
-		for (int i = 0; i < codeATrouver.length(); i++) {
+		for (int i = 0; i < codeATrouver.size(); i++) {
 			Place[i] = true;
 			MalPlace[i] = true;
 		}
@@ -20,7 +19,7 @@ public class Mastermind {
 			int propositionAttaquant = proposition.get(i);
 			int propositionDefenseur = codeATrouver.get(i);
 			if (propositionAttaquant == propositionDefenseur) {
-//				result = result + "=";
+				result = result + "=";
 				Place[i] = false;
 				MalPlace[i] = false;
 			}
@@ -35,14 +34,14 @@ public class Mastermind {
 					int propositionDefenseur = codeATrouver.get(i);
 
 					if (propositionAttaquant == propositionDefenseur && MalPlace[j]) {
-//						result = result + "-";
+					result = result + "-";
 						MalPlace[j] = false;
-						j = codeATrouver.length();
+						j = codeATrouver.size();
 					}
 				}
 			}
 		}
-//		return result;
+		return result;
 	}
 
 
