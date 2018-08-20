@@ -31,5 +31,6 @@ public class Code extends ArrayList<Integer> {
 		return code;
 
 	}
-
+	
+	
 }

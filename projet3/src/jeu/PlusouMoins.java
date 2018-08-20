@@ -14,19 +14,21 @@ public class PlusouMoins extends Jeu {
 			//
 			int propositionAttaquant = proposition.get(i);
 			int propositionDefenseur = codeATrouver.get(i);
-			if (propositionAttaquant = propositionDefenseur) 
+			if (propositionAttaquant == propositionDefenseur) 
 			{
 				result +=  "=" ;
 			}
-			else if (propositionAttaquant > propositionDefenseur) 
-			{	
+			else 
+				if (propositionAttaquant > propositionDefenseur) 
+			     {	
 			     
 				result = result + "+";
-			     
-			     else {
+			     }
+			     else 
+			     {
 				 result += "-";				
 			     }
-		     }
+//		     }
 
 	     }
 		return result;
@@ -35,12 +37,5 @@ public class PlusouMoins extends Jeu {
 
 	}
 
-//	@Override
-//	public static Code ProposerCode(int NombreEssaiPlus) {
-//		for (int i = 0; i < Code.size(); i++) {
-//			Code.add();
-//		}
-//
-//	}
 
 	

@@ -3,7 +3,9 @@ package jeu;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.Random;
+import java.lang.Throwable;
 
 public abstract class Jeu {
 	protected Code proposition ;
@@ -49,5 +51,19 @@ public Code getProposition() {
 
 public abstract String ComparerCode();
 //public abstract String CreerCode();	
+
+public void enterCode() {
+	System.out.println("Entrer le code");
+	Scanner sc = new Scanner(System.in);
+	String prop=sc.nextLine();
+	Code.extractCode(prop);
+	
+}
+
+public static Code extractCode () throws IllegalFormatCodePointException
+{
+	 this.prop = code;
+}
+
 
 }
