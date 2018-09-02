@@ -16,7 +16,7 @@ public class Main {
 		int taille;
 		boolean trouve = false;
 		int choice;
-		int i;
+		int i, j;
 		
 		Jeu jeu;
 		
@@ -30,8 +30,32 @@ public class Main {
 
 		case 1:
 		   jeu = new Mastermind();
+		   j = 0 ;
+			NombreEssaiMax = 10;
+			while ((j < NombreEssaiMax) || (!trouve) ) {
+		    etendue = scanner.nextInt();
+		    taille = scanner.nextInt();
+		    code.genererNewCode(etendue, taille);
 			
+		       if (!trouve)
+		       {
+		    	       
+		    	       jeu.enterCode();
+		    	       jeu.ComparerCode();
+		    	       trouve = false;
+		    	       j+=1;
+		       }
+		       
+		       else
+		       {
+		    	      trouve = true;
+		       }
+
+				
+
+			}
 			break;
+		
 		case 2:
 			jeu = new PlusouMoins();
 			i = 0 ;
