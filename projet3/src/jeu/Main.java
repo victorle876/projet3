@@ -50,6 +50,7 @@ public class Main {
 		etendue = scanner.nextInt();
 		System.out.println("Entrer la taille");
 		taille = scanner.nextInt();
+		String resultat;
 		code = Code.genererNewCode(etendue, taille);
 
 		while ((i < NombreEssaiMax) && (!trouve)) {
@@ -58,8 +59,9 @@ public class Main {
 				
 				System.out.println("Entrer un nouveau code?");
 				jeu.enterCode();
+				jeu.setcodeATrouver(Code.genererNewCode(etendue, taille));
 				jeu.comparerCode();
-				trouve = jeu.isWon(resultat);
+				trouve = jeu.isWon();
 				i += 1;
 			}
 
