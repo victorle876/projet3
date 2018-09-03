@@ -4,7 +4,7 @@ package jeu;
 public class Mastermind extends Jeu {
 	
 	@Override
-	public String ComparerCode() {
+	public String comparerCode() {
 		String result = "";
 		boolean[] Place = new boolean[codeATrouver.size()];
 		boolean[] MalPlace = new boolean[codeATrouver.size()];
@@ -43,6 +43,11 @@ public class Mastermind extends Jeu {
 		}
 		return result;
 	}
-
+	@Override
+	public boolean isWon(String resultat)
+	{
+		return(resultat.equals("===="));
+	}
+	
 
 }

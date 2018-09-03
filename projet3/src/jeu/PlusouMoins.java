@@ -4,7 +4,7 @@ public class PlusouMoins extends Jeu {
 
 
 	@Override
-	public String ComparerCode() {
+	public String comparerCode() {
 		String result = "";
 		for (int i = 0; i < codeATrouver.size(); i++)
 		{
@@ -19,11 +19,11 @@ public class PlusouMoins extends Jeu {
 				if (propositionAttaquant > propositionDefenseur) 
 			     {	
 			     
-				result = result + "+";
+				result += "-";
 			     }
 			     else 
 			     {
-				 result += "-";				
+				 result += "+";				
 			     }
 //		     }
 
@@ -31,6 +31,12 @@ public class PlusouMoins extends Jeu {
 		return result;
 		
 	 }
+	
+	@Override
+	public boolean isWon(String resultat)
+	{
+		return(resultat.equals("===="));
+	}
 
 	}
 

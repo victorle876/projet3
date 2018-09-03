@@ -33,8 +33,9 @@ public abstract class Jeu {
 		this.codeATrouver = codeATrouver;
 	}
 
-	public abstract String ComparerCode();
+	public abstract String comparerCode();
 	// public abstract String CreerCode();
+	public abstract boolean isWon(String resultat);
 
 	public void enterCode() {
 		System.out.println("Entrer le code");
