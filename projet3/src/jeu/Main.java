@@ -10,16 +10,15 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Code code = new Code();
-		//Code CodeaTrouver = new Code();
-		int NombreEssaiMax=10;
+		// Code CodeaTrouver = new Code();
+		int NombreEssaiMax = 10;
 		int etendue;
 		int taille;
 		boolean trouve = false;
 		int choice;
 		int i = 0;
-		
+
 		Jeu jeu;
-		
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -29,47 +28,42 @@ public class Main {
 		switch (choice) {
 
 		case 1:
-		   jeu = new Mastermind();
-		  
+			jeu = new Mastermind();
+
 			break;
-		
+
 		case 2:
 			jeu = new PlusouMoins();
-					
+
 			break;
-			
+
 		default:
-		    jeu = null;
-		  if (jeu == null)
-		  {
-			  System.out.println("Mauvais choix de jeu");
-			  return;
-		  }
-			
+			jeu = null;
+			if (jeu == null) {
+				System.out.println("Mauvais choix de jeu");
+				return;
+			}
+
 		}
-		
+
 		System.out.println("Entrer l'étendue");
 		etendue = scanner.nextInt();
 		System.out.println("Entrer la taille");
-	    taille = scanner.nextInt();
-	    code = Code.genererNewCode(etendue, taille);
-	    
-			while ((i < NombreEssaiMax) && (!trouve) ) {
-			    
-			    
-				
-			       if (!trouve)
-			       {
-			    	       
-			    	       jeu.enterCode();
-			    	       jeu.comparerCode();
-			    	       trouve = jeu.isWon(resultat);
-			    	       i+=1;
-			       }
-			       
-					
+		taille = scanner.nextInt();
+		code = Code.genererNewCode(etendue, taille);
 
-scanner=null;
+		while ((i < NombreEssaiMax) && (!trouve)) {
+
+			if (!trouve) {
+				
+				System.out.println("Entrer un nouveau code?");
+				jeu.enterCode();
+				jeu.comparerCode();
+				trouve = jeu.isWon(resultat);
+				i += 1;
+			}
+
+			scanner = null;
 		}
 
 	}	
