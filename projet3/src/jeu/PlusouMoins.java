@@ -2,10 +2,10 @@ package jeu;
 
 public class PlusouMoins extends Jeu {
 
-
+	String result;
 	@Override
 	public String comparerCode() {
-		String result = "";
+		 result = "";
 		for (int i = 0; i < codeATrouver.size(); i++)
 		{
 			//
@@ -35,7 +35,7 @@ public class PlusouMoins extends Jeu {
 	@Override
 	public boolean isWon(String resultat)
 	{
-		return(resultat.equals("===="));
+		return(resultat.equals(result));
 	}
 
 	}

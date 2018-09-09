@@ -2,7 +2,6 @@ package jeu;
 
 import java.util.Scanner;
 
-import java.util.Scanner;
 
 public class Main {
 
@@ -50,7 +49,9 @@ public class Main {
 		etendue = scanner.nextInt();
 		System.out.println("Entrer la taille");
 		taille = scanner.nextInt();
-		String resultat;
+		//String resultat;
+		System.out.println("Voici le code à deviner");
+		jeu.getcodeATrouver();
 		code = Code.genererNewCode(etendue, taille);
 
 		while ((i < NombreEssaiMax) && (!trouve)) {
@@ -60,13 +61,15 @@ public class Main {
 				System.out.println("Entrer un nouveau code?");
 				jeu.enterCode();
 				jeu.setcodeATrouver(Code.genererNewCode(etendue, taille));
+				
 				jeu.comparerCode();
-				trouve = jeu.isWon();
+				trouve = jeu.isWon(jeu.getResultat());
 				i += 1;
 			}
 
-			scanner = null;
+			
 		}
+		scanner = null;
 
 	}	
 }

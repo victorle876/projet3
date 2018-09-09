@@ -7,6 +7,7 @@ public abstract class Jeu {
 	protected Code proposition;
 	protected String resultat;
 	protected Code codeATrouver;
+	protected Code codeRestant;
 	Code Code = new Code();
 
 	public Code getProposition() {
@@ -29,7 +30,15 @@ public abstract class Jeu {
 		return codeATrouver;
 	}
 
-	public void setcodeATrouver(Code codeATrouver) {
+	public void setcodeATrouver(Code codeRestant) {
+		this.codeRestant = codeRestant;
+	}
+	
+	public Code getcodeRestant() {
+		return codeRestant;
+	}
+
+	public void setgetcodeRestant(Code codeATrouver) {
 		this.codeATrouver = codeATrouver;
 	}
 
