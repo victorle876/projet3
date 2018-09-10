@@ -1,53 +1,40 @@
 package jeu;
 
 public class Mastermind extends Jeu {
-	// protected Code codeATrouver;
-	// protected Code codeRestant;
-
-	public class Code implements Cloneable {
-		protected Code codeATrouver;
-		protected Code codeRestant;
-
-		public Object clone() {
-			Code codeATrouver  = null;
-			Code codeRestant  = null;
-			try {
-				codeATrouver = (Code) super.clone();
-				codeRestant = (Code) super.clone();
-			} catch (CloneNotSupportedException cnse) {
-				cnse.printStackTrace(System.err);
-			}
-			// on renvoie le clone
-			return codeATrouver;
-		}
-
-	}
+	 protected Code codeATrouver;
 
 	@Override
 	public String comparerCode() {
 		String result = "";
+		Code prop = (Code) proposition.clone();
+		Code cat = (Code) codeATrouver.clone();
 
 		int bienPlacé = 0;
 		int MalPlacé = 0;
-		for (int i = 0; i < proposition.size(); i++) {
-			int propositionAttaquant = proposition.get(i);
-			int propositionDefenseur = codeATrouver.get(i);
+		for (int i = prop.size()-1; i >= 0; i--) {
+			int propositionAttaquant = prop.get(i);
+			int propositionDefenseur = cat.get(i);
 			if (propositionAttaquant == propositionDefenseur) {
-				proposition.remove(propositionAttaquant);
-				codeATrouver.remove(propositionDefenseur);
+				prop.remove(i);
+				cat.remove(i);
 				bienPlacé++;
-				codeRestant = codeATrouver;
+				
 			}
-			for (int j = 0; i < codeRestant.size(); j++) {
-				int propositionAttaquantRestant = proposition.get(i);
-				int propositionDefenseurRestant = codeRestant.get(i);
-				if (propositionAttaquantRestant == propositionDefenseurRestant) {
-					proposition.remove(propositionAttaquant);
-					codeATrouver.remove(propositionDefenseur);
-					MalPlacé++;
+			
+			for (int j = prop.size()-1; j >= 0; j--) {
+				int propositionAttaquantRestant = prop.get(i);
+				for (int k = prop.size()-1; k >= 0; k--) {
+					int propositionDefenseurRestant = cat.get(i);  
+					if (propositionAttaquantRestant == propositionDefenseurRestant) {
+						prop.remove(i);
+						cat.remove(i);
+						MalPlacé++;
+					}
+						
+				
+				}	
 				}
-
-			}
+	
 
 		}
 		System.out.println("Bien Placé :" + bienPlacé + "; MalPlacé : " + MalPlacé);
@@ -57,7 +44,7 @@ public class Mastermind extends Jeu {
 
 	@Override
 	public boolean isWon(String resultat) {
-		return (resultat.equals("????"));
+		return (resultat.matches("????"));
 	}
 
 }
