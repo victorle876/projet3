@@ -1,7 +1,7 @@
 package jeu;
 
 public class Mastermind extends Jeu {
-	 protected Code codeATrouver;
+	// protected Code codeATrouver;
 
 	@Override
 	public String comparerCode() {
@@ -20,31 +20,34 @@ public class Mastermind extends Jeu {
 				bienPlacé++;
 				
 			}
-			
+		}	
 			for (int j = prop.size()-1; j >= 0; j--) {
-				int propositionAttaquantRestant = prop.get(i);
+				int propositionAttaquantRestant = prop.get(j);
 				for (int k = prop.size()-1; k >= 0; k--) {
-					int propositionDefenseurRestant = cat.get(i);  
+					int propositionDefenseurRestant = cat.get(k);  
 					if (propositionAttaquantRestant == propositionDefenseurRestant) {
-						prop.remove(i);
-						cat.remove(i);
+						prop.remove(j);
+						cat.remove(k);
 						MalPlacé++;
+						System.out.println(MalPlacé);
+					break ;	
 					}
 						
-				
+			//	break ;
 				}	
+				resultat="Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé;
 				}
 	
+			
+		
 
-		}
-		System.out.println("Bien Placé :" + bienPlacé + "; MalPlacé : " + MalPlacé);
+	return resultat;
 
-		return result;
 	}
 
 	@Override
 	public boolean isWon(String resultat) {
-		return (resultat.matches("????"));
+		return (resultat.matches("^\"Bien Placé :\" + bienPlacé + \"; MalPlacé : \" + MalPlacé+$"));
 	}
 
 }

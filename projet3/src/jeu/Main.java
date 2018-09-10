@@ -52,15 +52,15 @@ public class Main {
 
 		while ((i < NombreEssaiMax) && (!trouve)) {
 			// On affiche le code à trouver
-			System.out.println("Voici le code à deviner");
-			System.out.println(jeu.getCodeATrouver());
+	//		System.out.println("Voici le code à deviner");
+	//		System.out.println(jeu.getCodeATrouver());
 			
 			if (!trouve) {
 				
 				System.out.println("Entrer un nouveau code?");
 				jeu.enterCode();
 				
-				System.out.println("Le résultat est : "+jeu.comparerCode());
+				System.out.println("Le résultat est : " +jeu.comparerCode());
 				trouve = jeu.isWon(jeu.getResultat());
 				i += 1;
 			}
