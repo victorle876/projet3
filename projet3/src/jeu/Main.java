@@ -37,12 +37,8 @@ public class Main {
 			break;
 
 		default:
-			jeu = null;
-			if (jeu == null) {
-				System.out.println("Mauvais choix de jeu");
-				return;
-			}
-
+			System.out.println("Mauvais choix de jeu");
+			return;
 		}
 
 		System.out.println("Entrer l'étendue");
@@ -50,26 +46,29 @@ public class Main {
 		System.out.println("Entrer la taille");
 		taille = scanner.nextInt();
 		//String resultat;
+		jeu.setCodeATrouver(Code.genererNewCode(etendue, taille));
 		System.out.println("Voici le code à deviner");
-		jeu.getcodeATrouver();
-		code = Code.genererNewCode(etendue, taille);
+		System.out.println(jeu.getCodeATrouver());
 
 		while ((i < NombreEssaiMax) && (!trouve)) {
-
+			// On affiche le code à trouver
+			System.out.println("Voici le code à deviner");
+			System.out.println(jeu.getCodeATrouver());
+			
 			if (!trouve) {
 				
 				System.out.println("Entrer un nouveau code?");
 				jeu.enterCode();
-				jeu.setcodeATrouver(Code.genererNewCode(etendue, taille));
 				
-				jeu.comparerCode();
+				System.out.println("Le résultat est : "+jeu.comparerCode());
 				trouve = jeu.isWon(jeu.getResultat());
 				i += 1;
 			}
 
 			
 		}
-		scanner = null;
+
+		System.out.println("Vous avez "+ ((trouve)?"gagné":"perdu"));
 
 	}	
 }

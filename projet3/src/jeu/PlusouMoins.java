@@ -2,43 +2,30 @@ package jeu;
 
 public class PlusouMoins extends Jeu {
 
-	String result;
 	@Override
 	public String comparerCode() {
-		 result = "";
-		for (int i = 0; i < codeATrouver.size(); i++)
-		{
-			//
+		resultat = "";
+		for (int i = 0; i < codeATrouver.size(); i++) {
 			int propositionAttaquant = proposition.get(i);
 			int propositionDefenseur = codeATrouver.get(i);
-			if (propositionAttaquant == propositionDefenseur) 
-			{
-				result +=  "=" ;
+			if (propositionAttaquant == propositionDefenseur) {
+				resultat += "=";
+			} else if (propositionAttaquant > propositionDefenseur) {
+
+				resultat += "-";
+			} else {
+				resultat += "+";
 			}
-			else 
-				if (propositionAttaquant > propositionDefenseur) 
-			     {	
-			     
-				result += "-";
-			     }
-			     else 
-			     {
-				 result += "+";				
-			     }
-//		     }
+			// }
 
-	     }
-		return result;
-		
-	 }
-	
+		}
+		return resultat;
+
+	}
+
 	@Override
-	public boolean isWon(String resultat)
-	{
-		return(resultat.equals(result));
+	public boolean isWon(String resultat) {
+		return (resultat.matches("^=+$"));
 	}
 
-	}
-
-
-	
+}

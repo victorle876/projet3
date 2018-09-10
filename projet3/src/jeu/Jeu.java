@@ -26,20 +26,20 @@ public abstract class Jeu {
 		this.resultat = resultat;
 	}
 
-	public Code getcodeATrouver() {
+	public Code getCodeATrouver() {
 		return codeATrouver;
 	}
 
-	public void setcodeATrouver(Code codeRestant) {
-		this.codeRestant = codeRestant;
+	public void setCodeATrouver(Code codeATrouver) {
+		this.codeATrouver = codeATrouver;
 	}
 	
 	public Code getcodeRestant() {
 		return codeRestant;
 	}
 
-	public void setgetcodeRestant(Code codeATrouver) {
-		this.codeATrouver = codeATrouver;
+	public void setCodeRestant(Code codeRestant) {
+		this.codeRestant = codeRestant;
 	}
 
 	public abstract String comparerCode();
