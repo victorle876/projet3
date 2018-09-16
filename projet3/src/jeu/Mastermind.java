@@ -30,16 +30,16 @@ public class Mastermind extends Jeu {
 						cat.remove(k);
 						MalPlacé++;
 						System.out.println(MalPlacé);
+						System.out.println(k);
 					break ;	
 					}
-						
-			//	break ;
+		
 				}	
-				resultat="Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé;
+		//		resultat="Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé;
 				}
 	
 			
-		
+			resultat="Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé;
 
 	return resultat;
 
@@ -47,7 +47,7 @@ public class Mastermind extends Jeu {
 
 	@Override
 	public boolean isWon(String resultat) {
-		return (resultat.matches("^\"Bien Placé :\" + bienPlacé + \"; MalPlacé : \" + MalPlacé+$"));
+//		return (resultat.matches("^\"Bien Placé :\" + bienPlacé + \"; MalPlacé : \" + MalPlacé+$"));
+		return (resultat.matches("^Bien Placé :" + codeATrouver.size() + "; MalPlacé : 0$"));
 	}
-
 }
