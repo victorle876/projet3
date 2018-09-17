@@ -1,5 +1,7 @@
 package jeu;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -8,10 +10,10 @@ public class Main {
 	public static void main(String[] args) {
 
 		int NombreEssaiMax = 10;
-		int etendue=9;
-		int taille=4;
+		int etendue = 9;
+		int taille = 4;
 		boolean trouve = false;
-		int choice;
+		int choice=0;
 
 		Jeu jeu = null;
 
@@ -23,20 +25,28 @@ public class Main {
 			valide_jeu = true;
 			System.out.println("Quel jeu voulez vous jouer?");
 			System.out.println("1: Mastermind , 2: PlusouMoins");
-			choice = scanner.nextInt();
-			switch (choice) {
-			case 1:
-				jeu = new Mastermind();
-				break;
+			try {
+				choice = scanner.nextInt();
+				switch (choice) {
+				case 1:
+					jeu = new Mastermind();
+					break;
 
-			case 2:
-				jeu = new PlusouMoins();
-				break;
+				case 2:
+					jeu = new PlusouMoins();
+					break;
 
-			default:
-				System.out.println("Choix de jeu invalide");
+				default:
+					System.out.println("Choix de jeu invalide");
+					valide_jeu = false;
+				}
+			} catch (InputMismatchException ime) {
+				System.out.println("Ce n'est pas un entier !");
 				valide_jeu = false;
+			} finally {
+				scanner.nextLine();
 			}
+			// Fin des catch
 		} while (!valide_jeu);
 
 		// Saisie de la taille et de l'étendue avec vérification de la validité des
