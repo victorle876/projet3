@@ -4,14 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		Code code = new Code();
-		// Code CodeaTrouver = new Code();
 		int NombreEssaiMax = 10;
-		int etendue = 0;
-		int taille = 0;
+		int etendue=9;
+		int taille=4;
 		boolean trouve = false;
 		int choice;
 
