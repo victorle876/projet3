@@ -30,7 +30,6 @@ public class PlusouMoins extends Jeu {
 
 //	@Override
 //	 public String RechercheDichotomie() {
-//	
 //	 boolean trouve2 = false;
 //	 for (int i = codeATrouver.size(); i >= 0; i++) {
 //		 int propositionDefenseur = codeATrouver.get(i);
