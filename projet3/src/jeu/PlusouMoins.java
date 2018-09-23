@@ -28,4 +28,25 @@ public class PlusouMoins extends Jeu {
 		return (resultat.matches("^=+$"));
 	}
 
+//	@Override
+//	 public String RechercheDichotomie() {
+//	
+//	 boolean trouve2 = false;
+//	 for (int i = codeATrouver.size(); i >= 0; i++) {
+//		 int propositionDefenseur = codeATrouver.get(i);
+//		 int propositionAttaquant = proposition.get(i);
+//		 if (propositionAttaquant > propositionDefenseur) {
+//			 System.out.println("Le chiffre proposé de l'attaquant doit être dans la premiere moitié )");
+//			 propositionAttaquant =  propositionDefenseur - ((propositionAttaquant - propositionDefenseur) / 2)   ;
+//		 } 
+//		 else {
+//			 if (propositionAttaquant < propositionDefenseur) {
+//				 System.out.println("Le chiffre proposé de l'attaquant )");
+//				 propositionAttaquant = propositionAttaquant + ((propositionDefenseur - propositionAttaquant) / 2);
+//			 }
+//	
+//	 }
+//	 return;
+//	 }
+
 }

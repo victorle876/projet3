@@ -56,12 +56,21 @@ public class Main {
 			// Penser à réarmer les flags
 			valide_etendue = false;
 			System.out.println("Entrer l'étendue");
-			etendue = scanner.nextInt();
+			try {
+				etendue = scanner.nextInt();
 			if ((etendue > 0) && (etendue < 10)) {
 				valide_etendue = true;
 			} else {
 				System.out.println("Etendue incorrecte (entre 1 et 9)");
 			}
+			}
+			catch (InputMismatchException ime2) {
+				System.out.println("Ce n'est pas un entier !");
+				valide_etendue = false;
+			} finally {
+				scanner.nextLine();
+			}
+			
 		}
 
 		boolean valide_taille = false;
@@ -69,11 +78,19 @@ public class Main {
 			// Penser à réarmer les flags
 			valide_taille = false;
 			System.out.println("Entrer la taille");
+			try {
 			taille = scanner.nextInt();
 			if ((taille > 0) && (taille < 7)) {
 				valide_taille = true;
 			} else {
 				System.out.println("Taille incorrecte (entre 1 et 6)");
+			}
+			}
+			catch (InputMismatchException ime3) {
+				System.out.println("Ce n'est pas un entier !");
+				valide_taille = false;
+			} finally {
+				scanner.nextLine();
 			}
 		}
 
