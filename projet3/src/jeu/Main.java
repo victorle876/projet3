@@ -97,6 +97,10 @@ public class Main {
 		// Ici la taille et l'étendue sont vérifiées et valides, ainsi que le jeu
 		// On positionne le code à trouver après l'avoir généré aléatoirement
 		jeu.setCodeATrouver(Code.genererNewCode(etendue, taille));
+		
+		//for (int l = 0; l < taille; l++) {
+		//jeu.setCodeATrouver(jeu.enterCode());
+		//}
 
 		// Boucle de recherche
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
