@@ -6,8 +6,8 @@ public class Mastermind extends Jeu {
 	@Override
 	public String comparerCode() {
 		String result = "";
-		Code prop = (Code) proposition.clone();
-		Code cat = (Code) codeATrouver.clone();
+		Code prop = (Code) propositionDuJoueur.clone();
+		Code cat = (Code) codeATrouverParLeJoueur.clone();
 
 		int bienPlacé = 0;
 		int MalPlacé = 0;
@@ -39,15 +39,27 @@ public class Mastermind extends Jeu {
 				}
 	
 			
-			resultat="Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé;
+			resultatPourLeJoueur="Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé;
 
-	return resultat;
+	return resultatPourLeJoueur;
 
 	}
 
 	@Override
 	public boolean isWon(String resultat) {
 //		return (resultat.matches("^\"Bien Placé :\" + bienPlacé + \"; MalPlacé : \" + MalPlacé+$"));
-		return (resultat.matches("^Bien Placé :" + codeATrouver.size() + "; MalPlacé : 0$"));
+		return (resultat.matches("^Bien Placé :" + codeATrouverParLeJoueur.size() + "; MalPlacé : 0$"));
+	}
+
+	@Override
+	public Code chercherSolution() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void analyserResultat(String resultat) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -19,36 +19,6 @@ public class Main {
 
 		Scanner scanner = new Scanner(System.in);
 
-		boolean valide_jeu;
-		do {
-			// Penser à réarmer les flags
-			valide_jeu = true;
-			System.out.println("Quel jeu voulez vous jouer?");
-			System.out.println("1: Mastermind , 2: PlusouMoins");
-			try {
-				choice = scanner.nextInt();
-				switch (choice) {
-				case 1:
-					jeu = new Mastermind();
-					break;
-
-				case 2:
-					jeu = new PlusouMoins();
-					break;
-
-				default:
-					System.out.println("Choix de jeu invalide");
-					valide_jeu = false;
-				}
-			} catch (InputMismatchException ime) {
-				System.out.println("Ce n'est pas un entier !");
-				valide_jeu = false;
-			} finally {
-				scanner.nextLine();
-			}
-			// Fin des catch
-		} while (!valide_jeu);
-
 		// Saisie de la taille et de l'étendue avec vérification de la validité des
 		// entrées
 		boolean valide_etendue = false;
@@ -93,7 +63,48 @@ public class Main {
 				scanner.nextLine();
 			}
 		}
+		
+		boolean valide_jeu;
+		do {
+			// Penser à réarmer les flags
+			valide_jeu = true;
+			System.out.println("Quel jeu voulez vous jouer?");
+			System.out.println("1: Mastermind , 2: PlusouMoins");
+			try {
+				choice = scanner.nextInt();
+				switch (choice) {
+				case 1:
+					jeu = new Mastermind();
+					break;
 
+				case 2:
+					jeu = new PlusouMoins(etendue, taille);
+					break;
+
+				default:
+					System.out.println("Choix de jeu invalide");
+					valide_jeu = false;
+				}
+			} catch (InputMismatchException ime) {
+				System.out.println("Ce n'est pas un entier !");
+				valide_jeu = false;
+			} finally {
+				scanner.nextLine();
+			}
+			// Fin des catch
+		} while (!valide_jeu);
+
+		
+		// TODO Ajouter une question pour savoir dans quel mode on joue (ordi défenseur ou attaquant)
+		// .... (boucle de recherche de la solution par l'ordi)
+		
+		// Ici on est dans le cas de l'ordinateur attaquant
+		// Faire une boucle de recherche de la solution par l'ordi
+		//		appeler la fonction de recherche 
+		//		demander résultat au joueur (sous forme +-=)
+		//		analyser ce résultat 
+		
+		// Ici on est dans le cas de l'ordinateur défenseur
 		// Ici la taille et l'étendue sont vérifiées et valides, ainsi que le jeu
 		// On positionne le code à trouver après l'avoir généré aléatoirement
 		jeu.setCodeATrouver(Code.genererNewCode(etendue, taille));
@@ -102,7 +113,7 @@ public class Main {
 		//jeu.setCodeATrouver(jeu.enterCode());
 		//}
 
-		// Boucle de recherche
+		// Boucle de recherche de la solution par le joueur
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
 			// On affiche le code à trouver
 			System.out.println("Voici le code à deviner");

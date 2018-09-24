@@ -4,34 +4,35 @@ import java.util.Scanner;
 
 
 public abstract class Jeu {
-	protected Code proposition;
-	protected String resultat;
-	protected Code codeATrouver;
+	protected Code propositionDuJoueur;
+	protected String resultatPourLeJoueur;
+	protected Code codeATrouverParLeJoueur;
 	protected Code codeRestant;
 	Code Code = new Code();
+	protected int etendue, taille;
 
 	public Code getProposition() {
-		return proposition;
+		return propositionDuJoueur;
 	}
 
 	public void setProposition(Code proposition) {
-		this.proposition = proposition;
+		this.propositionDuJoueur = proposition;
 	}
 
 	public String getResultat() {
-		return resultat;
+		return resultatPourLeJoueur;
 	}
 
 	public void setResultat(String resultat) {
-		this.resultat = resultat;
+		this.resultatPourLeJoueur = resultat;
 	}
 
 	public Code getCodeATrouver() {
-		return codeATrouver;
+		return codeATrouverParLeJoueur;
 	}
 
 	public void setCodeATrouver(Code codeATrouver) {
-		this.codeATrouver = codeATrouver;
+		this.codeATrouverParLeJoueur = codeATrouver;
 	}
 	
 	public Code getcodeRestant() {
@@ -50,7 +51,10 @@ public abstract class Jeu {
 		System.out.println("Entrer le code");
 		Scanner sc = new Scanner(System.in);
 		String prop = sc.nextLine();
-		 proposition = Code.extractCode(prop);
+		 propositionDuJoueur = Code.extractCode(prop);
 	}
+	
+	public abstract Code chercherSolution();
+	public abstract void analyserResultat(String resultat);
 
 }
