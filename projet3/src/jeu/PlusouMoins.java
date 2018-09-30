@@ -1,6 +1,7 @@
 package jeu;
 
 import java.util.ArrayList;
+import java.lang.*;
 
 public class PlusouMoins extends Jeu {
 	private ArrayList<Integer> min = new ArrayList<>();	
@@ -63,7 +64,27 @@ public class PlusouMoins extends Jeu {
 		/*
 		 * pour chaque chiffre du code, selon la valeur du résultat correspondant,
 		 * je repositionne mon min ou mon max
+		 * 
 		 */
 		
+		for (int i= 0; i < propositionDuJoueur.size(); i++)
+		{
+			if (resultat.equals("+")) {
+			min.add(Math.min(codeATrouverParLeJoueur.get(i),propositionDuJoueur.get(i)));
+
+			}
+			else
+			{
+				if (resultat.equals("-"))
+				{	
+				max.add(Math.max(codeATrouverParLeJoueur.get(i),propositionDuJoueur.get(i)));
+				}
+				
+			}
+				
+		}
+		
 	}
-}
+
+	
+};

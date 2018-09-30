@@ -14,6 +14,7 @@ public class Main {
 		int taille = 4;
 		boolean trouve = false;
 		int choice=0;
+		int choice_jeu=0;
 
 		Jeu jeu = null;
 
@@ -28,11 +29,11 @@ public class Main {
 			System.out.println("Entrer l'étendue");
 			try {
 				etendue = scanner.nextInt();
-			if ((etendue > 0) && (etendue < 10)) {
-				valide_etendue = true;
-			} else {
-				System.out.println("Etendue incorrecte (entre 1 et 9)");
-			}
+				if ((etendue > 0) && (etendue < 10)) {
+					valide_etendue = true;
+				} else {
+					System.out.println("Etendue incorrecte (entre 1 et 9)");
+				}
 			}
 			catch (InputMismatchException ime2) {
 				System.out.println("Ce n'est pas un entier !");
@@ -40,7 +41,7 @@ public class Main {
 			} finally {
 				scanner.nextLine();
 			}
-			
+
 		}
 
 		boolean valide_taille = false;
@@ -49,12 +50,12 @@ public class Main {
 			valide_taille = false;
 			System.out.println("Entrer la taille");
 			try {
-			taille = scanner.nextInt();
-			if ((taille > 0) && (taille < 7)) {
-				valide_taille = true;
-			} else {
-				System.out.println("Taille incorrecte (entre 1 et 6)");
-			}
+				taille = scanner.nextInt();
+				if ((taille > 0) && (taille < 7)) {
+					valide_taille = true;
+				} else {
+					System.out.println("Taille incorrecte (entre 1 et 6)");
+				}
 			}
 			catch (InputMismatchException ime3) {
 				System.out.println("Ce n'est pas un entier !");
@@ -63,7 +64,7 @@ public class Main {
 				scanner.nextLine();
 			}
 		}
-		
+
 		boolean valide_jeu;
 		do {
 			// Penser à réarmer les flags
@@ -73,17 +74,17 @@ public class Main {
 			try {
 				choice = scanner.nextInt();
 				switch (choice) {
-				case 1:
-					jeu = new Mastermind();
-					break;
+					case 1:
+						jeu = new Mastermind();
+						break;
 
-				case 2:
-					jeu = new PlusouMoins(etendue, taille);
-					break;
+					case 2:
+						jeu = new PlusouMoins(etendue, taille);
+						break;
 
-				default:
-					System.out.println("Choix de jeu invalide");
-					valide_jeu = false;
+					default:
+						System.out.println("Choix de jeu invalide");
+						valide_jeu = false;
 				}
 			} catch (InputMismatchException ime) {
 				System.out.println("Ce n'est pas un entier !");
@@ -94,42 +95,80 @@ public class Main {
 			// Fin des catch
 		} while (!valide_jeu);
 
-		
-		// TODO Ajouter une question pour savoir dans quel mode on joue (ordi défenseur ou attaquant)
-		// .... (boucle de recherche de la solution par l'ordi)
-		
-		// Ici on est dans le cas de l'ordinateur attaquant
-		// Faire une boucle de recherche de la solution par l'ordi
-		//		appeler la fonction de recherche 
-		//		demander résultat au joueur (sous forme +-=)
-		//		analyser ce résultat 
-		
-		// Ici on est dans le cas de l'ordinateur défenseur
-		// Ici la taille et l'étendue sont vérifiées et valides, ainsi que le jeu
-		// On positionne le code à trouver après l'avoir généré aléatoirement
-		jeu.setCodeATrouver(Code.genererNewCode(etendue, taille));
-		
-		//for (int l = 0; l < taille; l++) {
-		//jeu.setCodeATrouver(jeu.enterCode());
-		//}
+		choice_jeu = scanner.nextInt();
 
-		// Boucle de recherche de la solution par le joueur
-		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
-			// On affiche le code à trouver
-			System.out.println("Voici le code à deviner");
-			System.out.println(jeu.getCodeATrouver());
+		switch (choice_jeu) {
+			// TODO Ajouter une question pour savoir dans quel mode on joue (ordi défenseur ou attaquant)
+			// .... (boucle de recherche de la solution par l'ordi)
 
-			if (!trouve) {
-				System.out.println("Entrer un nouveau code?");
-				jeu.enterCode();
+			// Ici on est dans le cas de l'ordinateur attaquant
+			// Faire une boucle de recherche de la solution par l'ordi
+			//		appeler la fonction de recherche 
+			//		demander résultat au joueur (sous forme +-=)
+			//		analyser ce résultat 
+			case 1:
+				
+				for (int i = 0; i < taille; i++)
+				{
+					System.out.println("Entrer le code");
+					jeu.enterCode();
+				}
+				
+				for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
+					System.out.println("Le code proposé par l'ordinateur");
+					jeu.chercherSolution();
+					for (int j = 0; i < codeATrouverParLeJoueur.size(); i++) {
+					if (!trouve) {
+						System.out.println("Quel est le resultat?");	
+						String resultat = scanner.nextLine();
+						try {
+							if ((resultat.equals("=")) || (resultat.equals("-")) ||(resultat.equals("+"))) {
+								jeu.analyserResultat(resultat);
+							}
+						}
+						catch (InputMismatchException ime) 
+						{
+							System.out.println("Veuillez ressaisir le résultat");	
+						}
+						
+					}
+					}
+					
+				}
+				
+				
 
-				System.out.println("Le résultat est : " + jeu.comparerCode());
-				trouve = jeu.isWon(jeu.getResultat());
-			}
 
-		}
+				break;
+			case 2:
+				// Ici on est dans le cas de l'ordinateur défenseur
+				// Ici la taille et l'étendue sont vérifiées et valides, ainsi que le jeu
+				// On positionne le code à trouver après l'avoir généré aléatoirement
+				jeu.setCodeATrouver(Code.genererNewCode(etendue, taille));
 
-		System.out.println("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 
+				// Boucle de recherche de la solution par le joueur
+				 for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
+					// On affiche le code à trouver
+					System.out.println("Voici le code à deviner");
+					System.out.println(jeu.getCodeATrouver());
+
+					if (!trouve) {
+						System.out.println("Entrer un nouveau code?");
+						jeu.enterCode();
+
+						System.out.println("Le résultat est : " + jeu.comparerCode());
+						trouve = jeu.isWon(jeu.getResultat());
+					}
+
+				}
+
+				System.out.println("Vous avez " + ((trouve) ? "gagné" : "perdu"));
+
+
+				break;
+			default :
+				System.out.println("Choix de jeu invalide");
+		}	
 	}
 }
