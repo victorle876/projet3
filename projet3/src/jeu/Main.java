@@ -1,7 +1,6 @@
 package jeu;
 
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -13,8 +12,8 @@ public class Main {
 		int etendue = 9;
 		int taille = 4;
 		boolean trouve = false;
-		int choice=0;
-		int choice_jeu=0;
+		int choice = 0;
+		int choice_jeu = 0;
 
 		Jeu jeu = null;
 
@@ -34,8 +33,7 @@ public class Main {
 				} else {
 					System.out.println("Etendue incorrecte (entre 1 et 9)");
 				}
-			}
-			catch (InputMismatchException ime2) {
+			} catch (InputMismatchException ime2) {
 				System.out.println("Ce n'est pas un entier !");
 				valide_etendue = false;
 			} finally {
@@ -56,8 +54,7 @@ public class Main {
 				} else {
 					System.out.println("Taille incorrecte (entre 1 et 6)");
 				}
-			}
-			catch (InputMismatchException ime3) {
+			} catch (InputMismatchException ime3) {
 				System.out.println("Ce n'est pas un entier !");
 				valide_taille = false;
 			} finally {
@@ -74,17 +71,17 @@ public class Main {
 			try {
 				choice = scanner.nextInt();
 				switch (choice) {
-					case 1:
-						jeu = new Mastermind();
-						break;
+				case 1:
+					jeu = new Mastermind();
+					break;
 
-					case 2:
-						jeu = new PlusouMoins(etendue, taille);
-						break;
+				case 2:
+					jeu = new PlusouMoins(etendue, taille);
+					break;
 
-					default:
-						System.out.println("Choix de jeu invalide");
-						valide_jeu = false;
+				default:
+					System.out.println("Choix de jeu invalide");
+					valide_jeu = false;
 				}
 			} catch (InputMismatchException ime) {
 				System.out.println("Ce n'est pas un entier !");
@@ -95,80 +92,84 @@ public class Main {
 			// Fin des catch
 		} while (!valide_jeu);
 
+		System.out.println("Ordinateur attaquant (1) ou défenseur (2) ?");
 		choice_jeu = scanner.nextInt();
-
+		scanner.nextLine(); // Pour vider le buffer de saisie
 		switch (choice_jeu) {
-			// TODO Ajouter une question pour savoir dans quel mode on joue (ordi défenseur ou attaquant)
-			// .... (boucle de recherche de la solution par l'ordi)
+		// TODO Ajouter une question pour savoir dans quel mode on joue (ordi défenseur
+		// ou attaquant)
+		// .... (boucle de recherche de la solution par l'ordi)
 
-			// Ici on est dans le cas de l'ordinateur attaquant
-			// Faire une boucle de recherche de la solution par l'ordi
-			//		appeler la fonction de recherche 
-			//		demander résultat au joueur (sous forme +-=)
-			//		analyser ce résultat 
-			case 1:
-				
-				for (int i = 0; i < taille; i++)
-				{
-					System.out.println("Entrer le code");
-					jeu.enterCode();
-				}
-				
-				for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
-					System.out.println("Le code proposé par l'ordinateur");
-					jeu.chercherSolution();
-					for (int j = 0; i < codeATrouverParLeJoueur.size(); i++) {
-					if (!trouve) {
-						System.out.println("Quel est le resultat?");	
-						String resultat = scanner.nextLine();
-						try {
-							if ((resultat.equals("=")) || (resultat.equals("-")) ||(resultat.equals("+"))) {
-								jeu.analyserResultat(resultat);
+		// Ici on est dans le cas de l'ordinateur attaquant
+		// Faire une boucle de recherche de la solution par l'ordi
+		// appeler la fonction de recherche
+		// demander résultat au joueur (sous forme +-=)
+		// analyser ce résultat
+		case 1:
+
+			// for (int i = 0; i < taille; i++)
+			// {
+			// System.out.println("Entrer le code");
+			// jeu.enterCode();
+			// }
+
+			for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
+				System.out.print("Le code proposé par l'ordinateur : ");
+				System.out.println(jeu.chercherSolution());
+				System.out.println("Quel est le resultat pour cette proposition ?");
+				boolean resultatValide = false;
+				while (!resultatValide) {
+					String resultat = scanner.nextLine();
+					try {
+						for (char c : resultat.toCharArray()) {
+							if (!((c == '=') || (c == '-') || (c == '+'))) {
+								throw new InputMismatchException();
 							}
 						}
-						catch (InputMismatchException ime) 
-						{
-							System.out.println("Veuillez ressaisir le résultat");	
-						}
-						
+						jeu.analyserResultat(resultat);
+						resultatValide = true;
+						trouve = jeu.isWon(resultat);
+					} catch (InputMismatchException ime) {
+						System.out.println("Vous vous êtes trompé, veuillez ressaisir le résultat");
 					}
-					}
-					
 				}
-				
-				////
+			}
+			System.out.println("Vous avez " + ((trouve) ? "gagné" : "perdu"));
+			break;
+		case 2:
+			// Ici on est dans le cas de l'ordinateur défenseur
+			// Ici la taille et l'étendue sont vérifiées et valides, ainsi que le jeu
+			// On positionne le code à trouver après l'avoir généré aléatoirement
+			jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
 
+			// Boucle de recherche de la solution par le joueur
+			for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
+				// On affiche le code à trouver
+				System.out.println("Voici le code à deviner");
+				System.out.println(jeu.getCodeATrouverParLeJoueur());
 
-				break;
-			case 2:
-				// Ici on est dans le cas de l'ordinateur défenseur
-				// Ici la taille et l'étendue sont vérifiées et valides, ainsi que le jeu
-				// On positionne le code à trouver après l'avoir généré aléatoirement
-				jeu.setCodeATrouver(Code.genererNewCode(etendue, taille));
+				if (!trouve) {
+					System.out.println("Entrer un nouveau code?");
+					jeu.enterCode();
 
-
-				// Boucle de recherche de la solution par le joueur
-				 for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
-					// On affiche le code à trouver
-					System.out.println("Voici le code à deviner");
-					System.out.println(jeu.getCodeATrouver());
-
-					if (!trouve) {
-						System.out.println("Entrer un nouveau code?");
-						jeu.enterCode();
-
-						System.out.println("Le résultat est : " + jeu.comparerCode());
-						trouve = jeu.isWon(jeu.getResultat());
-					}
-
+					System.out.println("Le résultat est : " + jeu.comparerCode());
+					trouve = jeu.isWon(jeu.getResultatPourLeJoueur());
 				}
 
-				System.out.println("Vous avez " + ((trouve) ? "gagné" : "perdu"));
+			}
 
+			System.out.println("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 
-				break;
-			default :
-				System.out.println("Choix de jeu invalide");
-		}	
+			break;
+		default:
+			System.out.println("Choix de jeu invalide");
+		}
+	}
+
+	// Méthode d'aide à la saisie d'un nombre entre min et max
+	private static int askIntegerValue(int min, int max) {
+		int value = 0;
+		// TODO boucle de saisie d'une valeur numérique entre min et max
+		return value;
 	}
 }

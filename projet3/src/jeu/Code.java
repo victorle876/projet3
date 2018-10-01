@@ -1,13 +1,9 @@
 package jeu;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Code extends ArrayList<Integer> {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7028121193663088447L;
 	int taille;
 	int etendue;
@@ -43,8 +39,6 @@ public class Code extends ArrayList<Integer> {
 			else {
 				throw new IllegalArgumentException();
 			}
-
-			
 
 		}
 		return code;

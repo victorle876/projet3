@@ -3,59 +3,92 @@ package jeu;
 import java.util.Scanner;
 
 public abstract class Jeu {
-    protected Code propositionDuJoueur;
-    protected String resultatPourLeJoueur;
-    protected Code codeATrouverParLeJoueur;
-    protected Code codeRestant;
-    Code Code = new Code();
-    protected int etendue, taille;
+	protected Code propositionDuJoueur;
+	protected Code propositionOrdinateur;
+	protected String resultatPourLeJoueur;
+	protected Code codeATrouverParLeJoueur;
+	protected Code codeRestant;
+	Code Code = new Code();
+	protected int etendue, taille;
 
-    public Code getProposition() {
-	return propositionDuJoueur;
-    }
+	protected Code getPropositionDuJoueur() {
+		return propositionDuJoueur;
+	}
 
-    public void setProposition(Code proposition) {
-	this.propositionDuJoueur = proposition;
-    }
+	protected void setPropositionDuJoueur(Code propositionDuJoueur) {
+		this.propositionDuJoueur = propositionDuJoueur;
+	}
 
-    public String getResultat() {
-	return resultatPourLeJoueur;
-    }
+	protected Code getPropositionOrdinateur() {
+		return propositionOrdinateur;
+	}
 
-    public void setResultat(String resultat) {
-	this.resultatPourLeJoueur = resultat;
-    }
+	protected void setPropositionOrdinateur(Code propositionOrdinateur) {
+		this.propositionOrdinateur = propositionOrdinateur;
+	}
 
-    public Code getCodeATrouver() {
-	return codeATrouverParLeJoueur;
-    }
+	protected String getResultatPourLeJoueur() {
+		return resultatPourLeJoueur;
+	}
 
-    public void setCodeATrouver(Code codeATrouver) {
-	this.codeATrouverParLeJoueur = codeATrouver;
-    }
+	protected void setResultatPourLeJoueur(String resultatPourLeJoueur) {
+		this.resultatPourLeJoueur = resultatPourLeJoueur;
+	}
 
-    public Code getcodeRestant() {
-	return codeRestant;
-    }
+	protected Code getCodeATrouverParLeJoueur() {
+		return codeATrouverParLeJoueur;
+	}
 
-    public void setCodeRestant(Code codeRestant) {
-	this.codeRestant = codeRestant;
-    }
+	protected void setCodeATrouverParLeJoueur(Code codeATrouverParLeJoueur) {
+		this.codeATrouverParLeJoueur = codeATrouverParLeJoueur;
+	}
 
-    public abstract String comparerCode();
+	protected Code getCodeRestant() {
+		return codeRestant;
+	}
 
-    // public abstract String CreerCode();
-    public abstract boolean isWon(String resultat);
+	protected void setCodeRestant(Code codeRestant) {
+		this.codeRestant = codeRestant;
+	}
 
-    public void enterCode() {
-	System.out.println("Entrer le code");
-	Scanner sc = new Scanner(System.in);
-	String prop = sc.nextLine();
-	propositionDuJoueur = Code.extractCode(prop);
-    }
+	protected Code getCode() {
+		return Code;
+	}
 
-    public abstract Code chercherSolution();
+	protected void setCode(Code code) {
+		Code = code;
+	}
 
-    public abstract void analyserResultat(String resultat);
+	protected int getEtendue() {
+		return etendue;
+	}
+
+	protected void setEtendue(int etendue) {
+		this.etendue = etendue;
+	}
+
+	protected int getTaille() {
+		return taille;
+	}
+
+	protected void setTaille(int taille) {
+		this.taille = taille;
+	}
+
+	public abstract String comparerCode();
+
+	// public abstract String CreerCode();
+	public abstract boolean isWon(String resultat);
+
+	public void enterCode() {
+		System.out.println("Entrer le code");
+		Scanner sc = new Scanner(System.in);
+		String prop = sc.nextLine();
+		propositionDuJoueur = Code.extractCode(prop);
+	}
+
+	public abstract Code chercherSolution();
+
+	public abstract void analyserResultat(String resultat);
 
 }
