@@ -23,6 +23,7 @@ public class Main {
 
 		Scanner scanner = new Scanner(System.in);
 		max = scanner.nextInt();
+		
 
 		// Saisie de la taille et de l'étendue avec vérification de la validité des
 		// entrées
