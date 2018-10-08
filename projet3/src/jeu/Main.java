@@ -17,6 +17,7 @@ public class Main {
 		int min=0;
 		int value = 0;
 		int max;
+		//
 
 		Jeu jeu = null;
 
