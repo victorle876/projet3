@@ -7,6 +7,7 @@ public abstract class Jeu {
 	protected Code propositionOrdinateur;
 	protected String resultatPourLeJoueur;
 	protected Code codeATrouverParLeJoueur;
+	protected Code codeATrouverParLOrdinateur;
 	protected Code codeRestant;
 	Code Code = new Code();
 	protected int etendue, taille;
@@ -38,10 +39,18 @@ public abstract class Jeu {
 	protected Code getCodeATrouverParLeJoueur() {
 		return codeATrouverParLeJoueur;
 	}
+	
+	protected Code getCodeATrouverParLOrdinateur() {
+		return codeATrouverParLOrdinateur;
+	}
 
 	protected void setCodeATrouverParLeJoueur(Code codeATrouverParLeJoueur) {
 		this.codeATrouverParLeJoueur = codeATrouverParLeJoueur;
 	}
+	protected void setcodeATrouverParLOrdinateur(Code codeATrouverParLOrdinateur) {
+		this.codeATrouverParLOrdinateur = codeATrouverParLOrdinateur;
+	}
+	
 
 	protected Code getCodeRestant() {
 		return codeRestant;

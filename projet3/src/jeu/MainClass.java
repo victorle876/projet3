@@ -15,7 +15,6 @@ public class MainClass {
 
 		Jeu jeu = null;
 
-		Scanner scanner = new Scanner(System.in);
 
 		// Saisie des parametres de configuration
 		etendue = askIntegerValue(1, 9, "Entrer l'étendue");
@@ -39,7 +38,7 @@ public class MainClass {
 		case 1: // Ordinateur attaque
 			System.out.println(boucleJeuAttaquant(jeu, gameTypeChoice, etendue, taille));
 			break;
-		case 2: // ordinateur d�fend
+		case 2: // ordinateur d�fend
 			System.out.println(boucleJeuDefenseur(jeu, gameTypeChoice, etendue, taille));
 			break;
 		default:
@@ -77,31 +76,57 @@ public class MainClass {
 		int NombreEssaiMax = 10;
 		boolean trouve = false;
 		String message;
-		Scanner scanner = new Scanner(System.in);
+	//	Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
 			System.out.println("Quel est le resultat pour cette proposition ?");
-			boolean resultatValide = false;
-			while (!resultatValide) {
-				String resultat = scanner.nextLine();
-				try {
-					for (char c : resultat.toCharArray()) {
-						if (!((c == '=') || (c == '-') || (c == '+'))) {
-							throw new InputMismatchException();
-						}
-					}
-					jeu.analyserResultat(resultat);
-					resultatValide = true;
-					trouve = jeu.isWon(resultat);
-				} catch (InputMismatchException ime) {
-					System.out.println("Vous vous êtes trompé, veuillez ressaisir le résultat");
-				}
-			}
+//			boolean resultatValide = false;
+//			while (!resultatValide) {
+//				String resultat = scanner.nextLine();
+//				try {
+//					for (char c : resultat.toCharArray()) {
+//						if (!((c == '=') || (c == '-') || (c == '+'))) {
+//							throw new InputMismatchException();
+//						}
+//					}
+//					jeu.analyserResultat(resultat);
+//					resultatValide = true;
+//					trouve = jeu.isWon(resultat);
+//				} catch (InputMismatchException ime) {
+//					System.out.println("Vous vous êtes trompé, veuillez ressaisir le résultat");
+//				}
+//			}
 		}
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 		return message;
 	}
+	
+	private static String VerifieBoucleAttaquant(Jeu jeu, int choice, int etendue, int taille) {
+		boolean resultatValide = false;
+		String message = "";
+		boolean trouve = false;
+		Scanner scanner = new Scanner(System.in);
+		while (!resultatValide) {
+			String resultat = scanner.nextLine();
+			try {
+				for (char c : resultat.toCharArray()) {
+					if (!((c == '=') || (c == '-') || (c == '+'))) {
+						throw new InputMismatchException();
+					}
+				}
+				jeu.analyserResultat(resultat);
+				resultatValide = true;
+				trouve = jeu.isWon(resultat);
+			} catch (InputMismatchException ime) {
+				System.out.println("Vous vous êtes trompé, veuillez ressaisir le résultat");
+			}
+		}
+		return message;
+	}
+	
+	
+	
 
 	private static String boucleJeuDefenseur(Jeu jeu, int choice, int etendue, int taille) {
 		int NombreEssaiMax = 10;
@@ -129,4 +154,5 @@ public class MainClass {
 		return message;
 
 	}
+	
 }
