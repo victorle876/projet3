@@ -104,7 +104,7 @@ public class Mastermind extends Jeu {
 						if (propositionAttaquantRestant == propositionDefenseurRestant) {
 							prop.remove(j);
 							cat.remove(k);
-							MalPlacé.set(k,this.propositionOrdinateur.get(k));
+							malPlace.set(k,this.propositionOrdinateur.get(k));
 							MalPlacé++;
 							System.out.println(MalPlacé);
 							System.out.println(k);
