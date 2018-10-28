@@ -43,5 +43,38 @@ public class Code extends ArrayList<Integer> {
 		}
 		return code;
 	}
+	 /**
+     * Generate all possible codes with the given size and max value.
+     *
+     * @param taille Code's size
+     * @param etendue Code's components max value
+     * @return An ArrayList of all possible codes with the given parameters
+     */
+    public static ArrayList<Code> getAllPossibilities(int taille, int etendue) {
+        ArrayList<Code> allPossibilities = new ArrayList<>();
+        // TODO !!!
+        for (int value= 0; value <= etendue; value ++){
+        	    if (taille > 1) {
+        	    	     for (Code c : getAllPossibilities(taille-1,etendue)) {
+        	    	    	 ArrayList<Integer> Possibility = new ArrayList<>();
+        	    	    	 Possibility.add(value);
+        	    	    	 Possibility.addAll(c);
+        	    	    	 allPossibilities.add((Code) Possibility);
+        	    	     }
+        	    }	     
+        	    	else {
+        	    		Code c = new Code();
+        	    		allPossibilities.addAll(c.getAllPossibilities(1, value));
+        	    	}
+        	    		
+        	    	
+        	    }
+        	
+        
+        	
+        return allPossibilities;
+    }
+
+
 
 }
