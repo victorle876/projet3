@@ -7,6 +7,19 @@ public class Code extends ArrayList<Integer> {
 	private static final long serialVersionUID = -7028121193663088447L;
 	int taille;
 	int etendue;
+	
+	public Code() {
+		super();
+	}
+	
+	public Code (int value, int etendue) {
+		this.clear();
+		if ((value >= 0) && (value <= etendue))
+		{
+			this.add(value);
+			this. etendue= etendue;
+		}
+	}
 
 	public int getEtendue() {
 		return etendue;
@@ -43,38 +56,35 @@ public class Code extends ArrayList<Integer> {
 		}
 		return code;
 	}
-	 /**
-     * Generate all possible codes with the given size and max value.
-     *
-     * @param taille Code's size
-     * @param etendue Code's components max value
-     * @return An ArrayList of all possible codes with the given parameters
-     */
-    public static ArrayList<Code> getAllPossibilities(int taille, int etendue) {
-        ArrayList<Code> allPossibilities = new ArrayList<>();
-        // TODO !!!
-        for (int value= 0; value <= etendue; value ++){
-        	    if (taille > 1) {
-        	    	     for (Code c : getAllPossibilities(taille-1,etendue)) {
-        	    	    	 ArrayList<Integer> Possibility = new ArrayList<>();
-        	    	    	 Possibility.add(value);
-        	    	    	 Possibility.addAll(c);
-        	    	    	 allPossibilities.add((Code) Possibility);
-        	    	     }
-        	    }	     
-        	    	else {
-        	    		Code c = new Code();
-        	    		allPossibilities.addAll(c.getAllPossibilities(1, value));
-        	    	}
-        	    		
-        	    	
-        	    }
-        	
-        
-        	
-        return allPossibilities;
-    }
 
+	/**
+	 * Generate all possible codes with the given size and max value.
+	 *
+	 * @param taille  Code's size
+	 * @param etendue Code's components max value
+	 * @return An ArrayList of all possible codes with the given parameters
+	 */
+	public static ArrayList<Code> getAllPossibilities(int taille, int etendue) {
+		ArrayList<Code> allPossibilities = new ArrayList<>();
+		// TODO !!!
+		for (int value = 0; value <= etendue; value++) {
+			if (taille > 1) {
+				for (Code c : getAllPossibilities(taille - 1, etendue)) {
+					ArrayList<Integer> Possibility = new ArrayList<>();
+					Possibility.add(value);
+					Possibility.addAll(c);
+					allPossibilities.add((Code) Possibility);
+				}
+			} else {
+				for (int i = 0; value <= etendue; i++) {
+					allPossibilities.add(new Code(1, value));
+				}
 
+			}
+
+		}
+
+		return allPossibilities;
+	}
 
 }
