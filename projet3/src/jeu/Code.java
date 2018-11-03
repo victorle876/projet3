@@ -76,8 +76,8 @@ public class Code extends ArrayList<Integer> {
 					allPossibilities.add((Code) Possibility);
 				}
 			} else {
-				for (int i = 0; value <= etendue; i++) {
-					allPossibilities.add(new Code(1, value));
+				for (int i = 0; i <= etendue; i++) {
+					allPossibilities.add(new Code(1, i));
 				}
 
 			}
