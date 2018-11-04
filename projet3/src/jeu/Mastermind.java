@@ -101,7 +101,7 @@ public class Mastermind extends Jeu {
 			        	allPossibilities.remove(propositionOrdinateur);
 			    }
 			    else {
-			    	allPossibilities.add((Code) propositionOrdinateur);
+			    	allPossibilities.add((Code) prop);
 			    	
 			    }
 		
