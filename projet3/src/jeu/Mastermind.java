@@ -75,6 +75,7 @@ public class Mastermind extends Jeu {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < this.taille; i++) {
 			propositionOrdinateur.getAllPossibilities(taille, etendue);	
+			System.out.println(propositionOrdinateur.getAllPossibilities(taille, etendue));
 		}
 		
 		return propositionOrdinateur;
@@ -95,13 +96,14 @@ public class Mastermind extends Jeu {
 			int bienPlace = scanner.nextInt();
 			int MalPlace = scanner.nextInt();
 			for (Code c : Code.getAllPossibilities(taille - 1, etendue)) {
-			//	ArrayList<Integer> Possibility = new ArrayList<>();
+				ArrayList<Integer> Possibility = new ArrayList<>();
 			    this.comparerCode();	
 			    if ((MalPlacé == 0) && (bienPlacé == 0)) {
 			        	allPossibilities.remove(propositionOrdinateur);
 			    }
 			    else {
-			    	allPossibilities.add((Code) prop);
+			    	Possibility.add(propositionOrdinateur.get(i));
+			    	allPossibilities.add((Code) Possibility);
 			    	
 			    }
 		

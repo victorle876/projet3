@@ -81,22 +81,6 @@ public class MainClass {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
 			System.out.println("Quel est le resultat pour cette proposition ?");
-//			boolean resultatValide = false;
-//			while (!resultatValide) {
-//				String resultat = scanner.nextLine();
-//				try {
-//					for (char c : resultat.toCharArray()) {
-//						if (!((c == '=') || (c == '-') || (c == '+'))) {
-//							throw new InputMismatchException();
-//						}
-//					}
-//					jeu.analyserResultat(resultat);
-//					resultatValide = true;
-//					trouve = jeu.isWon(resultat);
-//				} catch (InputMismatchException ime) {
-//					System.out.println("Vous vous êtes trompé, veuillez ressaisir le résultat");
-//				}
-//			}
 		}
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 		return message;
