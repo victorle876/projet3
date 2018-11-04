@@ -8,6 +8,7 @@ public class Mastermind extends Jeu {
 	// protected Code codeATrouver;
 	private ArrayList<Integer> bienPlace = new ArrayList<>();
 	private ArrayList<Integer> malPlace = new ArrayList<>();
+	private ArrayList<Code> allPossibilities = new ArrayList<>();
 	
 		public Mastermind () {
 			super();
@@ -86,7 +87,6 @@ public class Mastermind extends Jeu {
 		// TODO Auto-generated method stub
 		Code prop = (Code) propositionOrdinateur.clone();
 		Code cat = (Code) codeATrouverParLOrdinateur.clone();
-		ArrayList<Code> allPossibilities = new ArrayList<>();
 		Scanner scanner = new Scanner(System.in);
 		int MalPlacé=0;
 		int bienPlacé=0;
