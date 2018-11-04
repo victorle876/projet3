@@ -2,11 +2,16 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Mastermind extends Jeu {
 	// protected Code codeATrouver;
 	private ArrayList<Integer> bienPlace = new ArrayList<>();
 	private ArrayList<Integer> malPlace = new ArrayList<>();
+	
+		public Mastermind () {
+			super();
+		}
 	
 	// Constructeur
 		public Mastermind(int etendue, int taille) {
@@ -14,6 +19,8 @@ public class Mastermind extends Jeu {
 			this.taille = taille;
 			this.propositionOrdinateur = new Code();
 		}
+		
+		
 
 	@Override
 	public String comparerCode() {
@@ -76,17 +83,33 @@ public class Mastermind extends Jeu {
 	@Override
 	public void analyserResultat(String resultat) {
 		// TODO Auto-generated method stub
-		// o : bien placé, # malplace et - non correcte
 		Code prop = (Code) propositionOrdinateur.clone();
 		Code cat = (Code) codeATrouverParLOrdinateur.clone();
-		int MalPlace = 0;
-		int BienPlace = 0;
+		ArrayList<Code> allPossibilities = new ArrayList<>();
+		Scanner scanner = new Scanner(System.in);
+		int MalPlacé=0;
+		int bienPlacé=0;
 		
-		for (int i = 0; i < resultat.length(); i++) {
+		for (int i = 0; i < propositionOrdinateur.size(); i++) {
+			System.out.println("Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé);
+			int bienPlace = scanner.nextInt();
+			int MalPlace = scanner.nextInt();
+			for (Code c : Code.getAllPossibilities(taille - 1, etendue)) {
+			//	ArrayList<Integer> Possibility = new ArrayList<>();
+			    this.comparerCode();	
+			    if ((MalPlacé == 0) && (bienPlacé == 0)) {
+			        	allPossibilities.remove(propositionOrdinateur);
+			    }
+			    else {
+			    	allPossibilities.add((Code) propositionOrdinateur);
+			    	
+			    }
+		
 			
 		}
 		
 		
 
 	}
+}
 }
