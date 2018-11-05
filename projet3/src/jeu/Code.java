@@ -7,18 +7,23 @@ public class Code extends ArrayList<Integer> {
 	private static final long serialVersionUID = -7028121193663088447L;
 	int taille;
 	int etendue;
-	
+
 	public Code() {
 		super();
 	}
-	
-	public Code (int value, int etendue) {
+
+	public Code(int value, int etendue) {
 		this.clear();
-		if ((value >= 0) && (value <= etendue))
-		{
+		if ((value >= 0) && (value <= etendue)) {
 			this.add(value);
-			this. etendue= etendue;
+			this.etendue = etendue;
 		}
+	}
+
+	public Code(ArrayList<Integer> chiffres, int etendue) {
+		super(chiffres);
+		this.taille = chiffres.size();
+		this.etendue = etendue;
 	}
 
 	public int getEtendue() {
@@ -60,8 +65,10 @@ public class Code extends ArrayList<Integer> {
 	/**
 	 * Generate all possible codes with the given size and max value.
 	 *
-	 * @param taille  Code's size
-	 * @param etendue Code's components max value
+	 * @param taille
+	 *            Code's size
+	 * @param etendue
+	 *            Code's components max value
 	 * @return An ArrayList of all possible codes with the given parameters
 	 */
 	public static ArrayList<Code> getAllPossibilities(int taille, int etendue) {
@@ -73,7 +80,7 @@ public class Code extends ArrayList<Integer> {
 					ArrayList<Integer> Possibility = new ArrayList<>();
 					Possibility.add(value);
 					Possibility.addAll(c);
-					allPossibilities.add((Code) Possibility);
+					allPossibilities.add(new Code(Possibility, etendue));
 				}
 			} else {
 				for (int i = 0; i <= etendue; i++) {
