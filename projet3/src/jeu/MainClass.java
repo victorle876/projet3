@@ -25,7 +25,7 @@ public class MainClass {
 		// Creation du jeu
 		switch (gameTypeChoice) {
 		case 1:
-			jeu = new Mastermind();
+			jeu = new Mastermind(etendue, taille);
 			break;
 
 		case 2:
