@@ -77,7 +77,7 @@ public class Code extends ArrayList<Integer> {
 				}
 			} else {
 				for (int i = 0; i <= etendue; i++) {
-					allPossibilities.add(new Code(1, i));
+					allPossibilities.add(new Code(i, etendue));
 				}
 
 			}

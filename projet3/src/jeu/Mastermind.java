@@ -95,7 +95,7 @@ public class Mastermind extends Jeu {
 			System.out.println("Bien Placé :"+bienPlacé+"; MalPlacé : "+MalPlacé);
 			int bienPlace = scanner.nextInt();
 			int MalPlace = scanner.nextInt();
-			for (Code c : Code.getAllPossibilities(taille - 1, etendue)) {
+			for (Code c : propositionOrdinateur.getAllPossibilities(taille - 1, etendue)) {
 				ArrayList<Integer> Possibility = new ArrayList<>();
 			    this.comparerCode();	
 			    if ((MalPlacé == 0) && (bienPlacé == 0)) {
