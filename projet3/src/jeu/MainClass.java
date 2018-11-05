@@ -15,7 +15,6 @@ public class MainClass {
 
 		Jeu jeu = null;
 
-
 		// Saisie des parametres de configuration
 		etendue = askIntegerValue(1, 9, "Entrer l'étendue");
 		taille = askIntegerValue(1, 6, "Entrer la taille");
@@ -76,16 +75,21 @@ public class MainClass {
 		int NombreEssaiMax = 10;
 		boolean trouve = false;
 		String message;
-	//	Scanner scanner = new Scanner(System.in);
+		// Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
 			System.out.println("Quel est le resultat pour cette proposition ?");
+			// TODO : saisir le nombre de bien placés : bp
+			// TODO : saisir le nombre de mal placé : mp
+			// TODO : construire une String avec ces infos, par exemple res="<bp>|<mp>"
+			// TODO : comparer avec les possiblités : jeu.analyserResultat(res)
+			// TODO : positionner trouve à true si jeu.isWon() == true
 		}
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 		return message;
 	}
-	
+
 	private static String VerifieBoucleAttaquant(Jeu jeu, int choice, int etendue, int taille) {
 		boolean resultatValide = false;
 		String message = "";
@@ -108,9 +112,6 @@ public class MainClass {
 		}
 		return message;
 	}
-	
-	
-	
 
 	private static String boucleJeuDefenseur(Jeu jeu, int choice, int etendue, int taille) {
 		int NombreEssaiMax = 10;
@@ -138,5 +139,5 @@ public class MainClass {
 		return message;
 
 	}
-	
+
 }
