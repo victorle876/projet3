@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Mastermind extends Jeu {
-	// protected Code codeATrouver;
-	private ArrayList<Integer> bienPlace = new ArrayList<>();
-	private ArrayList<Integer> malPlace = new ArrayList<>();
 	private ArrayList<Code> allPossibilities = new ArrayList<>();
 
 	public Mastermind() {
@@ -72,7 +69,7 @@ public class Mastermind extends Jeu {
 	public Code chercherSolution() {
 		// TODO Auto-generated method stub
 		if (this.allPossibilities == null) {
-			this.allPossibilities = propositionOrdinateur.getAllPossibilities(taille, etendue);
+			this.allPossibilities = jeu.Code.getAllPossibilities(taille, etendue);
 		}
 		// TODO propositionOrdinateur est une valeur tirée au hasard dans
 		// this.allpossibilities
@@ -86,19 +83,18 @@ public class Mastermind extends Jeu {
 	@Override
 	public void analyserResultat(String resultat) {
 
-		// TODO : extraire le nb de bp et le nb de mp depuis la String passée en
+		// extraire le nb de bp et le nb de mp depuis la String passée en
 		// paramètre au format "bp|mp"
 		String[] resultats = resultat.split("|");
 		int malPlacé = new Integer(resultats[1]);
 		int bienPlacé = new Integer(resultats[0]);
 
-		// TODO Auto-generated method stub
 		Code prop = (Code) propositionOrdinateur.clone();
 		Code cat = (Code) codeATrouverParLOrdinateur.clone();
 
 		for (int i = 0; i < propositionOrdinateur.size(); i++) {
 			System.out.println("Bien Placé :" + bienPlacé + "; MalPlacé : " + malPlacé);
-			for (Code c : propositionOrdinateur.getAllPossibilities(taille - 1, etendue)) {
+			for (Code c : jeu.Code.getAllPossibilities(taille - 1, etendue)) {
 				ArrayList<Integer> Possibility = new ArrayList<>();
 				this.comparerCode();
 				if ((malPlacé == 0) && (bienPlacé == 0)) {

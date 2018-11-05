@@ -30,10 +30,6 @@ public class Code extends ArrayList<Integer> {
 		return etendue;
 	}
 
-	// public void setEtendue() {
-	// this.etendue = etendue;
-	// }
-
 	public static Code genererNewCode(int etendue, int taille) {
 		Random r = new Random();
 		Code code = new Code();

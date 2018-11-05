@@ -37,7 +37,7 @@ public class MainClass {
 		case 1: // Ordinateur attaque
 			System.out.println(boucleJeuAttaquant(jeu, gameTypeChoice, etendue, taille));
 			break;
-		case 2: // ordinateur d�fend
+		case 2: // ordinateur défend
 			System.out.println(boucleJeuDefenseur(jeu, gameTypeChoice, etendue, taille));
 			break;
 		default:
@@ -75,7 +75,6 @@ public class MainClass {
 		int NombreEssaiMax = 10;
 		boolean trouve = false;
 		String message;
-		// Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
@@ -92,9 +91,9 @@ public class MainClass {
 
 	private static String VerifieBoucleAttaquant(Jeu jeu, int choice, int etendue, int taille) {
 		boolean resultatValide = false;
+		Scanner scanner = new Scanner(System.in);
 		String message = "";
 		boolean trouve = false;
-		Scanner scanner = new Scanner(System.in);
 		while (!resultatValide) {
 			String resultat = scanner.nextLine();
 			try {
@@ -117,7 +116,6 @@ public class MainClass {
 		int NombreEssaiMax = 10;
 		boolean trouve = false;
 		String message;
-		Scanner scanner = new Scanner(System.in);
 		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
 
 		// Boucle de recherche de la solution par le joueur

@@ -39,7 +39,7 @@ public abstract class Jeu {
 	protected Code getCodeATrouverParLeJoueur() {
 		return codeATrouverParLeJoueur;
 	}
-	
+
 	protected Code getCodeATrouverParLOrdinateur() {
 		return codeATrouverParLOrdinateur;
 	}
@@ -47,10 +47,10 @@ public abstract class Jeu {
 	protected void setCodeATrouverParLeJoueur(Code codeATrouverParLeJoueur) {
 		this.codeATrouverParLeJoueur = codeATrouverParLeJoueur;
 	}
+
 	protected void setcodeATrouverParLOrdinateur(Code codeATrouverParLOrdinateur) {
 		this.codeATrouverParLOrdinateur = codeATrouverParLOrdinateur;
 	}
-	
 
 	protected Code getCodeRestant() {
 		return codeRestant;
@@ -93,7 +93,7 @@ public abstract class Jeu {
 		System.out.println("Entrer le code");
 		Scanner sc = new Scanner(System.in);
 		String prop = sc.nextLine();
-		propositionDuJoueur = Code.extractCode(prop);
+		propositionDuJoueur = jeu.Code.extractCode(prop);
 	}
 
 	public abstract Code chercherSolution();
