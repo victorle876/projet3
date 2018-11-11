@@ -79,10 +79,11 @@ public class Code extends ArrayList<Integer> {
 					allPossibilities.add(new Code(Possibility, etendue));
 				}
 			} else {
+				if (taille == 1) {
 				for (int i = 0; i <= etendue; i++) {
 					allPossibilities.add(new Code(i, etendue));
 				}
-
+			   }
 			}
 
 		}

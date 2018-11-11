@@ -68,15 +68,15 @@ public class Mastermind extends Jeu {
 	@Override
 	public Code chercherSolution() {
 		// TODO Auto-generated method stub
+		Random r = new Random();
+		this.propositionOrdinateur.clear();
 		if (this.allPossibilities == null) {
 			this.allPossibilities = jeu.Code.getAllPossibilities(taille, etendue);
 		}
-		// TODO propositionOrdinateur est une valeur tirée au hasard dans
+		// propositionOrdinateur est une valeur tirée au hasard dans
 		// this.allpossibilities
-		Random r = new Random();
-
 		propositionOrdinateur = allPossibilities.get(r.nextInt(allPossibilities.size()));
-
+//		}
 		return propositionOrdinateur;
 	}
 

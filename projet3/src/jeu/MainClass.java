@@ -30,6 +30,8 @@ public class MainClass {
 		case 2:
 			jeu = new PlusouMoins(etendue, taille);
 			break;
+		default:
+			System.out.println("Choix de jeu invalide");	
 		}
 
 		// Resolution du jeu
@@ -41,7 +43,7 @@ public class MainClass {
 			System.out.println(boucleJeuDefenseur(jeu, gameTypeChoice, etendue, taille));
 			break;
 		default:
-			System.out.println("Choix de jeu invalide");
+			System.out.println("Mode de jeu invalide");
 		}
 	}
 
@@ -74,7 +76,10 @@ public class MainClass {
 	private static String boucleJeuAttaquant(Jeu jeu, int choice, int etendue, int taille) {
 		int NombreEssaiMax = 10;
 		boolean trouve = false;
-		String message;
+		Scanner scanner = new Scanner(System.in);
+		int bp = 0;
+		int mp = 0;
+		String message , res;
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
@@ -84,6 +89,13 @@ public class MainClass {
 			// TODO : construire une String avec ces infos, par exemple res="<bp>|<mp>"
 			// TODO : comparer avec les possiblités : jeu.analyserResultat(res)
 			// TODO : positionner trouve à true si jeu.isWon() == true
+			bp = scanner.nextInt();
+			mp = scanner.nextInt();
+			while (!trouve) {
+				res = "<" + bp + ">" +"<" + mp + ">";
+				jeu.analyserResultat(res);
+			}
+			
 		}
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 		return message;
