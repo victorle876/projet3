@@ -79,7 +79,8 @@ public class MainClass {
 		Scanner scanner = new Scanner(System.in);
 		int bp = 0;
 		int mp = 0;
-		String message , res;
+		String message;
+		String resultat;
 		for (int i = 0; i < NombreEssaiMax && !trouve; i++) {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
@@ -89,11 +90,13 @@ public class MainClass {
 			// TODO : construire une String avec ces infos, par exemple res="<bp>|<mp>"
 			// TODO : comparer avec les possiblités : jeu.analyserResultat(res)
 			// TODO : positionner trouve à true si jeu.isWon() == true
-			bp = scanner.nextInt();
-			mp = scanner.nextInt();
+			bp = askIntegerValue(0, 6 , "Entrer le nombre de BienPlace");
+			mp = askIntegerValue(0, 6 , "Entrer le nombre de MalPlace");
 			while (!trouve) {
-				res = "<" + bp + ">" +"<" + mp + ">";
-				jeu.analyserResultat(res);
+				String bpAsString = Integer.toString(bp);
+				String mpAsString = Integer.toString(mp);
+				resultat = bpAsString +"|"+ mpAsString;
+				jeu.analyserResultat(resultat);
 			}
 			
 		}

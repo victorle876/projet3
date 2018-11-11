@@ -72,11 +72,13 @@ public class Mastermind extends Jeu {
 		this.propositionOrdinateur.clear();
 		if (this.allPossibilities == null) {
 			this.allPossibilities = jeu.Code.getAllPossibilities(taille, etendue);
+//			propositionOrdinateur = allPossibilities.get(r.nextInt(allPossibilities.size()));
 		}
 		// propositionOrdinateur est une valeur tirée au hasard dans
 		// this.allpossibilities
+		if (!this.allPossibilities.isEmpty()) {
 		propositionOrdinateur = allPossibilities.get(r.nextInt(allPossibilities.size()));
-//		}
+		}
 		return propositionOrdinateur;
 	}
 
