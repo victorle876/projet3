@@ -31,7 +31,7 @@ public class MainClass {
 			jeu = new PlusouMoins(etendue, taille);
 			break;
 		default:
-			System.out.println("Choix de jeu invalide");	
+			System.out.println("Choix de jeu invalide");
 		}
 
 		// Resolution du jeu
@@ -76,7 +76,6 @@ public class MainClass {
 	private static String boucleJeuAttaquant(Jeu jeu, int choice, int etendue, int taille) {
 		int NombreEssaiMax = 10;
 		boolean trouve = false;
-		Scanner scanner = new Scanner(System.in);
 		int bp = 0;
 		int mp = 0;
 		String message;
@@ -85,45 +84,15 @@ public class MainClass {
 			System.out.print("Le code proposé par l'ordinateur : ");
 			System.out.println(jeu.chercherSolution());
 			System.out.println("Quel est le resultat pour cette proposition ?");
-			// TODO : saisir le nombre de bien placés : bp
-			// TODO : saisir le nombre de mal placé : mp
-			// TODO : construire une String avec ces infos, par exemple res="<bp>|<mp>"
-			// TODO : comparer avec les possiblités : jeu.analyserResultat(res)
-			// TODO : positionner trouve à true si jeu.isWon() == true
-			bp = askIntegerValue(0, 6 , "Entrer le nombre de BienPlace");
-			mp = askIntegerValue(0, 6 , "Entrer le nombre de MalPlace");
-			while (!trouve) {
-				String bpAsString = Integer.toString(bp);
-				String mpAsString = Integer.toString(mp);
-				resultat = bpAsString +"|"+ mpAsString;
-				jeu.analyserResultat(resultat);
-			}
-			
+			bp = askIntegerValue(0, 6, "Entrer le nombre de BienPlace");
+			mp = askIntegerValue(0, 6, "Entrer le nombre de MalPlace");
+			String bpAsString = Integer.toString(bp);
+			String mpAsString = Integer.toString(mp);
+			resultat = bpAsString + ":" + mpAsString;
+			jeu.analyserResultat(resultat);
+			trouve = jeu.isWon(resultat);
 		}
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
-		return message;
-	}
-
-	private static String VerifieBoucleAttaquant(Jeu jeu, int choice, int etendue, int taille) {
-		boolean resultatValide = false;
-		Scanner scanner = new Scanner(System.in);
-		String message = "";
-		boolean trouve = false;
-		while (!resultatValide) {
-			String resultat = scanner.nextLine();
-			try {
-				for (char c : resultat.toCharArray()) {
-					if (!((c == '=') || (c == '-') || (c == '+'))) {
-						throw new InputMismatchException();
-					}
-				}
-				jeu.analyserResultat(resultat);
-				resultatValide = true;
-				trouve = jeu.isWon(resultat);
-			} catch (InputMismatchException ime) {
-				System.out.println("Vous vous êtes trompé, veuillez ressaisir le résultat");
-			}
-		}
 		return message;
 	}
 

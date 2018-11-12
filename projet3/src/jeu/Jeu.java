@@ -86,7 +86,6 @@ public abstract class Jeu {
 
 	public abstract String comparerCode();
 
-	// public abstract String CreerCode();
 	public abstract boolean isWon(String resultat);
 
 	public void enterCode() {

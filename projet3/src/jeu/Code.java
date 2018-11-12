@@ -69,7 +69,6 @@ public class Code extends ArrayList<Integer> {
 	 */
 	public static ArrayList<Code> getAllPossibilities(int taille, int etendue) {
 		ArrayList<Code> allPossibilities = new ArrayList<>();
-		// TODO !!!
 		for (int value = 0; value <= etendue; value++) {
 			if (taille > 1) {
 				for (Code c : getAllPossibilities(taille - 1, etendue)) {
@@ -80,10 +79,10 @@ public class Code extends ArrayList<Integer> {
 				}
 			} else {
 				if (taille == 1) {
-				for (int i = 0; i <= etendue; i++) {
-					allPossibilities.add(new Code(i, etendue));
+					for (int i = 0; i <= etendue; i++) {
+						allPossibilities.add(new Code(i, etendue));
+					}
 				}
-			   }
 			}
 
 		}
