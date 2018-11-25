@@ -96,6 +96,7 @@ public abstract class Jeu {
 	}
 
 	public abstract Code chercherSolution();
+	public abstract void  demandeAnalyse();
 
 	public abstract void analyserResultat(String resultat);
 

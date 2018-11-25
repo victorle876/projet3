@@ -57,6 +57,9 @@ public class PlusouMoins extends Jeu {
 		}
 		return this.propositionOrdinateur;
 	}
+	public void demandeAnalyse() {
+		//todo
+	}
 
 	@Override
 	public void analyserResultat(String resultat) {

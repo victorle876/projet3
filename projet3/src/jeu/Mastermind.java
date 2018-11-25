@@ -91,17 +91,19 @@ public class Mastermind extends Jeu {
 		}
 		return propositionOrdinateur;
 	}
+	
+	public void demandeAnalyse() {
+		//todo
+	}
+	
     /**
      * Je prends les codes valables dans la liste et je les compare avec la liste des 
      * codes proposés par l'ordinatateur
+     * Si le résultat est le même que celui fourni par le joueur, alors c'est un
+     * code toujours valable, sinon on le supprime
      */
 	@Override
 	public void analyserResultat(String resultat) {
-
-		// Je prends tous les codes encore possiblement valables, et je les
-		// compare avec le code proposé par l'ordinateur.
-		// Si le résultat est le même que celui fourni par le joueur, alors c'est un
-		// code toujours valable, sinon on le supprime
 		ArrayList<Code> suppress = new ArrayList<>();
 		for (Code c : allPossibilities) {
 			// Comparer c et le code proposé par l'ordinateur

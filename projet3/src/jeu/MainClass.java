@@ -4,25 +4,30 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainClass {
+	
+	/**
+	 * La classe principale permettant de choisir le jeu et son mode
+	 * @param args
+	 */
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 
 		int etendue = 9;
 		int taille = 4;
-		int gameTypeChoice = 2;
+		int TypeChoixJeu = 2;
 		int attackDefenseChoice;
 
 		Jeu jeu = null;
 
 		// Saisie des parametres de configuration
-		etendue = askIntegerValue(1, 9, "Entrer l'étendue");
-		taille = askIntegerValue(1, 6, "Entrer la taille");
-		gameTypeChoice = askIntegerValue(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-		attackDefenseChoice = askIntegerValue(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
+		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
+		TypeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
+		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
 
 		// Creation du jeu
-		switch (gameTypeChoice) {
+		switch (TypeChoixJeu) {
 		case 1:
 			jeu = new Mastermind(etendue, taille);
 			break;
@@ -37,10 +42,10 @@ public class MainClass {
 		// Resolution du jeu
 		switch (attackDefenseChoice) {
 		case 1: // Ordinateur attaque
-			System.out.println(boucleJeuAttaquant(jeu, gameTypeChoice, etendue, taille));
+			System.out.println(boucleJeuAttaquant(jeu, TypeChoixJeu, etendue, taille));
 			break;
 		case 2: // ordinateur défend
-			System.out.println(boucleJeuDefenseur(jeu, gameTypeChoice, etendue, taille));
+			System.out.println(boucleJeuDefenseur(jeu, TypeChoixJeu, etendue, taille));
 			break;
 		default:
 			System.out.println("Mode de jeu invalide");
