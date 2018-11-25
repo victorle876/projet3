@@ -9,7 +9,7 @@ public abstract class Jeu {
 	protected Code codeATrouverParLeJoueur;
 	protected Code codeATrouverParLOrdinateur;
 	protected Code codeRestant;
-	Code Code = new Code();
+	Code code = new Code();
 	protected int etendue, taille;
 
 	protected Code getPropositionDuJoueur() {
@@ -61,11 +61,11 @@ public abstract class Jeu {
 	}
 
 	protected Code getCode() {
-		return Code;
+		return code;
 	}
 
 	protected void setCode(Code code) {
-		Code = code;
+		code = code;
 	}
 
 	protected int getEtendue() {
@@ -87,6 +87,12 @@ public abstract class Jeu {
 	public abstract String comparerCode();
 
 	public abstract boolean isWon(String resultat);
+	
+	/**
+	 * Méthode permettant d'entrer les caractères à la console
+	 * et d'en faire une extraction via une autre méthode
+	 * 
+	 */
 
 	public void enterCode() {
 		System.out.println("Entrer le code");
@@ -96,7 +102,7 @@ public abstract class Jeu {
 	}
 
 	public abstract Code chercherSolution();
-	public abstract void  demandeAnalyse();
+	public abstract void demandeAnalyse();
 
 	public abstract void analyserResultat(String resultat);
 
