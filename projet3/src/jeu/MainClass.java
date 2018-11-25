@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class MainClass {
 	
-	 static int etendue = 9;
-	 static int taille = 4;
-	 static int TypeChoixJeu = 2;
-	 static int attackDefenseChoice;
+	 private static int etendue = 9;
+	 private static int taille = 4;
+	 private static int TypeChoixJeu = 2;
+	 private static int attackDefenseChoice;
 	
 	/**
 	 * La classe principale permettant de choisir le jeu et son mode
