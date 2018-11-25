@@ -10,26 +10,34 @@ public class Mastermind extends Jeu {
 		super();
 	}
 
-	// Constructeur
+	/***
+	 * Constructeur pour la classe Mastermind
+	 * @param etendue
+	 * @param taille
+	 */
 	public Mastermind(int etendue, int taille) {
 		this.etendue = etendue;
 		this.taille = taille;
 		this.propositionOrdinateur = new Code();
 	}
-
+	
+    /**
+     * Classe permettant de faire l'extraction bienPlace : malPlace
+     * 
+     */
 	@Override
 	public String comparerCode() {
 		String resultat = comparerCode(propositionDuJoueur, codeATrouverParLeJoueur);
 
 		String[] resultats = resultat.split(":");
-		resultatPourLeJoueur = "Bien Placé :" + resultats[0] + "; MalPlacé : " + resultats[1];
+		resultatPourLeJoueur = "Bien Placé :" + resultats[0] + "; malPlace : " + resultats[1];
 
 		return resultat;
 
 	}
 	
 	/**
-	 * Méthode permmettant de trouver les chiffres bien placés par comparaison et les 
+	 * Méthode permettant de trouver les chiffres bien placés par comparaison et les 
 	 * supprimer
 	 * si les chiffres sonnt malpacés, on les comptabilie et les upprime
 	 * @param proposition
@@ -41,15 +49,15 @@ public class Mastermind extends Jeu {
 		Code prop = (Code) proposition.clone();
 		Code cat = (Code) codeTofind.clone();
 
-		int bienPlacé = 0;
-		int malPlacé = 0;
+		int bienPlace = 0;
+		int malPlace = 0;
 		for (int i = prop.size() - 1; i >= 0; i--) {
 			int propositionAttaquant = prop.get(i);
 			int propositionDefenseur = cat.get(i);
 			if (propositionAttaquant == propositionDefenseur) {
 				prop.remove(i);
 				cat.remove(i);
-				bienPlacé++;
+				bienPlace++;
 
 			}
 		}
@@ -60,8 +68,8 @@ public class Mastermind extends Jeu {
 				if (propositionAttaquantRestant == propositionDefenseurRestant) {
 					prop.remove(j);
 					cat.remove(k);
-					malPlacé++;
-					System.out.println(malPlacé);
+					malPlace++;
+					System.out.println(malPlace);
 					System.out.println(k);
 					break;
 				}
@@ -69,14 +77,19 @@ public class Mastermind extends Jeu {
 			}
 		}
 
-		return bienPlacé + ":" + malPlacé;
+		return bienPlace + ":" + malPlace;
 	}
 
 	@Override
 	public boolean isWon(String resultat) {
 		return (resultat.matches(taille + ":0$"));
 	}
-
+	
+	
+    /**
+     * Methode permmettant de construire une liste de codes proposées par l'ordinateur
+     * et de sélectionner par rapport à la liste de codes existants à trouver
+     */
 	@Override
 	public Code chercherSolution() {
 		Random r = new Random();
@@ -92,8 +105,16 @@ public class Mastermind extends Jeu {
 		return propositionOrdinateur;
 	}
 	
+	/**
+	 * Méthode permettant de saisir le nombre de bienPlace et malPlace
+	 * 
+	 */
 	public void demandeAnalyse() {
-		//todo
+		int bp = Helper.demandeValeurEntier(0, 6, "Entrer le nombre de BienPlace");
+		int mp = Helper.demandeValeurEntier(0, 6, "Entrer le nombre de MalPlace");
+		String bpAsString = Integer.toString(bp);
+		String mpAsString = Integer.toString(mp);
+		String resultat = bpAsString + ":" + mpAsString;
 	}
 	
     /**
