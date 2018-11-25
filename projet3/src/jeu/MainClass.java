@@ -11,7 +11,8 @@ public class MainClass {
 	 private static int attackDefenseChoice;
 	
 	/**
-	 * La classe principale permettant de choisir le jeu et son mode
+	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite de
+	 * choisir le jeu et son mode
 	 * Saisie des parametres de configuration
 	 * @param args
 	 */
