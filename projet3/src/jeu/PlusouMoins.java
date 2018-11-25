@@ -7,8 +7,8 @@ public class PlusouMoins extends Jeu {
 	private ArrayList<Integer> max = new ArrayList<>();
 
 	/**
-	 * Méthode permettant d'ajouter 0 à l'ArrayList Min
-	 * et etendue ArrayList Max
+	 * Méthode permettant d'ajouter 0 à l'ArrayList Min et etendue ArrayListMax
+	 *
 	 * @param etendue
 	 * @param taille
 	 */
