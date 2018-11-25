@@ -12,6 +12,11 @@ public class Code extends ArrayList<Integer> {
 		super();
 	}
 
+	/**
+	 * Méthode permet de controler la saisie entre 2 valeurs
+	 * @param value
+	 * @param etendue
+	 */
 	public Code(int value, int etendue) {
 		this.clear();
 		if ((value >= 0) && (value <= etendue)) {
@@ -19,7 +24,12 @@ public class Code extends ArrayList<Integer> {
 			this.etendue = etendue;
 		}
 	}
-
+    
+	/**
+	 * Constructeur pour la classe Code
+	 * @param chiffres
+	 * @param etendue
+	 */
 	public Code(ArrayList<Integer> chiffres, int etendue) {
 		super(chiffres);
 		this.taille = chiffres.size();
@@ -30,6 +40,12 @@ public class Code extends ArrayList<Integer> {
 		return etendue;
 	}
 
+	/**
+	 * Méthode générant des chiffres alléatoires et on les ajoute à la liste des codes
+	 * @param etendue
+	 * @param taille
+	 * @return
+	 */
 	public static Code genererNewCode(int etendue, int taille) {
 		Random r = new Random();
 		Code code = new Code();
@@ -42,7 +58,12 @@ public class Code extends ArrayList<Integer> {
 
 	}
 
-	// elle doit retourner un code extrait d'une chaine de caractères
+	/**
+	 * elle doit retourner un code extrait d'une chaine de caractères
+	 * @param prop
+	 * @return
+	 * @throws IllegalArgumentException
+	 */
 	public static Code extractCode(String prop) throws IllegalArgumentException {
 		Code code = new Code();
 		for (int i = 0; i < prop.length(); i++) {
