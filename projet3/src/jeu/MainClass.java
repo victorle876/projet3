@@ -7,7 +7,7 @@ public class MainClass {
 	
 	 private static int etendue = 9;
 	 private static int taille = 4;
-	 private static int TypeChoixJeu = 2;
+	 private static int typeChoixJeu = 2;
 	 private static int attackDefenseChoice;
 	
 	/**
@@ -23,11 +23,11 @@ public class MainClass {
 
 		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
 		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-		TypeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
+		typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
 		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
 
 		// Creation du jeu
-		switch (TypeChoixJeu) {
+		switch (typeChoixJeu) {
 		case 1:
 			jeu = new Mastermind(etendue, taille);
 			break;
@@ -42,10 +42,10 @@ public class MainClass {
 		// Resolution du jeu
 		switch (attackDefenseChoice) {
 		case 1: // Ordinateur attaque
-			System.out.println(Helper.boucleJeuAttaquant(jeu, TypeChoixJeu, etendue, taille));
+			System.out.println(Helper.boucleJeuAttaquant(jeu, typeChoixJeu, etendue, taille));
 			break;
 		case 2: // ordinateur défend
-			System.out.println(Helper.boucleJeuDefenseur(jeu, TypeChoixJeu, etendue, taille));
+			System.out.println(Helper.boucleJeuDefenseur(jeu, typeChoixJeu, etendue, taille));
 			break;
 		default:
 			System.out.println("Mode de jeu invalide");
