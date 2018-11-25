@@ -27,6 +27,15 @@ public class Mastermind extends Jeu {
 		return resultat;
 
 	}
+	
+	/**
+	 * Méthode permmettant de trouver les chiffres bien placés par comparaison et les 
+	 * supprimer
+	 * si les chiffres sonnt malpacés, on les comptabilie et les upprime
+	 * @param proposition
+	 * @param codeTofind
+	 * @return
+	 */
 
 	private String comparerCode(Code proposition, Code codeTofind) {
 		Code prop = (Code) proposition.clone();
@@ -82,7 +91,10 @@ public class Mastermind extends Jeu {
 		}
 		return propositionOrdinateur;
 	}
-
+    /**
+     * Je prends les codes valables dans la liste et je les compare avec la liste des 
+     * codes proposés par l'ordinatateur
+     */
 	@Override
 	public void analyserResultat(String resultat) {
 
