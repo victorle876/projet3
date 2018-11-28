@@ -37,11 +37,8 @@ public class Mastermind extends Jeu {
 	}
 	
 	/**
-	 * Méthode permettant de trouver les chiffres bien placés par comparaison et les 
-	 * supprimer
-	 * si les chiffres sonnt malpacés, on les comptabilie et les upprime
-	 * @param proposition
-	 * @param codeTofind
+	 * @param proposition:code proposé par l'attaquant
+	 * @param codeTofind: code à trouver par l'attaquant
 	 * @return
 	 */
 
@@ -85,11 +82,6 @@ public class Mastermind extends Jeu {
 		return (resultat.matches(taille + ":0$"));
 	}
 	
-	
-    /**
-     * Methode permmettant de construire une liste de codes proposées par l'ordinateur
-     * et de sélectionner par rapport à la liste de codes existants à trouver
-     */
 	@Override
 	public Code chercherSolution() {
 		Random r = new Random();
@@ -109,12 +101,12 @@ public class Mastermind extends Jeu {
 	 * Méthode permettant de saisir le nombre de bienPlace et malPlace
 	 * 
 	 */
-	public void demandeAnalyse() {
+	public String demandeAnalyse() {
 		int bp = Helper.demandeValeurEntier(0, 6, "Entrer le nombre de BienPlace");
 		int mp = Helper.demandeValeurEntier(0, 6, "Entrer le nombre de MalPlace");
 		String bpAsString = Integer.toString(bp);
 		String mpAsString = Integer.toString(mp);
-		String resultat = bpAsString + ":" + mpAsString;
+		return bpAsString + ":" + mpAsString;
 	}
 	
     /**

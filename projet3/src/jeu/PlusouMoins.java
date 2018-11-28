@@ -9,8 +9,8 @@ public class PlusouMoins extends Jeu {
 	/**
 	 * Méthode permettant d'ajouter 0 à l'ArrayList Min et etendue ArrayListMax
 	 *
-	 * @param etendue
-	 * @param taille
+	 * @param etendue: la plage définie sur le jeu à 1 chiffres
+	 * @param taille: nombre de chiffres que comporte le code
 	 */
 	public PlusouMoins(int etendue, int taille) {
 		this.etendue = etendue;
@@ -22,11 +22,6 @@ public class PlusouMoins extends Jeu {
 		}
 	}
 	
-    /**
-     * Méthode permettant de comparer le code à trouver avec celui des différntes
-     * propositions de l'ordinateur
-     * Et ensuite, de donner le résultat à l'ordinateur
-     */
 	@Override
 	public String comparerCode() {
 		resultatPourLeJoueur = "";
@@ -53,11 +48,6 @@ public class PlusouMoins extends Jeu {
 		return (resultat.matches("^=+$"));
 	}
 
-	
-	/**
-	 * Pour chaque chiffre du code, je propose la moitié entre le min et le max de
-	 * ce chiffre Je construit donc un code proposé à partir de ces valeurs
-	 */
 	@Override
 	public Code chercherSolution() {
 		
@@ -69,17 +59,12 @@ public class PlusouMoins extends Jeu {
 		}
 		return this.propositionOrdinateur;
 	}
-	public void demandeAnalyse() {
+	public String demandeAnalyse() {
 		//todo
+		
+		return;
 	}
 	
-	/**
-	 * pour chaque chiffre du code, selon la valeur du résultat correspondant, je
-	 * repositionne mon min ou mon max si le chiffre est trop grand, le max devient
-	 * ce chiffre si le chiffre est trop petit, le min devient ce chiffre si le
-	 * chiffre est le bon, min et max deviennent ce chiffre
-	 * 
-	 */
 
 	@Override
 	public void analyserResultat(String resultat) {
