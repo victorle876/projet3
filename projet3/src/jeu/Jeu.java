@@ -65,7 +65,7 @@ public abstract class Jeu {
 	}
 
 	protected void setCode(Code code) {
-		code = code;
+		this.code = code;
 	}
 
 	protected int getEtendue() {
