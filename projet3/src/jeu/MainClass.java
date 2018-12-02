@@ -2,6 +2,10 @@ package jeu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Properties;
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MainClass {
 	
@@ -114,6 +118,35 @@ public class MainClass {
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 		return message;
 
+	}
+	
+	public void testProperties() {
+		Properties prop = new Properties();
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			System.out.println(prop.getProperty("database"));
+			System.out.println(prop.getProperty("dbuser"));
+			System.out.println(prop.getProperty("dbpassword"));
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 	}
 
 
