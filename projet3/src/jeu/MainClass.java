@@ -55,7 +55,7 @@ public class MainClass {
 	/**
 	 * Mode de fonctionnement par l'attaquant, quel que soit le jeu choisi
 	 * 
-	 * @param jeu: choix entre le plusou moins (1) et mastermind (2)
+	 * @param jeu: choix entre le PlusouMoins (1) et mastermind (2)
 	 * @param choice: mode choisi entre le mode attaquant et le mode défenseur
 	 * @param etendue: la plage définie sur le jeu à 1 chiffres
 	 * @param taille: nombre de chiffres que comporte le code

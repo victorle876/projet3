@@ -62,7 +62,9 @@ public class PlusouMoins extends Jeu {
 	public String demandeAnalyse() {
 		//todo
 		
-		return;
+		String resultatParAttaquant = Helper.demandeValeurString(chaine, "Entrer le résultat de chaine");
+		
+		return resultatParAttaquant;
 	}
 	
 
