@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PlusouMoins extends Jeu {
 	private ArrayList<Integer> min = new ArrayList<>();
 	private ArrayList<Integer> max = new ArrayList<>();
-
+	private String chaine;
 	/**
 	 * Méthode permettant d'ajouter 0 à l'ArrayList Min et etendue ArrayListMax
 	 *
@@ -15,6 +15,7 @@ public class PlusouMoins extends Jeu {
 	public PlusouMoins(int etendue, int taille) {
 		this.etendue = etendue;
 		this.taille = taille;
+		this.chaine=chaine;
 		this.propositionOrdinateur = new Code();
 		for (int i = 0; i < taille; i++) {
 			min.add(0);
