@@ -7,9 +7,9 @@ public class Helper {
 	/**
 	 *  Méthode d'aide à la saisie d'un nombre entre min et max inclus
 	 *  si ce n'est pas un entier, on ne prend pas en compte
-	 * @param min
-	 * @param max
-	 * @param msg
+	 * @param min: valeur minimale de la saisie
+	 * @param max: valeur maximale de la saisie
+	 * @param msg : message correspondant
 	 * @return
 	 */
 	public static int demandeValeurEntier(int min, int max, String msg) {
@@ -39,69 +39,40 @@ public class Helper {
 	}
 	
 	/**
-	 * Mode de fonctionnement par l'attaquant, quel que soit le jeu choisi
-	 * 
-	 * @param jeu
-	 * @param choice
-	 * @param etendue
-	 * @param taille
+	 * Méthode contrôlant la saisie du résultat pour le jeu PlusouMoins
+	 * @param chaine: saisie du résultat à n caractères: + -=
+	 * @param msg
 	 * @return
 	 */
-	public static String boucleJeuAttaquant(Jeu jeu, int choice, int etendue, int taille) {
-		int nombreEssaiMax = 10;
-		boolean trouve = false;
-		int bp = 0;
-		int mp = 0;
-		String message;
-		String resultat="";
-		for (int i = 0; i < nombreEssaiMax && !trouve; i++) {
-			System.out.print("Le code proposé par l'ordinateur : ");
-			System.out.println(jeu.chercherSolution());
-			System.out.println("Quel est le resultat pour cette proposition ?");
-			jeu.demandeAnalyse();
-			jeu.analyserResultat(resultat);
-			trouve = jeu.isWon(resultat);
-
-		}
-		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
-		return message;
-	}
 	
-	
-	/**
-	 * Mode de fonctionnement par la défense,quel que soit le jeu choisi
-	 * 
-	 * @param jeu
-	 * @param choice
-	 * @param etendue
-	 * @param taille
-	 * @return
-	 */
-	public static String boucleJeuDefenseur(Jeu jeu, int choice, int etendue, int taille) {
-		int nombreEssaiMax = 10;
-		boolean trouve = false;
-		String message;
-		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
+	public static String demandeValeurString(String chaine, String msg) {
 
-		// Boucle de recherche de la solution par le joueur
-		for (int i = 0; i < nombreEssaiMax && !trouve; i++) {
-			// On affiche le code à trouver
-			System.out.println("Voici le code à deviner");
-			System.out.println(jeu.getCodeATrouverParLeJoueur());
+		boolean valide = false;
+		
+		Scanner scanner = new Scanner(System.in);
 
-			if (!trouve) {
-				System.out.println("Entrer un nouveau code?");
-				jeu.enterCode();
-
-				System.out.println("Le résultat est : " + jeu.comparerCode());
-				trouve = jeu.isWon(jeu.getResultatPourLeJoueur());
+		while (!valide) {
+			try {
+				System.out.println(msg);
+				chaine = scanner.nextLine();
+				for (char c : chaine.toCharArray())
+				{
+					if (((c == '=') || (c == '-') || (c == '+')))  {
+					valide = true;
+					}
+				} 
+					
+			} catch (InputMismatchException ime3) {
+				System.out.println("LA chaîne n'est pas valide");
+				valide = false;
+			} finally {
+				scanner.nextLine();
 			}
 
 		}
-		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
-		return message;
-
+		return chaine;
 	}
+
 //
 
 }
