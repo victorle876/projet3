@@ -1,8 +1,10 @@
 package jeu;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 
 public class MainClass {
@@ -11,6 +13,7 @@ public class MainClass {
 	private static int taille = 4;
 	private static int typeChoixJeu = 2;
 	private static int attackDefenseChoice;
+	private static int confirmParametres = 1;
 
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
@@ -23,19 +26,26 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 		Jeu jeu = null;
-		Properties configuration = lireConfiguration();
-		int etendue1 = Integer.parseInt(configuration.getProperty("etendue"));
-		int taille1 = Integer.parseInt(configuration.getProperty("taille"));
-		int typeChoixJeu1 = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-		int attackDefenseChoice1 = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
+		
+		System.out.println("Voulez vous changer la configuration du jeu?Oui (1) ou non (2)");
+		switch (confirmParametres) {
+		case 1:
+			Properties configuration = lireConfiguration();
+			int etendue = Integer.parseInt(configuration.getProperty("etendue"));
+			int taille = Integer.parseInt(configuration.getProperty("taille"));
+			int typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+			int attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
+			break;
+
+		case 2:
+			Properties configuration2 = creerConfiguration();
+			break;
+		default:
+			System.out.println("Configuration invalide");
+		} 
+		
 		
 
-<<<<<<< HEAD
-//		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
-//		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-//		typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-//		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
-=======
 		// TODO
 		// Demander à l'utilisateur s'il veut jouer avec la config actuelle ou la
 		// changer
@@ -47,13 +57,7 @@ public class MainClass {
 		// Si config non valable, on récupère une exception => try...catch
 		// Le try contient l'appel standard et fonctionnel
 		// Le catch sort en affichant une information à l'utilisateur
-		Properties configuration = lireConfiguration();
 
-		etendue = Integer.parseInt(configuration.getProperty("etendue"));
-		taille = Integer.parseInt(configuration.getProperty("taille"));
-		typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-		attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
->>>>>>> branch 'new-master' of https://github.com/victorle876/projet3.git
 
 		// Creation du jeu
 		switch (typeChoixJeu) {
@@ -146,44 +150,28 @@ public class MainClass {
 		return message;
 
 	}
-<<<<<<< HEAD
-	
-	private static Properties creerConfiguration() {
-		//todo
-		Properties prop = new Properties();
-	//	 int etendue1 = Integer.parseInt(prop.getProperty("etendue"));
-	//	 int taille1 = Integer.parseInt(prop.getProperty("taille"));
-	//	 int typeChoixJeu1 = Integer.parseInt(prop.getProperty("typeChoixJeu"));
-	//	 int attackDefenseChoice1 = Integer.parseInt(prop.getProperty("attackDefenseChoice"));
-		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
-		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-		typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
-		 
-		 return prop;
-	}
-	
-	private static Properties lireConfiguration() {
-=======
 
-	public static Properties lireConfiguration() {
->>>>>>> branch 'new-master' of https://github.com/victorle876/projet3.git
+	
+    private static Properties lireConfiguration() {
 		Properties prop = new Properties();
 		InputStream input = null;
+		boolean ok = true;
 
 		try {
 			input = new FileInputStream("config.properties");
 			// load a properties file
+			
+			while (!ok) {
+				int etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
+				int taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
+				int typeChoixJeu= Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\\\\n1: Mastermind , 2: PlusouMoins");
+				int attackDefenseChoice= Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+			    ok= true;
+			}
+			
+			if (ok) {	
 			prop.load(input);
-<<<<<<< HEAD
-
-			// get the property value and print it out
-	//		System.out.println(prop.getProperty("taille"));
-	//		System.out.println(prop.getProperty("etendue"));
-	//		System.out.println(prop.getProperty("typeChoixJeu"));
-	//		System.out.println(prop.getProperty("attackDefenseChoice"));
-=======
->>>>>>> branch 'new-master' of https://github.com/victorle876/projet3.git
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -196,16 +184,38 @@ public class MainClass {
 			}
 		}
 		return prop;
-<<<<<<< HEAD
-		
-=======
->>>>>>> branch 'new-master' of https://github.com/victorle876/projet3.git
+
+	
 	}
 
 	private static Properties creerConfiguration() {
 		Properties prop = new Properties();
-		// Demander les 4 paramètres à l'utilisateur
-		// avec les méthodes de Helper
+		OutputStream writer = null;
+
+		try {
+			writer = new FileOutputStream("config.properties");
+			// Demander les 4 paramètres à l'utilisateur
+			// avec les méthodes de Helper
+			prop.setProperty("etendue", "Helper.demandeValeurEntier(1, 9, \"Entrer l'étendue\")");
+			prop.setProperty("taille", "Helper.demandeValeurEntier(1, 6, \"Entrer la taille\"");
+			prop.setProperty("typeChoixJeu", "Helper.demandeValeurEntier(1, 2, \"Quel jeu voulez vous jouer?\\n1: Mastermind , 2: PlusouMoins\")");
+			prop.setProperty("attackDefenseChoice", "Helper.demandeValeurEntier(1, 2, \"Ordinateur attaquant (1) ou défenseur (2) ?\")");
+            
+			prop.store(writer, comments);
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
+			}
+		}
+		
+		
 		// TODO
 		// prop.store(writer, comments);
 		// écrire le fichier de configuration

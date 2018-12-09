@@ -53,7 +53,7 @@ public class Helper {
 
 	public static String demandeValeurString(String chaine, String msg) {
 
-		boolean valide = false;
+		boolean valide = true;
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -63,12 +63,12 @@ public class Helper {
 				chaine = scanner.nextLine();
 				for (char c : chaine.toCharArray()) {
 					if (((c == '=') || (c == '-') || (c == '+'))) {
-						valide = true;
+						valide = false;
 					}
 				}
 
 			} catch (InputMismatchException ime3) {
-				System.out.println("LA chaîne n'est pas valide");
+				System.out.println("La chaîne n'est pas valide");
 				valide = false;
 			} finally {
 				scanner.nextLine();
