@@ -12,6 +12,7 @@ public class Mastermind extends Jeu {
 
 	/***
 	 * Constructeur pour la classe Mastermind
+	 * 
 	 * @param etendue
 	 * @param taille
 	 */
@@ -20,11 +21,11 @@ public class Mastermind extends Jeu {
 		this.taille = taille;
 		this.propositionOrdinateur = new Code();
 	}
-	
-    /**
-     * Classe permettant de faire l'extraction bienPlace : malPlace
-     * 
-     */
+
+	/**
+	 * Classe permettant de faire l'extraction bienPlace : malPlace
+	 * 
+	 */
 	@Override
 	public String comparerCode() {
 		String resultat = comparerCode(propositionDuJoueur, codeATrouverParLeJoueur);
@@ -35,10 +36,12 @@ public class Mastermind extends Jeu {
 		return resultat;
 
 	}
-	
+
 	/**
-	 * @param proposition:code proposé par l'attaquant
-	 * @param codeTofind: code à trouver par l'attaquant
+	 * @param proposition:code
+	 *            proposé par l'attaquant
+	 * @param codeTofind:
+	 *            code à trouver par l'attaquant
 	 * @return
 	 */
 
@@ -66,8 +69,6 @@ public class Mastermind extends Jeu {
 					prop.remove(j);
 					cat.remove(k);
 					malPlace++;
-					System.out.println(malPlace);
-					System.out.println(k);
 					break;
 				}
 
@@ -81,7 +82,7 @@ public class Mastermind extends Jeu {
 	public boolean isWon(String resultat) {
 		return (resultat.matches(taille + ":0$"));
 	}
-	
+
 	@Override
 	public Code chercherSolution() {
 		Random r = new Random();
@@ -96,7 +97,7 @@ public class Mastermind extends Jeu {
 		}
 		return propositionOrdinateur;
 	}
-	
+
 	/**
 	 * Méthode permettant de saisir le nombre de bienPlace et malPlace
 	 * 
@@ -108,13 +109,13 @@ public class Mastermind extends Jeu {
 		String mpAsString = Integer.toString(mp);
 		return bpAsString + ":" + mpAsString;
 	}
-	
-    /**
-     * Je prends les codes valables dans la liste et je les compare avec la liste des 
-     * codes proposés par l'ordinatateur
-     * Si le résultat est le même que celui fourni par le joueur, alors c'est un
-     * code toujours valable, sinon on le supprime
-     */
+
+	/**
+	 * Je prends les codes valables dans la liste et je les compare avec la liste
+	 * des codes proposés par l'ordinatateur Si le résultat est le même que celui
+	 * fourni par le joueur, alors c'est un code toujours valable, sinon on le
+	 * supprime
+	 */
 	@Override
 	public void analyserResultat(String resultat) {
 		ArrayList<Code> suppress = new ArrayList<>();
