@@ -23,12 +23,19 @@ public class MainClass {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
+		
 		Jeu jeu = null;
+		Properties configuration = lireConfiguration();
+		int etendue1 = Integer.parseInt(configuration.getProperty("etendue"));
+		int taille1 = Integer.parseInt(configuration.getProperty("taille"));
+		int typeChoixJeu1 = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+		int attackDefenseChoice1 = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
+		
 
-		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
-		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-		typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+//		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
+//		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
+//		typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
+//		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
 
 		// Creation du jeu
 		switch (typeChoixJeu) {
@@ -120,7 +127,22 @@ public class MainClass {
 
 	}
 	
-	public void testProperties() {
+	private static Properties creerConfiguration() {
+		//todo
+		Properties prop = new Properties();
+	//	 int etendue1 = Integer.parseInt(prop.getProperty("etendue"));
+	//	 int taille1 = Integer.parseInt(prop.getProperty("taille"));
+	//	 int typeChoixJeu1 = Integer.parseInt(prop.getProperty("typeChoixJeu"));
+	//	 int attackDefenseChoice1 = Integer.parseInt(prop.getProperty("attackDefenseChoice"));
+		etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
+		taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
+		typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
+		attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+		 
+		 return prop;
+	}
+	
+	private static Properties lireConfiguration() {
 		Properties prop = new Properties();
 		InputStream input = null;
 
@@ -132,10 +154,10 @@ public class MainClass {
 			prop.load(input);
 
 			// get the property value and print it out
-			System.out.println(prop.getProperty("taille"));
-			System.out.println(prop.getProperty("etendue"));
-			System.out.println(prop.getProperty("typeChoixJeu"));
-			System.out.println(prop.getProperty("attackDefenseChoice"));
+	//		System.out.println(prop.getProperty("taille"));
+	//		System.out.println(prop.getProperty("etendue"));
+	//		System.out.println(prop.getProperty("typeChoixJeu"));
+	//		System.out.println(prop.getProperty("attackDefenseChoice"));
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -147,6 +169,7 @@ public class MainClass {
 				}
 			}
 		}
+		return prop;
 		
 	}
 
