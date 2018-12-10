@@ -191,6 +191,7 @@ public class MainClass {
 	private static Properties creerConfiguration() {
 		Properties prop = new Properties();
 		OutputStream writer = null;
+		String comments = " ";
 
 		try {
 			writer = new FileOutputStream("config.properties");
@@ -202,6 +203,7 @@ public class MainClass {
 			prop.setProperty("attackDefenseChoice", "Helper.demandeValeurEntier(1, 2, \"Ordinateur attaquant (1) ou défenseur (2) ?\")");
             
 			prop.store(writer, comments);
+			
 		} catch (IOException io) {
 			io.printStackTrace();
 		} finally {
