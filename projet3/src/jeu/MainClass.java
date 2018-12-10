@@ -44,7 +44,12 @@ public class MainClass {
 		    break;
 
 		case 2:
+			try {
 			configuration = creerConfiguration();
+			} 
+			catch (NumberFormatException ie) {
+				System.out.println("Configuration invalide");
+			}
 			break;
 		default:
 			System.out.println("Configuration invalide");
