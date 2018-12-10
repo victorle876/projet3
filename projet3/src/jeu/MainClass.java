@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Scanner;
 import java.io.OutputStream;
 import java.util.Properties;
 
@@ -26,15 +27,16 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 		Jeu jeu = null;
-		
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Voulez vous changer la configuration du jeu?Oui (1) ou non (2)");
+		confirmParametres = scanner.nextInt();
 		switch (confirmParametres) {
 		case 1:
 			Properties configuration = lireConfiguration();
-			int etendue = Integer.parseInt(configuration.getProperty("etendue"));
-			int taille = Integer.parseInt(configuration.getProperty("taille"));
-			int typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-			int attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
+		//	int etendue = Integer.parseInt(configuration.getProperty("etendue"));
+		//	int taille = Integer.parseInt(configuration.getProperty("taille"));
+		//	int typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+		//	int attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
 			break;
 
 		case 2:
@@ -164,7 +166,7 @@ public class MainClass {
 			while (!ok) {
 				int etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
 				int taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-				int typeChoixJeu= Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\\\\n1: Mastermind , 2: PlusouMoins");
+				int typeChoixJeu= Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\\n1: Mastermind , 2: PlusouMoins");
 				int attackDefenseChoice= Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
 			    ok= true;
 			}
@@ -183,9 +185,7 @@ public class MainClass {
 				}
 			}
 		}
-		return prop;
-
-	
+		return prop;	
 	}
 
 	private static Properties creerConfiguration() {
