@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Scanner;
 import java.io.OutputStream;
 import java.util.Properties;
 
@@ -13,7 +12,7 @@ public class MainClass {
 	private static int etendue = 9;
 	private static int taille = 4;
 	private static int typeChoixJeu = 2;
-	private static int attackDefenseChoice;
+	private static int attackDefenseChoice =1;
 	private static int confirmParametres = 1;
 
 	/**
@@ -27,33 +26,30 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 		Jeu jeu = null;
-		Scanner scanner = new Scanner(System.in);
+		Properties configuration = null;
 		System.out.println("Voulez vous changer la configuration du jeu?Oui (1) ou non (2)");
-		confirmParametres = scanner.nextInt();
+		confirmParametres = Helper.demandeValeurEntier(1, 2, "Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
 		switch (confirmParametres) {
 		case 1:
-			Properties configuration = lireConfiguration();
-		//	int etendue = Integer.parseInt(configuration.getProperty("etendue"));
-		//	int taille = Integer.parseInt(configuration.getProperty("taille"));
-		//	int typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-		//	int attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
-			break;
+			try {
+		    configuration = lireConfiguration();
+		    etendue = Integer.parseInt(configuration.getProperty("etendue"));
+			taille = Integer.parseInt(configuration.getProperty("taille"));
+			typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+		    attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
+			} 
+			catch (NumberFormatException ie) {
+				System.out.println("le fichier de configuration est corrompue");
+			}
+		    break;
 
 		case 2:
-			Properties configuration2 = creerConfiguration();
+			configuration = creerConfiguration();
 			break;
 		default:
 			System.out.println("Configuration invalide");
 		} 
 		
-		
-
-		// TODO
-		// Demander à l'utilisateur s'il veut jouer avec la config actuelle ou la
-		// changer
-		// Si changer => appeler la méthode creerConfiguration
-		// Sinon on continue "comme avant"
-
 		// On peut imaginer vérifier si la config est valable dans la méthode
 		// lireConfiguration.
 		// Si config non valable, on récupère une exception => try...catch
@@ -154,26 +150,26 @@ public class MainClass {
 	}
 
 	
-    private static Properties lireConfiguration() {
+    private static Properties lireConfiguration () {
 		Properties prop = new Properties();
 		InputStream input = null;
-		boolean ok = true;
 
 		try {
 			input = new FileInputStream("config.properties");
-			// load a properties file
 			
-			while (!ok) {
-				int etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
-				int taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-				int typeChoixJeu= Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\\n1: Mastermind , 2: PlusouMoins");
-				int attackDefenseChoice= Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
-			    ok= true;
-			}
+			int etendue = Integer.parseInt(prop.getProperty("etendue"));
+			int taille = Integer.parseInt(prop.getProperty("taille"));
+			int typeChoixJeu = Integer.parseInt(prop.getProperty("typeChoixJeu"));
+			int attackDefenseChoice = Integer.parseInt(prop.getProperty("attackDefenseChoice"));
 			
-			if (ok) {	
+			try {
+			// load a properties file				
 			prop.load(input);
 			}
+			catch (NumberFormatException ie) {
+				ie.printStackTrace();
+			}
+			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -197,10 +193,15 @@ public class MainClass {
 			writer = new FileOutputStream("config.properties");
 			// Demander les 4 paramètres à l'utilisateur
 			// avec les méthodes de Helper
-			prop.setProperty("etendue", "Helper.demandeValeurEntier(1, 9, \"Entrer l'étendue\")");
-			prop.setProperty("taille", "Helper.demandeValeurEntier(1, 6, \"Entrer la taille\"");
-			prop.setProperty("typeChoixJeu", "Helper.demandeValeurEntier(1, 2, \"Quel jeu voulez vous jouer?\\n1: Mastermind , 2: PlusouMoins\")");
-			prop.setProperty("attackDefenseChoice", "Helper.demandeValeurEntier(1, 2, \"Ordinateur attaquant (1) ou défenseur (2) ?\")");
+			etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
+			taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
+			typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
+			attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+			
+			prop.setProperty("etendue", "" + etendue);
+			prop.setProperty("taille", "" + taille);
+			prop.setProperty("typeChoixJeu",  "" + typeChoixJeu);
+			prop.setProperty("attackDefenseChoice", "" + attackDefenseChoice);
             
 			prop.store(writer, comments);
 			
@@ -217,12 +218,6 @@ public class MainClass {
 			}
 		}
 		
-		
-		// TODO
-		// prop.store(writer, comments);
-		// écrire le fichier de configuration
-
-		// retourner la configuration
 		return prop;
 	}
 }
