@@ -20,6 +20,7 @@ public class Mastermind extends Jeu {
 		this.etendue = etendue;
 		this.taille = taille;
 		this.propositionOrdinateur = new Code();
+		this.propositionHumain = new Code();
 	}
 
 	/**
@@ -87,6 +88,7 @@ public class Mastermind extends Jeu {
 	public Code chercherSolution() {
 		Random r = new Random();
 		this.propositionOrdinateur.clear();
+		//return propositionDuJoueur;
 		if ((this.allPossibilities == null) || (this.allPossibilities.isEmpty())) {
 			this.allPossibilities = jeu.Code.getAllPossibilities(taille, etendue);
 		}
@@ -96,6 +98,7 @@ public class Mastermind extends Jeu {
 			propositionOrdinateur = allPossibilities.get(r.nextInt(allPossibilities.size()));
 		}
 		return propositionOrdinateur;
+		//return propositionDuJoueur;
 	}
 
 	/**
@@ -122,6 +125,7 @@ public class Mastermind extends Jeu {
 		for (Code c : allPossibilities) {
 			// Comparer c et le code proposé par l'ordinateur
 			String res = comparerCode(c, propositionOrdinateur);
+			//String res = comparerCode(c, propositionDuJoueur);
 			if (!res.equalsIgnoreCase(resultat)) {
 				suppress.add(c);
 			}

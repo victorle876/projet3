@@ -17,6 +17,7 @@ public class PlusouMoins extends Jeu {
 		this.taille = taille;
 		this.chaine=chaine;
 		this.propositionOrdinateur = new Code();
+		this.propositionHumain = new Code();
 		for (int i = 0; i < taille; i++) {
 			min.add(0);
 			max.add(etendue);
@@ -54,11 +55,13 @@ public class PlusouMoins extends Jeu {
 		
 		Integer chiffre;
 		this.propositionOrdinateur.clear();
+		//this.propositionDuJoueur.clear();
 		for (int i = 0; i < this.taille; i++) {
 			chiffre = new Integer((min.get(i) + max.get(i)) / 2);
 			this.propositionOrdinateur.add(chiffre);
 		}
 		return this.propositionOrdinateur;
+		//return this.propositionDuJoueur;
 	}
 	public String demandeAnalyse() {
 		//todo
@@ -76,13 +79,18 @@ public class PlusouMoins extends Jeu {
 		for (int i = 0; i < resultat.length(); i++) {
 			if (resultat.charAt(i) == '-') {
 				min.set(i, this.propositionOrdinateur.get(i) + 1);
+				//min.set(i, this.propositionDuJoueur.get(i) + 1);
 
 			} else if (resultat.charAt(i) == '+') {
 				max.set(i, this.propositionOrdinateur.get(i) - 1);
+				//max.set(i, this.propositionDuJoueur.get(i) - 1);
 
 			} else if (resultat.charAt(i) == '=') {
 				min.set(i, this.propositionOrdinateur.get(i));
 				max.set(i, this.propositionOrdinateur.get(i));
+			//	min.set(i, this.propositionDuJoueur.get(i));
+			//	max.set(i, this.propositionDuJoueur.get(i));
+				
 			}
 		}
 	}

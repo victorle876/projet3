@@ -55,8 +55,6 @@ public class MainClass {
 			System.out.println("Configuration invalide");
 		} 
 		
-		// On peut imaginer vérifier si la config est valable dans la méthode
-		// lireConfiguration.
 		// Si config non valable, on récupère une exception => try...catch
 		// Le try contient l'appel standard et fonctionnel
 		// Le catch sort en affichant une information à l'utilisateur
@@ -83,6 +81,10 @@ public class MainClass {
 		case 2: // ordinateur défend
 			System.out.println(boucleJeuDefenseur(jeu, typeChoixJeu, etendue, taille));
 			break;
+		case 3 : // attaque/defense
+			System.out.println(boucleJeuMixte(jeu, typeChoixJeu, etendue, taille));
+			break;
+			
 		default:
 			System.out.println("Mode de jeu invalide");
 		}
@@ -117,6 +119,42 @@ public class MainClass {
 		}
 		message = ("Vous avez " + ((trouve) ? "gagné" : "perdu"));
 		return message;
+	}
+	
+	public static String boucleJeuMixte(Jeu jeu, int choice, int etendue, int taille) {
+		int nombreEssaiMax = 10;
+		boolean trouve1 = false;
+		boolean trouve2 = false;
+		String message;
+		String resultat = "";
+		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
+		for (int i = 0; i < nombreEssaiMax && !trouve1; i++) {
+			
+			//attaque
+			System.out.print("Le code proposé par l'ordinateur : ");
+			System.out.println(jeu.chercherSolution());
+			System.out.println("Quel est le resultat pour cette proposition ?");
+			resultat = jeu.demandeAnalyse();
+			jeu.analyserResultat(resultat);
+			trouve1 = jeu.isWon(resultat);
+			
+			//defense
+			
+			System.out.println("Voici le code à deviner");
+			System.out.println(jeu.getCodeATrouverParLeJoueur());
+
+			if (!trouve2) {
+				System.out.println("Entrer un nouveau code?");
+				jeu.enterCode();
+
+				System.out.println("Le résultat est : " + jeu.comparerCode());
+				trouve2 = jeu.isWon(jeu.getResultatPourLeJoueur());
+			}
+		}
+			
+		message = ("Vous avez " + ((trouve1 || trouve2) ? "gagné" : "perdu"));
+		return message;
+		
 	}
 
 	/**
