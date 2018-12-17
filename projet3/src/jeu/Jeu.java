@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public abstract class Jeu {
 	protected Code propositionDuJoueur;
+	protected Code propositionJoueur;
 	protected Code propositionOrdinateur;
 	protected Code propositionHumain;
 	protected String resultatPourLeJoueur;
@@ -19,6 +20,14 @@ public abstract class Jeu {
 
 	protected void setPropositionDuJoueur(Code propositionDuJoueur) {
 		this.propositionDuJoueur = propositionDuJoueur;
+	}
+	
+	protected Code getPropositionJoueur() {
+		return propositionJoueur;
+	}
+
+	protected void setPropositionJoueur(Code propositionJoueur) {
+		this.propositionJoueur = propositionJoueur;
 	}
 
 	protected Code getPropositionOrdinateur() {
