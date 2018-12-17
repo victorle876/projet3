@@ -55,13 +55,13 @@ public class PlusouMoins extends Jeu {
 		
 		Integer chiffre;
 		this.propositionOrdinateur.clear();
-		//this.propositionDuJoueur.clear();
+		//this.propositionJoueur.clear();
 		for (int i = 0; i < this.taille; i++) {
 			chiffre = new Integer((min.get(i) + max.get(i)) / 2);
 			this.propositionOrdinateur.add(chiffre);
 		}
 		return this.propositionOrdinateur;
-		//return this.propositionDuJoueur;
+		//return this.propositionJoueur;
 	}
 	public String demandeAnalyse() {
 		//todo
@@ -79,7 +79,7 @@ public class PlusouMoins extends Jeu {
 		for (int i = 0; i < resultat.length(); i++) {
 			if (resultat.charAt(i) == '-') {
 				min.set(i, this.propositionOrdinateur.get(i) + 1);
-				//min.set(i, this.propositionDuJoueur.get(i) + 1);
+				//min.set(i, this.propositionJoueur.get(i) + 1);
 
 			} else if (resultat.charAt(i) == '+') {
 				max.set(i, this.propositionOrdinateur.get(i) - 1);
@@ -88,8 +88,8 @@ public class PlusouMoins extends Jeu {
 			} else if (resultat.charAt(i) == '=') {
 				min.set(i, this.propositionOrdinateur.get(i));
 				max.set(i, this.propositionOrdinateur.get(i));
-			//	min.set(i, this.propositionDuJoueur.get(i));
-			//	max.set(i, this.propositionDuJoueur.get(i));
+			//	min.set(i, this.propositionJoueur.get(i));
+			//	max.set(i, this.propositionJoueur.get(i));
 				
 			}
 		}
