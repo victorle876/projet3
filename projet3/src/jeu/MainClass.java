@@ -27,7 +27,7 @@ public class MainClass {
 		
 		Jeu jeu = null;
 		Properties configuration = null;
-		System.out.println("Voulez vous changer la configuration du jeu?Oui (1) ou non (2)");
+		System.out.println("Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
 		confirmParametres = Helper.demandeValeurEntier(1, 2, "Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
 		switch (confirmParametres) {
 		case 1:
@@ -200,18 +200,9 @@ public class MainClass {
 		try {
 			input = new FileInputStream("config.properties");
 			
-			int etendue = Integer.parseInt(prop.getProperty("etendue"));
-			int taille = Integer.parseInt(prop.getProperty("taille"));
-			int typeChoixJeu = Integer.parseInt(prop.getProperty("typeChoixJeu"));
-			int attackDefenseChoice = Integer.parseInt(prop.getProperty("attackDefenseChoice"));
-			
-			try {
 			// load a properties file				
 			prop.load(input);
-			}
-			catch (NumberFormatException ie) {
-				ie.printStackTrace();
-			}
+		
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
