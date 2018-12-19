@@ -12,7 +12,7 @@ public class MainClass {
 	private static int etendue = 9;
 	private static int taille = 4;
 	private static int typeChoixJeu = 2;
-	private static int attackDefenseChoice =1;
+	private static int attaqueDefenseChoix =1;
 	private static int confirmParametres = 1;
 
 	/**
@@ -31,29 +31,28 @@ public class MainClass {
 		confirmParametres = Helper.demandeValeurEntier(1, 2, "Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
 		switch (confirmParametres) {
 		case 1:
-			try {
-		    configuration = lireConfiguration();
-		    etendue = Integer.parseInt(configuration.getProperty("etendue"));
-			taille = Integer.parseInt(configuration.getProperty("taille"));
-			typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-		    attackDefenseChoice = Integer.parseInt(configuration.getProperty("attackDefenseChoice"));
-			} 
-			catch (NumberFormatException ie) {
-				System.out.println("le fichier de configuration est corrompue");
-			}
+			configuration = lireConfiguration();
+			
 		    break;
 
 		case 2:
-			try {
 			configuration = creerConfiguration();
-			} 
-			catch (NumberFormatException ie) {
-				System.out.println("Configuration invalide");
-			}
 			break;
 		default:
 			System.out.println("Configuration invalide");
 		} 
+		
+        try {
+		    
+		    etendue = Integer.parseInt(configuration.getProperty("etendue"));
+			taille = Integer.parseInt(configuration.getProperty("taille"));
+			typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+		    attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoice"));
+			} 
+			catch (NumberFormatException ie) {
+				System.out.println("le fichier de configuration est corrompu");
+			}
+		
 		
 		// Si config non valable, on récupère une exception => try...catch
 		// Le try contient l'appel standard et fonctionnel
@@ -74,7 +73,7 @@ public class MainClass {
 		}
 
 		// Resolution du jeu
-		switch (attackDefenseChoice) {
+		switch (attaqueDefenseChoix) {
 		case 1: // Ordinateur attaque
 			System.out.println(boucleJeuAttaquant(jeu, typeChoixJeu, etendue, taille));
 			break;
@@ -195,26 +194,26 @@ public class MainClass {
 	
     private static Properties lireConfiguration () {
 		Properties prop = new Properties();
-		InputStream input = null;
+//		InputStream input = null;
 
-		try {
-			input = new FileInputStream("config.properties");
-			
+		try (FileInputStream input = new FileInputStream("config.properties")){
 			// load a properties file				
 			prop.load(input);
+			int etendue1 = Integer.parseInt(prop.getProperty("etendue"));
+			int taille1 = Integer.parseInt(prop.getProperty("taille"));
+			int typeChoixJeu1 = Integer.parseInt(prop.getProperty("typeChoixJeu"));
+			int attaqueDefenseChoix1 = Integer.parseInt(prop.getProperty("attaqueDefenseChoix"));
 		
 			
 		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+			System.out.println("Fichier de configuration introuvable. Il faut le recréer.");
+			prop = creerConfiguration();
+		} 
+		catch (NumberFormatException ex) {
+			System.out.println("Le fichier est corrompu. Il faut le recréer.");
+			prop = creerConfiguration();
+		} 
+		
 		return prop;	
 	}
 
@@ -230,12 +229,12 @@ public class MainClass {
 			etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
 			taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
 			typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-			attackDefenseChoice = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+			attaqueDefenseChoix = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
 			
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);
 			prop.setProperty("typeChoixJeu",  "" + typeChoixJeu);
-			prop.setProperty("attackDefenseChoice", "" + attackDefenseChoice);
+			prop.setProperty("attaqueDefenseChoix", "" + attaqueDefenseChoix);
             
 			prop.store(writer, comments);
 			
