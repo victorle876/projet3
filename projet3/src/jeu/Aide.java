@@ -3,7 +3,7 @@ package jeu;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Helper {
+public class Aide {
 	/**
 	 * Méthode d'aide à la saisie d'un nombre entre min et max inclus si ce n'est
 	 * pas un entier, on ne prend pas en compte

@@ -27,8 +27,7 @@ public class MainClass {
 		
 		Jeu jeu = null;
 		Properties configuration = null;
-		System.out.println("Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
-		confirmParametres = Helper.demandeValeurEntier(1, 2, "Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
+		confirmParametres = Aide.demandeValeurEntier(1, 2, "Voulez vous changer la configuration du jeu?Non (1) ou oui (2)");
 		switch (confirmParametres) {
 		case 1:
 			configuration = lireConfiguration();
@@ -226,10 +225,10 @@ public class MainClass {
 			writer = new FileOutputStream("config.properties");
 			// Demander les 4 paramètres à l'utilisateur
 			// avec les méthodes de Helper
-			etendue = Helper.demandeValeurEntier(1, 9, "Entrer l'étendue");
-			taille = Helper.demandeValeurEntier(1, 6, "Entrer la taille");
-			typeChoixJeu = Helper.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-			attaqueDefenseChoix = Helper.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+			etendue = Aide.demandeValeurEntier(1, 9, "Entrer l'étendue");
+			taille = Aide.demandeValeurEntier(1, 6, "Entrer la taille");
+			typeChoixJeu = Aide.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
+			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
 			
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);
