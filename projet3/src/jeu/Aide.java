@@ -69,7 +69,7 @@ public class Aide {
 
 			} catch (InputMismatchException ime3) {
 				System.out.println("La chaîne n'est pas valide");
-				valide = false;
+				valide = true;
 			} finally {
 				scanner.nextLine();
 			}

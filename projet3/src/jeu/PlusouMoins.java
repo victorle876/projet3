@@ -15,7 +15,7 @@ public class PlusouMoins extends Jeu {
 	public PlusouMoins(int etendue, int taille) {
 		this.etendue = etendue;
 		this.taille = taille;
-		//this.chaine=chaine;
+		this.chaine=chaine;
 		this.propositionOrdinateur = new Code();
 		//this.propositionHumain = new Code();
 		for (int i = 0; i < taille; i++) {
