@@ -14,6 +14,7 @@ public class MainClass {
 	private static int typeChoixJeu = 2;
 	private static int attaqueDefenseChoix =1;
 	private static int confirmParametres = 1;
+	//private static int nombreEssaiMax = 10;
 
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
@@ -46,7 +47,7 @@ public class MainClass {
 		    etendue = Integer.parseInt(configuration.getProperty("etendue"));
 			taille = Integer.parseInt(configuration.getProperty("taille"));
 			typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-		    attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoice"));
+		    attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoix"));
 			} 
 			catch (NumberFormatException ie) {
 				System.out.println("le fichier de configuration est corrompu");
@@ -101,10 +102,10 @@ public class MainClass {
 	 *            nombre de chiffres que comporte le code
 	 * @return
 	 */
-	public static String boucleJeuAttaquant(Jeu jeu, int choice, int etendue, int taille) {
+	public static String boucleJeuAttaquant(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 		int nombreEssaiMax = 10;
 		boolean trouve = false;
-		String message;
+		String message = "";
 		String resultat = "";
 		for (int i = 0; i < nombreEssaiMax && !trouve; i++) {
 			System.out.print("Le code proposé par l'ordinateur : ");
@@ -119,39 +120,31 @@ public class MainClass {
 		return message;
 	}
 	
-	public static String boucleJeuMixte(Jeu jeu, int choice, int etendue, int taille) {
-		int nombreEssaiMax = 10;
+	public static String boucleJeuMixte(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
+//		int nombreEssaiMax = 10;
 		boolean trouve1 = false;
 		boolean trouve2 = false;
-		String message;
+		boolean trouve= false;
+		String message2;
 		String resultat = "";
-		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
-		for (int i = 0; i < nombreEssaiMax && !trouve1; i++) {
+		
+		while (!trouve1 || !trouve2) {
 			
 			//attaque
-			System.out.print("Le code proposé par l'ordinateur : ");
-			System.out.println(jeu.chercherSolution());
-			System.out.println("Quel est le resultat pour cette proposition ?");
-			resultat = jeu.demandeAnalyse();
-			jeu.analyserResultat(resultat);
-			trouve1 = jeu.isWon(resultat);
-			
+		 boucleJeuAttaquant(jeu, typeChoixJeu, etendue, taille);
+		 if (trouve) {
+			 trouve1 =true;
+		 }
 			//defense
-			
-			System.out.println("Voici le code à deviner");
-			System.out.println(jeu.getCodeATrouverParLeJoueur());
-
-			if (!trouve2) {
-				System.out.println("Entrer un nouveau code?");
-				jeu.enterCode();
-
-				System.out.println("Le résultat est : " + jeu.comparerCode());
-				trouve2 = jeu.isWon(jeu.getResultatPourLeJoueur());
-			}
+		 boucleJeuDefenseur(jeu, typeChoixJeu, etendue, taille);
+		 if (trouve) {
+			 trouve2 =true;
+		 }
+					
 		}
 			
-		message = ("Vous avez " + ((trouve1 || trouve2) ? "gagné" : "perdu"));
-		return message;
+		message2 = ("Vous avez " + ((trouve1 || trouve2) ? "gagné" : "perdu"));
+		return message2;
 		
 	}
 
@@ -164,10 +157,10 @@ public class MainClass {
 	 * @param taille
 	 * @return
 	 */
-	public static String boucleJeuDefenseur(Jeu jeu, int choice, int etendue, int taille) {
+	public static String boucleJeuDefenseur(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 		int nombreEssaiMax = 10;
 		boolean trouve = false;
-		String message;
+		String message = "" ;
 		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
 
 		// Boucle de recherche de la solution par le joueur
@@ -228,7 +221,7 @@ public class MainClass {
 			etendue = Aide.demandeValeurEntier(1, 9, "Entrer l'étendue");
 			taille = Aide.demandeValeurEntier(1, 6, "Entrer la taille");
 			typeChoixJeu = Aide.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 2, "Ordinateur attaquant (1) ou défenseur (2) ?");
+			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3, "Ordinateur attaquant (1) ou défenseur (2) ?");
 			
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);

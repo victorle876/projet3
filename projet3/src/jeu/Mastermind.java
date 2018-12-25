@@ -20,7 +20,7 @@ public class Mastermind extends Jeu {
 		this.etendue = etendue;
 		this.taille = taille;
 		this.propositionOrdinateur = new Code();
-		this.propositionHumain = new Code();
+//		this.propositionHumain = new Code();
 	}
 
 	/**
