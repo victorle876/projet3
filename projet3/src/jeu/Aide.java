@@ -43,41 +43,31 @@ public class Aide {
 	}
 
 	/**
-	 * Méthode contrôlant la saisie du résultat pour le jeu PlusouMoins
+	 * Méthode contrôlant la saisie d'une chaîne avec les seuls caractères autorisés
+	 * +, -, =
 	 * 
-	 * @param chaine:
-	 *            saisie du résultat à n caractères: + -=
 	 * @param msg
+	 *            Le message informatif à afficher à l'utilisateur
 	 * @return
 	 */
 
-	public static String demandeValeurString(String chaine, String msg) {
+	public static String demandeValeurString(String msg) {
 
-		boolean valide = true;
-
+		boolean nok;
+		String propositionUtilisateur;
 		Scanner scanner = new Scanner(System.in);
 
-		while (!valide) {
-			try {
-				System.out.println(msg);
-				chaine = scanner.nextLine();
-				for (char c : chaine.toCharArray()) {
-					if (((c == '=') || (c == '-') || (c == '+'))) {
-						valide = false;
-					}
+		do {
+			nok = false; // On arme le drapeau
+			System.out.println(msg);
+			propositionUtilisateur = scanner.nextLine();
+			for (Character c : propositionUtilisateur.toCharArray()) {
+				if ((c != '+') && (c != '-') && (c != '=')) {
+					nok = true;
 				}
-
-			} catch (InputMismatchException ime3) {
-				System.out.println("La chaîne n'est pas valide");
-				valide = true;
-			} finally {
-				scanner.nextLine();
 			}
-
-		}
-		return chaine;
+		} while (nok);
+		return propositionUtilisateur;
 	}
-
-	//
 
 }
