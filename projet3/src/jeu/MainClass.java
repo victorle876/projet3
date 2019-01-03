@@ -73,9 +73,9 @@ public class MainClass {
 		case 2: // ordinateur défend
 			System.out.println(boucleJeuDefenseur(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax));
 			break;
-		//case 3 : // attaque/defense
-		//	System.out.println(boucleJeuMixte(jeu, typeChoixJeu, etendue, taille));
-		//	break;
+		case 3 : // attaque/defense
+			System.out.println(boucleJeuMixte(jeu, typeChoixJeu, etendue, taille));
+			break;
 			
 		default:
 			System.out.println("Mode de jeu invalide");
@@ -135,16 +135,18 @@ public class MainClass {
 		//boolean trouve= false;
 		String message2;
 		String resultat = "";
+		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
 		
-		while (!trouve1 || !trouve2) {
+		//while (!trouve1 || !trouve2) 
+		for (int i = 0; i < nombreEssaiMax && (!trouve1|| !trouve2) ; i++){
 			
 		 //attaque
 		 if (!trouve1) {
-		 	 boucleJeuAttaquant(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax);
+		 	 trouve1 = boucleJeuAttaquantbis(jeu, typeChoixJeu, etendue, taille);
 		 }
 			//defense
 		 if (!trouve2) {
-			 boucleJeuDefenseur(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax); 
+			 trouve2 = boucleJeuDefensebis(jeu, typeChoixJeu, etendue, taille); 
 		 }
 					
 		}
