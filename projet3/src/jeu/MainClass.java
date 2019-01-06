@@ -133,12 +133,12 @@ public class MainClass {
 		boolean trouve1 = false;
 		boolean trouve2 = false;
 		//boolean trouve= false;
-		String message2;
+		String message2 = "";
 		String resultat = "";
 		jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
 		
 		//while (!trouve1 || !trouve2) 
-		for (int i = 0; i < nombreEssaiMax && (!trouve1|| !trouve2) ; i++){
+		for (int i = 0; i < nombreEssaiMax && (!trouve1 && !trouve2) ; i++){
 			
 		 //attaque
 		 if (!trouve1) {
@@ -150,8 +150,16 @@ public class MainClass {
 		 }
 					
 		}
+		
+		if (trouve2) {
+			message2 = ("Le défenseur a" + ((trouve2) ? "gagné" : "perdu"));
 			
-		message2 = ("Vous avez " + ((trouve1 || trouve2) ? "gagné" : "perdu"));
+		}
+		
+		if (trouve1) {
+			message2 = ("L'attaquant a" + ((trouve1) ? "gagné" : "perdu"));
+			
+		}
 		return message2;
 		
 	}
@@ -249,7 +257,7 @@ public class MainClass {
 			etendue = Aide.demandeValeurEntier(1, 9, "Entrer l'étendue");
 			taille = Aide.demandeValeurEntier(1, 6, "Entrer la taille");
 			typeChoixJeu = Aide.demandeValeurEntier(1, 2, "Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
-			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3, "Ordinateur attaquant (1) ou défenseur (2) ?");
+			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3, "Ordinateur attaquant (1) ou défenseur (2) ou Mixte ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
 			
 			prop.setProperty("etendue", "" + etendue);

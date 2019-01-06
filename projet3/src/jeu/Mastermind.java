@@ -109,9 +109,9 @@ public class Mastermind extends Jeu {
 	public String demandeAnalyse() {
 		int bp = Aide.demandeValeurEntier(0, 6, "Entrer le nombre de BienPlace");
 		int mp = Aide.demandeValeurEntier(0, 6, "Entrer le nombre de MalPlace");
-		String bpAsString = Integer.toString(bp);
-		String mpAsString = Integer.toString(mp);
-		return bpAsString + ":" + mpAsString;
+		String bpCommeChaine = Integer.toString(bp);
+		String mpCommeChaine = Integer.toString(mp);
+		return bpCommeChaine + ":" + mpCommeChaine;
 	}
 
 	/**
