@@ -47,7 +47,7 @@ public class PlusouMoins extends Jeu {
 	}
 
 	@Override
-	public boolean isWon(String resultat) {
+	public boolean isGagne(String resultat) {
 		return (resultat.matches("^=+$"));
 	}
 
@@ -65,10 +65,10 @@ public class PlusouMoins extends Jeu {
 		// return this.propositionJoueur;
 	}
 
-	public String demandeAnalyse() {
+	public String demanderAnalyse() {
 		// todo
 
-		String resultatParAttaquant = Aide.demandeValeurString("Entrer le résultat de chaine");
+		String resultatParAttaquant = Aide.askString("=+-", "Entrer le résultat de chaine");
 
 		return resultatParAttaquant;
 	}

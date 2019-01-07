@@ -110,7 +110,7 @@ public abstract class Jeu {
      */
 	public abstract String comparerCode();
 
-	public abstract boolean isWon(String resultat);
+	public abstract boolean isGagne(String resultat);
 	
 	/**
 	 * Méthode permettant d'entrer les caractères à la console
@@ -122,7 +122,7 @@ public abstract class Jeu {
 		System.out.println("Entrer le code");
 		Scanner sc = new Scanner(System.in);
 		String prop = sc.nextLine();
-		propositionDuJoueur = jeu.Code.extractCode(prop);
+		propositionDuJoueur = jeu.Code.extraireCode(prop);
 	}
 
 	/**
@@ -134,7 +134,7 @@ public abstract class Jeu {
      * et de sélectionner par rapport à la liste de codes existants à trouver
 	 */
 	public abstract Code chercherSolution();
-	public abstract String demandeAnalyse();
+	public abstract String demanderAnalyse();
 
 	/**
 	 * Jeu PlusouMoins: 

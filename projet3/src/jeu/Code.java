@@ -64,7 +64,7 @@ public class Code extends ArrayList<Integer> {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static Code extractCode(String prop) throws IllegalArgumentException {
+	public static Code extraireCode(String prop) throws IllegalArgumentException {
 		Code code = new Code();
 		for (int i = 0; i < prop.length(); i++) {
 			if ((prop.charAt(i) >= '0') && (prop.charAt(i) <= '9')) {

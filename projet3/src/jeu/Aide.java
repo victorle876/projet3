@@ -70,4 +70,28 @@ public class Aide {
 		return propositionUtilisateur;
 	}
 
+	/**
+	 * Méthode d'aide à la saisie d'une chaîne composée uniquement des caractères
+	 * passés dans la premier paramètre
+	 * 
+	 * @param values
+	 *            Les caractères acceptés dans la saisie de l'utilisateur
+	 * @param msg
+	 *            Le message d'information à fournir à l'utilisateur
+	 * @return La chaîne valide saisie
+	 */
+	public final static String askString(String values, String msg) {
+		String saisie;
+		boolean valide;
+		Scanner scanner = new Scanner(System.in);
+
+		do {
+			valide = true; // Positionnement du drapeau
+			System.out.println(msg);
+			saisie = scanner.next();
+			valide = saisie.matches("^[" + values + "]*$");
+		} while (!valide);
+		return saisie;
+	}
+
 }

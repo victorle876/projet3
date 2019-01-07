@@ -80,7 +80,7 @@ public class Mastermind extends Jeu {
 	}
 
 	@Override
-	public boolean isWon(String resultat) {
+	public boolean isGagne(String resultat) {
 		return (resultat.matches(taille + ":0$"));
 	}
 
@@ -106,7 +106,7 @@ public class Mastermind extends Jeu {
 	 * Méthode permettant de saisir le nombre de bienPlace et malPlace
 	 * 
 	 */
-	public String demandeAnalyse() {
+	public String demanderAnalyse() {
 		int bp = Aide.demandeValeurEntier(0, 6, "Entrer le nombre de BienPlace");
 		int mp = Aide.demandeValeurEntier(0, 6, "Entrer le nombre de MalPlace");
 		String bpCommeChaine = Integer.toString(bp);
