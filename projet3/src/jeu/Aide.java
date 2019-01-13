@@ -34,11 +34,11 @@ public class Aide {
 					valide = true;
 				} else {
 					System.out.println("value incorrecte (entre " + min + " et " + max + ")");
-					// Aide.LOGGER.info("value incorrecte (entre " + min + " et " + max + ")");
+					Aide.LOGGER.info("value incorrecte (entre " + min + " et " + max + ")");
 				}
 			} catch (InputMismatchException ime3) {
 				System.out.println("Ce n'est pas un entier !");
-				// Aide.LOGGER.error("Ce n'est pas un entier !");
+				Aide.LOGGER.error("Ce n'est pas un entier !");
 				valide = false;
 			} finally {
 				scanner.nextLine();
@@ -66,7 +66,7 @@ public class Aide {
 		do {
 			nok = false; // On arme le drapeau
 			System.out.println(msg);
-			// Aide.LOGGER.info(msg);
+		    Aide.LOGGER.info(msg);
 			propositionUtilisateur = scanner.nextLine();
 			for (Character c : propositionUtilisateur.toCharArray()) {
 				if ((c != '+') && (c != '-') && (c != '=')) {
