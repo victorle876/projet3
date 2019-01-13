@@ -89,26 +89,26 @@ public class Code extends ArrayList<Integer> {
 	 * @return An ArrayList of all possible codes with the given parameters
 	 */
 	public static ArrayList<Code> getAllPossibilities(int taille, int etendue) {
-		ArrayList<Code> allPossibilities = new ArrayList<>();
+		ArrayList<Code> toutesPossibilites = new ArrayList<>();
 		for (int value = 0; value <= etendue; value++) {
 			if (taille > 1) {
 				for (Code c : getAllPossibilities(taille - 1, etendue)) {
-					ArrayList<Integer> Possibility = new ArrayList<>();
-					Possibility.add(value);
-					Possibility.addAll(c);
-					allPossibilities.add(new Code(Possibility, etendue));
+					ArrayList<Integer> Possibilite = new ArrayList<>();
+					Possibilite.add(value);
+					Possibilite.addAll(c);
+					toutesPossibilites.add(new Code(Possibilite, etendue));
 				}
 			} else {
 				if (taille == 1) {
 					for (int i = 0; i <= etendue; i++) {
-						allPossibilities.add(new Code(i, etendue));
+						toutesPossibilites.add(new Code(i, etendue));
 					}
 				}
 			}
 
 		}
 
-		return allPossibilities;
+		return toutesPossibilites;
 	}
 
 }

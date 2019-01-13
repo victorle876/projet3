@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Mastermind extends Jeu {
-	private ArrayList<Code> allPossibilities = new ArrayList<>();
+	private ArrayList<Code> toutesPossibilites = new ArrayList<>();
 
 	public Mastermind() {
 		super();
@@ -20,7 +20,6 @@ public class Mastermind extends Jeu {
 		this.etendue = etendue;
 		this.taille = taille;
 		this.propositionOrdinateur = new Code();
-//		this.propositionHumain = new Code();
 	}
 
 	/**
@@ -88,18 +87,14 @@ public class Mastermind extends Jeu {
 	public Code chercherSolution() {
 		Random r = new Random();
 		this.propositionOrdinateur.clear();
-		//this.propositionJoueur.clear()
-		if ((this.allPossibilities == null) || (this.allPossibilities.isEmpty())) {
-			this.allPossibilities = jeu.Code.getAllPossibilities(taille, etendue);
+		if ((this.toutesPossibilites == null) || (this.toutesPossibilites.isEmpty())) {
+			this.toutesPossibilites = jeu.Code.getAllPossibilities(taille, etendue);
 		}
 		// propositionOrdinateur est une valeur tirée au hasard dans
-		// this.allpossibilities
-		if (!this.allPossibilities.isEmpty()) {
-			propositionOrdinateur = allPossibilities.get(r.nextInt(allPossibilities.size()));
-		    //propositionJoueur = allPossibilities.get(r.nextInt(allPossibilities.size()));
+		if (!this.toutesPossibilites.isEmpty()) {
+			propositionOrdinateur = toutesPossibilites.get(r.nextInt(toutesPossibilites.size()));
 		}
 		return propositionOrdinateur;
-		//return propositionJoueur;
 	}
 
 	/**
@@ -123,15 +118,14 @@ public class Mastermind extends Jeu {
 	@Override
 	public void analyserResultat(String resultat) {
 		ArrayList<Code> suppress = new ArrayList<>();
-		for (Code c : allPossibilities) {
+		for (Code c : toutesPossibilites) {
 			// Comparer c et le code proposé par l'ordinateur
 			String res = comparerCode(c, propositionOrdinateur);
-			//String res = comparerCode(c, propositionJoueur);
 			if (!res.equalsIgnoreCase(resultat)) {
 				suppress.add(c);
 			}
 		}
-		allPossibilities.removeAll(suppress);
+		toutesPossibilites.removeAll(suppress);
 
 	}
 }

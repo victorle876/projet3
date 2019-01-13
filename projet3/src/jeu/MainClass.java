@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MainClass {
 
@@ -15,6 +17,10 @@ public class MainClass {
 	private static int confirmParametres = 1;
 	private static int nombreEssaiMax = 10;
 	private static Jeu jeu;
+	
+	 public final static Logger LOGGER =
+			 LogManager.getLogger(MainClass.class.getName());
+
 
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
@@ -81,6 +87,16 @@ public class MainClass {
 			System.out.println("Mode de jeu invalide");
 		}
 	}
+	
+	/**
+	 * Méthode utilisé soit par l'attaque, soit par la défense, soit l'attaque vs la défense
+	 * 
+	 * @param jeu
+	 * @param typeChoixJeu
+	 * @param etendue
+	 * @param taille
+	 * @return
+	 */
 
 	public static String boucleJeu(Jeu jeu, int typeChoixJeu, int etendue, int taille, int nombreEssaiMax,
 			boolean ordinateurDefenseur, boolean ordinateurAttaquant) {
@@ -109,25 +125,53 @@ public class MainClass {
 		return message;
 
 	}
-
+	 /** Méthode utilisée pour la défense du code
+	 * 
+	 * @param jeu
+	 * @param typeChoixJeu
+	 * @param etendue
+	 * @param taille
+	 * @return
+	 */
 	public static boolean coupDefense(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 		System.out.println("Voici le code à deviner");
+		//LOGGER.info("Voici le code à deviner");
 		System.out.println(jeu.getCodeATrouverParLeJoueur());
+		//LOGGER.info(jeu.getCodeATrouverParLeJoueur());
 		System.out.println("Entrer un nouveau code?");
+		//LOGGER.info("Entrer un nouveau code?");
 		jeu.enterCode();
 		String resultat = jeu.comparerCode();
 		System.out.println("Le résultat est : " + jeu.getResultatPourLeJoueur());
+		//LOGGER.info("Le résultat est : " + jeu.getResultatPourLeJoueur());
 		return jeu.isGagne(resultat);
 	}
-
+    
+	 /** Méthode utilisée pour l'attaque du code
+		 * 
+		 * @param jeu
+		 * @param typeChoixJeu
+		 * @param etendue
+		 * @param taille
+		 * @return
+		 */
 	public static boolean coupAttaque(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 		System.out.print("Le code proposé par l'ordinateur : ");
+		//LOGGER.info("Le code proposé par l'ordinateur : ");
 		System.out.println(jeu.chercherSolution());
+		//LOGGER.info(jeu.chercherSolution());
 		System.out.println("Quel est le resultat pour cette proposition ?");
+		//LOGGER.info("Quel est le resultat pour cette proposition ?");
 		String resultat = jeu.demanderAnalyse();
 		jeu.analyserResultat(resultat);
 		return jeu.isGagne(resultat);
 	}
+	
+	/**
+	 * Méthode permettant de lire un fichier de configuration pour chacun
+	 * des jeux et de conserver afin de jouer sur un des deux jeux
+	 * @return
+	 */
 
 	private static Properties lireConfiguration() {
 		Properties prop = new Properties();
@@ -144,15 +188,24 @@ public class MainClass {
 
 		} catch (IOException ex) {
 			System.out.println("Fichier de configuration introuvable. Il faut le recréer.");
+			 //LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
 			prop = creerConfiguration();
 		} catch (NumberFormatException ex) {
 			System.out.println("Le fichier est corrompu. Il faut le recréer.");
+			//LOGGER.error("Le fichier est corrompu. Il faut le recréer.");
 			prop = creerConfiguration();
 		}
 
 		return prop;
 	}
-
+    
+	/**
+	 * Méthode permettant de créer un fichier de configuration pour chacun
+	 * des jeux
+	 * si le fichier de configuration est corrompue
+	 * si on veut saisir des nouveaux paramètres
+	 * @return
+	 */
 	private static Properties creerConfiguration() {
 		Properties prop = new Properties();
 		String comments = " ";
@@ -165,7 +218,7 @@ public class MainClass {
 			typeChoixJeu = Aide.demandeValeurEntier(1, 2,
 					"Quel jeu voulez vous jouer?\n1: Mastermind , 2: PlusouMoins");
 			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3,
-					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte ?");
+					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
 
 			prop.setProperty("etendue", "" + etendue);
@@ -182,72 +235,6 @@ public class MainClass {
 
 		return prop;
 	}
-
-	/**
-	 * Mode de fonctionnement par l'attaquant, quel que soit le jeu choisi
-	 * 
-	 * @param jeu:
-	 *            choix entre le PlusouMoins (1) et mastermind (2)
-	 * @param choice:
-	 *            mode choisi entre le mode attaquant et le mode défenseur
-	 * @param etendue:
-	 *            la plage définie sur le jeu à 1 chiffres
-	 * @param taille:
-	 *            nombre de chiffres que comporte le code
-	 * @return
-	 */
-	// public static String boucleJeuAttaquant(Jeu jeu, int typeChoixJeu, int
-	// etendue, int taille, int nombreEssaiMax) {
-	// boolean trouve1 = false;
-	// String message = "";
-	//
-	// for (int i = 0; i < nombreEssaiMax && !trouve1; i++) {
-	// trouve1 = boucleJeuAttaquantbis(jeu, typeChoixJeu, etendue, taille);
-	// }
-	// message = ("Vous avez " + ((trouve1) ? "gagné" : "perdu"));
-	// return message;
-	// }
-
-	/**
-	 * Mode de fonctionnement par la défense,quel que soit le jeu choisi
-	 * 
-	 * @param jeu
-	 * @param choice
-	 * @param etendue
-	 * @param taille
-	 * @return
-	 */
-	// public static String boucleJeuDefenseur(Jeu jeu, int typeChoixJeu, int
-	// etendue, int taille, int nombreEssaiMax) {
-	// boolean trouve2 = false;
-	// String message = "";
-	// jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
-	//
-	// // Boucle de recherche de la solution par le joueur
-	// for (int i = 0; i < nombreEssaiMax && !trouve2; i++) {
-	// trouve2 = boucleJeuDefensebis(jeu, typeChoixJeu, etendue, taille);
-	// }
-	// message = ("Vous avez " + ((trouve2) ? "gagné" : "perdu"));
-	// return message;
-	//
-	// }
-
-	// public static String boucleJeuMixte(Jeu jeu, int typeChoixJeu, int etendue,
-	// int taille) {
-	// boolean trouve1 = false;
-	// boolean trouve2 = false;
-	// String message2 = "";
-	// jeu.setCodeATrouverParLeJoueur(Code.genererNewCode(etendue, taille));
-	//
-	// for (int i = 0; i < nombreEssaiMax && (!trouve1 && !trouve2); i++) {
-	// // attaque
-	// trouve1 = boucleJeuAttaquantbis(jeu, typeChoixJeu, etendue, taille);
-	// trouve2 = boucleJeuDefensebis(jeu, typeChoixJeu, etendue, taille);
-	// }
-	//
-	// message2 = ("Le défenseur a " + ((trouve2) ? "gagné" : "perdu") + "\n");
-	// message2 += ("L'attaquant a " + ((trouve1) ? "gagné" : "perdu"));
-	// return message2;
-	// }
+	
 
 }
