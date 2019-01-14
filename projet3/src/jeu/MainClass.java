@@ -47,7 +47,7 @@ public class MainClass {
 			break;
 		default:
 			System.out.println("Configuration invalide");
-			LOGGER.warn("Configuration invalide");
+			LOGGER.warn("Configuration invalide"); //
 		}
 		etendue = Integer.parseInt(configuration.getProperty("etendue"));
 		taille = Integer.parseInt(configuration.getProperty("taille"));
