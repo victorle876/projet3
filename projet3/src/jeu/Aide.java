@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Aide {
 	 public final static Logger LOGGER =
-			 LogManager.getLogger(Aide.class.getName());
+			 LogManager.getLogger(jeu.Aide.class.getName());
 	/**
 	 * Méthode d'aide à la saisie d'un nombre entre min et max inclus si ce n'est
 	 * pas un entier, on ne prend pas en compte
@@ -33,11 +33,11 @@ public class Aide {
 				if ((value >= min) && (value <= max)) {
 					valide = true;
 				} else {
-					System.out.println("value incorrecte (entre " + min + " et " + max + ")");
+					//System.out.println("value incorrecte (entre " + min + " et " + max + ")");
 					Aide.LOGGER.info("value incorrecte (entre " + min + " et " + max + ")");
 				}
 			} catch (InputMismatchException ime3) {
-				System.out.println("Ce n'est pas un entier !");
+				//System.out.println("Ce n'est pas un entier !");
 				Aide.LOGGER.error("Ce n'est pas un entier !");
 				valide = false;
 			} finally {
@@ -65,7 +65,7 @@ public class Aide {
 
 		do {
 			nok = false; // On arme le drapeau
-			System.out.println(msg);
+			//System.out.println(msg);
 		    Aide.LOGGER.info(msg);
 			propositionUtilisateur = scanner.nextLine();
 			for (Character c : propositionUtilisateur.toCharArray()) {

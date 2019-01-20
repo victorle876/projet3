@@ -19,7 +19,7 @@ public class MainClass {
 	private static Jeu jeu;
 	
 	 public final static Logger LOGGER =
-			 LogManager.getLogger(MainClass.class.getName());
+			 LogManager.getLogger(jeu.MainClass.class.getName());
 
 
 	/**
@@ -46,7 +46,6 @@ public class MainClass {
 			configuration = creerConfiguration();
 			break;
 		default:
-			System.out.println("Configuration invalide");
 			LOGGER.warn("Configuration invalide"); //
 		}
 		etendue = Integer.parseInt(configuration.getProperty("etendue"));
@@ -69,7 +68,8 @@ public class MainClass {
 			jeu = new PlusouMoins(etendue, taille);
 			break;
 		default:
-			System.out.println("Choix de jeu invalide");
+			LOGGER.warn("Choix de jeu invalide");
+			
 		}
 
 		// Resolution du jeu
@@ -85,7 +85,6 @@ public class MainClass {
 			break;
 
 		default:
-			System.out.println("Mode de jeu invalide");
 			LOGGER.warn("Mode de jeu invalide");
 		}
 	}
@@ -136,16 +135,16 @@ public class MainClass {
 	 * @return
 	 */
 	public static boolean coupDefense(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
-		System.out.println("Voici le code à deviner");
 		LOGGER.info("Voici le code à deviner");
-		System.out.println(jeu.getCodeATrouverParLeJoueur());
-		LOGGER.info(jeu.getCodeATrouverParLeJoueur());
-		System.out.println("Entrer un nouveau code?");
+		//System.out.println(jeu.getCodeATrouverParLeJoueur());
+		Code code1=jeu.getCodeATrouverParLeJoueur();
+		//LOGGER.info(jeu.getCodeATrouverParLeJoueur());
+		LOGGER.info(code1);
 		LOGGER.info("Entrer un nouveau code?");
 		jeu.enterCode();
 		String resultat = jeu.comparerCode();
-		System.out.println("Le résultat est : " + jeu.getResultatPourLeJoueur());
-		LOGGER.info("Le résultat est : " + jeu.getResultatPourLeJoueur());
+		String res = jeu.getResultatPourLeJoueur();
+		LOGGER.info("Le résultat est : " + res);
 		return jeu.isGagne(resultat);
 	}
     
@@ -158,11 +157,11 @@ public class MainClass {
 		 * @return
 		 */
 	public static boolean coupAttaque(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
-		System.out.print("Le code proposé par l'ordinateur : ");
 		LOGGER.info("Le code proposé par l'ordinateur : ");
-		System.out.println(jeu.chercherSolution());
-		LOGGER.info(jeu.chercherSolution());
-		System.out.println("Quel est le resultat pour cette proposition ?");
+		//System.out.println(jeu.chercherSolution());
+		Code code2 =jeu.chercherSolution();
+		//LOGGER.info(jeu.chercherSolution());
+		LOGGER.info(code2);
 		LOGGER.info("Quel est le resultat pour cette proposition ?");
 		String resultat = jeu.demanderAnalyse();
 		jeu.analyserResultat(resultat);
@@ -189,11 +188,9 @@ public class MainClass {
 			Integer.parseInt(prop.getProperty("nombreEssaiMax"));
 
 		} catch (IOException ex) {
-			System.out.println("Fichier de configuration introuvable. Il faut le recréer.");
 			 LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
 			prop = creerConfiguration();
 		} catch (NumberFormatException ex) {
-			System.out.println("Le fichier est corrompu. Il faut le recréer.");
 			LOGGER.error("Le fichier est corrompu. Il faut le recréer.");
 			prop = creerConfiguration();
 		}
