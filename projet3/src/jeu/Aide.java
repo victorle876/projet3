@@ -2,12 +2,17 @@ package jeu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/*
+ * TODO passer le scanner en variable de classe ce qui évitera de le déclarer dans chaque fonction
+ */
+
 public class Aide {
-	 public final static Logger LOGGER =
-			 LogManager.getLogger(jeu.Aide.class.getName());
+	public final static Logger LOGGER = LogManager.getLogger(jeu.Aide.class.getName());
+
 	/**
 	 * Méthode d'aide à la saisie d'un nombre entre min et max inclus si ce n'est
 	 * pas un entier, on ne prend pas en compte
@@ -33,11 +38,11 @@ public class Aide {
 				if ((value >= min) && (value <= max)) {
 					valide = true;
 				} else {
-					//System.out.println("value incorrecte (entre " + min + " et " + max + ")");
+					// System.out.println("value incorrecte (entre " + min + " et " + max + ")");
 					Aide.LOGGER.info("value incorrecte (entre " + min + " et " + max + ")");
 				}
 			} catch (InputMismatchException ime3) {
-				//System.out.println("Ce n'est pas un entier !");
+				// System.out.println("Ce n'est pas un entier !");
 				Aide.LOGGER.error("Ce n'est pas un entier !");
 				valide = false;
 			} finally {
@@ -66,8 +71,8 @@ public class Aide {
 
 		do {
 			nok = false; // On arme le drapeau
-			//System.out.println(msg);
-		    Aide.LOGGER.info(msg);
+			// System.out.println(msg);
+			Aide.LOGGER.info(msg);
 			propositionUtilisateur = scanner.nextLine();
 			for (Character c : propositionUtilisateur.toCharArray()) {
 				if ((c != '+') && (c != '-') && (c != '=')) {
@@ -100,6 +105,11 @@ public class Aide {
 			valide = saisie.matches("^[" + values + "]*$");
 		} while (!valide);
 		return saisie;
+	}
+
+	// TODO faire la méthode et sa javadoc
+	public final static boolean demanderOuiNon(String msg) {
+		return true;
 	}
 
 }

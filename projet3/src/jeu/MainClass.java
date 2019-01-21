@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,11 +17,31 @@ public class MainClass {
 	private static int attaqueDefenseChoix = 1;
 	private static int confirmParametres = 1;
 	private static int nombreEssaiMax = 10;
+	private static boolean debug = false;
 	private static Jeu jeu;
-	
-	 public final static Logger LOGGER =
-			 LogManager.getLogger(jeu.MainClass.class.getName());
 
+	public final static Logger LOGGER = LogManager.getLogger(jeu.MainClass.class.getName());
+
+	/*
+	 * TODO remettre GIT en état (transformer new-master en master d'une façon ou
+	 * d'une autre)
+	 * 
+	 * TODO ajouter les fichiers log4japi et log4jcore au projet OU donner un lien
+	 * de téléchargement de ces fichiers
+	 * 
+	 * TODO GIT : faire un README.md qui indique qu'on doit référencer les fichier
+	 * log4j-api et log4jcore
+	 * 
+	 * TODO passer les variables en globales => supprimer les passages en paramètre
+	 * de toutes les variables globales OU passer toutes les variables en local =>
+	 * pas grand chose d'autre à modifier
+	 * 
+	 * TODO vérifier toutes les javadocs : les @param, les @return qui doivent être
+	 * pertinents et remplis
+	 * 
+	 * TODO vérifier les noms des variables : on passe tout en français pur (cf.
+	 * confirmParametres)
+	 */
 
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
@@ -34,63 +55,72 @@ public class MainClass {
 
 		Jeu jeu = null;
 		Properties configuration = null;
-		confirmParametres = Aide.demandeValeurEntier(1, 2,
-				"Voulez vous changer la configuration du jeu ? Non (1) ou oui (2)");
-		switch (confirmParametres) {
-		case 1:
-			configuration = lireConfiguration();
+		boolean continuer = true;
+		// TODO boucle jusqu'à ce que l'utilisateur choisisse de ne pas continuer à
+		// jouer
+		do {
+			confirmParametres = Aide.demandeValeurEntier(1, 2,
+					"Voulez vous changer la configuration du jeu ? Non (1) ou oui (2)");
+			switch (confirmParametres) {
+			case 1:
+				configuration = lireConfiguration();
 
-			break;
+				break;
 
-		case 2:
-			configuration = creerConfiguration();
-			break;
-		default:
-			LOGGER.warn("Configuration invalide"); //
-		}
-		etendue = Integer.parseInt(configuration.getProperty("etendue"));
-		taille = Integer.parseInt(configuration.getProperty("taille"));
-		typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-		attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoix"));
-		nombreEssaiMax = Integer.parseInt(configuration.getProperty("nombreEssaiMax"));
+			case 2:
+				configuration = creerConfiguration();
+				break;
+			default:
+				LOGGER.warn("Configuration invalide"); //
+			}
+			etendue = Integer.parseInt(configuration.getProperty("etendue"));
+			taille = Integer.parseInt(configuration.getProperty("taille"));
+			typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+			attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoix"));
+			nombreEssaiMax = Integer.parseInt(configuration.getProperty("nombreEssaiMax"));
 
-		// Si config non valable, on récupère une exception => try...catch
-		// Le try contient l'appel standard et fonctionnel
-		// Le catch sort en affichant une information à l'utilisateur
+			// Si config non valable, on récupère une exception => try...catch
+			// Le try contient l'appel standard et fonctionnel
+			// Le catch sort en affichant une information à l'utilisateur
 
-		// Creation du jeu
-		switch (typeChoixJeu) {
-		case 1:
-			jeu = new Mastermind(etendue, taille);
-			break;
+			// Creation du jeu
+			switch (typeChoixJeu) {
+			case 1:
+				jeu = new Mastermind(etendue, taille);
+				break;
 
-		case 2:
-			jeu = new PlusouMoins(etendue, taille);
-			break;
-		default:
-			LOGGER.warn("Choix de jeu invalide");
-			
-		}
+			case 2:
+				jeu = new PlusouMoins(etendue, taille);
+				break;
+			default:
+				LOGGER.warn("Choix de jeu invalide");
 
-		// Resolution du jeu
-		switch (attaqueDefenseChoix) {
-		case 1: // Ordinateur attaque
-			System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, false, true));
-			break;
-		case 2: // ordinateur défend
-			System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, false));
-			break;
-		case 3: // attaque/defense
-			System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, true));
-			break;
+			}
 
-		default:
-			LOGGER.warn("Mode de jeu invalide");
-		}
+			// Resolution du jeu
+			switch (attaqueDefenseChoix) {
+			case 1: // Ordinateur attaque
+				System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, false, true));
+				break;
+			case 2: // ordinateur défend
+				System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, false));
+				break;
+			case 3: // attaque/defense
+				System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, true));
+				break;
+
+			default:
+				LOGGER.warn("Mode de jeu invalide");
+			}
+			// TODO demander à l'utilisateur s'il veut continuer à jouer
+			continuer = Aide.demanderOuiNon("Voulez-vous continuer ?");
+		} while (continuer);
+
 	}
-	
+
 	/**
-	 * Méthode utilisé soit par l'attaque, soit par la défense, soit l'attaque vs la défense
+	 * Méthode utilisé soit par l'attaque, soit par la défense, soit l'attaque vs la
+	 * défense
 	 * 
 	 * @param jeu
 	 * @param typeChoixJeu
@@ -126,7 +156,9 @@ public class MainClass {
 		return message;
 
 	}
-	 /** Méthode utilisée pour la défense du code
+
+	/**
+	 * Méthode utilisée pour la défense du code
 	 * 
 	 * @param jeu
 	 * @param typeChoixJeu
@@ -135,11 +167,13 @@ public class MainClass {
 	 * @return
 	 */
 	public static boolean coupDefense(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
-		LOGGER.info("Voici le code à deviner");
-		//System.out.println(jeu.getCodeATrouverParLeJoueur());
-		Code code1=jeu.getCodeATrouverParLeJoueur();
-		//LOGGER.info(jeu.getCodeATrouverParLeJoueur());
-		LOGGER.info(code1);
+		Code code1 = jeu.getCodeATrouverParLeJoueur();
+		// Si en mode développeur on triche
+		// TODO ajouter un paramètre debug dans le fichier de configuration
+		if (debug) {
+			LOGGER.info("Voici le code à deviner");
+			LOGGER.info(code1);
+		}
 		LOGGER.info("Entrer un nouveau code?");
 		jeu.enterCode();
 		String resultat = jeu.comparerCode();
@@ -147,30 +181,32 @@ public class MainClass {
 		LOGGER.info("Le résultat est : " + res);
 		return jeu.isGagne(resultat);
 	}
-    
-	 /** Méthode utilisée pour l'attaque du code
-		 * 
-		 * @param jeu
-		 * @param typeChoixJeu
-		 * @param etendue
-		 * @param taille
-		 * @return
-		 */
+
+	/**
+	 * Méthode utilisée pour l'attaque du code
+	 * 
+	 * @param jeu
+	 * @param typeChoixJeu
+	 * @param etendue
+	 * @param taille
+	 * @return
+	 */
 	public static boolean coupAttaque(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 		LOGGER.info("Le code proposé par l'ordinateur : ");
-		//System.out.println(jeu.chercherSolution());
-		Code code2 =jeu.chercherSolution();
-		//LOGGER.info(jeu.chercherSolution());
+		// System.out.println(jeu.chercherSolution());
+		Code code2 = jeu.chercherSolution();
+		// LOGGER.info(jeu.chercherSolution());
 		LOGGER.info(code2);
 		LOGGER.info("Quel est le resultat pour cette proposition ?");
 		String resultat = jeu.demanderAnalyse();
 		jeu.analyserResultat(resultat);
 		return jeu.isGagne(resultat);
 	}
-	
+
 	/**
-	 * Méthode permettant de lire un fichier de configuration pour chacun
-	 * des jeux et de conserver afin de jouer sur un des deux jeux
+	 * Méthode permettant de lire un fichier de configuration pour chacun des jeux
+	 * et de conserver afin de jouer sur un des deux jeux
+	 * 
 	 * @return
 	 */
 
@@ -188,7 +224,7 @@ public class MainClass {
 			Integer.parseInt(prop.getProperty("nombreEssaiMax"));
 
 		} catch (IOException ex) {
-			 LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
+			LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
 			prop = creerConfiguration();
 		} catch (NumberFormatException ex) {
 			LOGGER.error("Le fichier est corrompu. Il faut le recréer.");
@@ -197,12 +233,12 @@ public class MainClass {
 
 		return prop;
 	}
-    
+
 	/**
-	 * Méthode permettant de créer un fichier de configuration pour chacun
-	 * des jeux
-	 * si le fichier de configuration est corrompue
-	 * si on veut saisir des nouveaux paramètres
+	 * Méthode permettant de créer un fichier de configuration pour chacun des jeux
+	 * si le fichier de configuration est corrompue si on veut saisir des nouveaux
+	 * paramètres
+	 * 
 	 * @return
 	 */
 	private static Properties creerConfiguration() {
@@ -234,6 +270,5 @@ public class MainClass {
 
 		return prop;
 	}
-	
 
 }

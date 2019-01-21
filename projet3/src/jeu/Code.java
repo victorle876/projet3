@@ -3,6 +3,11 @@ package jeu;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+ * TODO vérifier les @param et @return de la javadoc
+ * TODO mettre la javadoc en français
+ */
+
 public class Code extends ArrayList<Integer> {
 	private static final long serialVersionUID = -7028121193663088447L;
 	int taille;
@@ -14,6 +19,7 @@ public class Code extends ArrayList<Integer> {
 
 	/**
 	 * Méthode permet de controler la saisie entre 2 valeurs
+	 * 
 	 * @param value
 	 * @param etendue
 	 */
@@ -24,9 +30,10 @@ public class Code extends ArrayList<Integer> {
 			this.etendue = etendue;
 		}
 	}
-    
+
 	/**
 	 * Constructeur pour la classe Code
+	 * 
 	 * @param chiffres
 	 * @param etendue
 	 */
@@ -41,7 +48,9 @@ public class Code extends ArrayList<Integer> {
 	}
 
 	/**
-	 * Méthode générant des chiffres alléatoires et on les ajoute à la liste des codes
+	 * Méthode générant des chiffres alléatoires et on les ajoute à la liste des
+	 * codes
+	 * 
 	 * @param etendue
 	 * @param taille
 	 * @return
@@ -60,6 +69,7 @@ public class Code extends ArrayList<Integer> {
 
 	/**
 	 * elle doit retourner un code extrait d'une chaine de caractères
+	 * 
 	 * @param prop
 	 * @return
 	 * @throws IllegalArgumentException
