@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">    
+    <Appenders>
+        
+        <RollingFile name="jeu.MainClass" fileName="MainClass.log" filePattern="MainClass.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy minSize="1" />
+            </Policies>
+        </RollingFile>
+        
+          <RollingFile name="jeu.Aide" fileName="Aide.log" filePattern="Aide.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy minSize="1" />
+            </Policies>
+        </RollingFile>
+ 
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="MainClass"  additivity="true">
+            <appender-ref ref="jeu.MainClass"/>
+        </Logger>
+        
+        <Logger name="Aide" level="trace" additivity="true">
+            <appender-ref ref="jeu.Aide" />
+        </Logger>
+        
+        
+        <Root level="debug" additivity="true">
+            <appender-ref ref="console" />
+            <appender-ref ref="jeu.MainClass" />
+            <appender-ref ref="jeu.Aide" />
+            
+        </Root>
+    </Loggers>
+</Configuration>
