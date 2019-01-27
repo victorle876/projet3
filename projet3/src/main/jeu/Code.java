@@ -1,4 +1,4 @@
-package jeu;
+package main.jeu;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -53,7 +53,7 @@ public class Code extends ArrayList<Integer> {
 	 * 
 	 * @param etendue
 	 * @param taille
-	 * @return
+	 * @return retourne le code
 	 */
 	public static Code genererNewCode(int etendue, int taille) {
 		Random r = new Random();
@@ -71,7 +71,7 @@ public class Code extends ArrayList<Integer> {
 	 * elle doit retourner un code extrait d'une chaine de caractères
 	 * 
 	 * @param prop
-	 * @return
+	 * @return retourne le code
 	 * @throws IllegalArgumentException
 	 */
 	public static Code extraireCode(String prop) throws IllegalArgumentException {

@@ -1,4 +1,4 @@
-package jeu;
+package main.jeu;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
  */
 
 public class Aide {
-	public final static Logger LOGGER = LogManager.getLogger(jeu.Aide.class.getName());
+	public final static Logger LOGGER = LogManager.getLogger(main.jeu.Aide.class.getName());
 
 	/**
 	 * Méthode d'aide à la saisie d'un nombre entre min et max inclus si ce n'est
@@ -91,7 +91,7 @@ public class Aide {
 	 *            Les caractères acceptés dans la saisie de l'utilisateur
 	 * @param msg
 	 *            Le message d'information à fournir à l'utilisateur
-	 * @return La chaîne valide saisie
+	 * @return : retourne la chaîne valide saisie
 	 */
 	public final static String askString(String values, String msg) {
 		String saisie;
@@ -109,7 +109,18 @@ public class Aide {
 
 	// TODO faire la méthode et sa javadoc
 	public final static boolean demanderOuiNon(String msg) {
-		return true;
+		String reponse;
+		boolean valide = false;
+		Scanner scanner = new Scanner(System.in);
+		reponse = scanner.nextLine();
+		if (reponse == "oui") {
+			valide = true;
+		} else {
+			if (reponse == "non") {
+				valide = false;
+			}
 	}
+		return valide;
 
+}
 }

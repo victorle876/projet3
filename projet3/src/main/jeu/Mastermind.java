@@ -1,4 +1,4 @@
-package jeu;
+package main.jeu;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,7 +27,7 @@ public class Mastermind extends Jeu {
 
 	/**
 	 * Classe permettant de faire l'extraction bienPlace : malPlace
-	 * 
+	 * retourne un résultat
 	 */
 	@Override
 	public String comparerCode() {
@@ -45,7 +45,7 @@ public class Mastermind extends Jeu {
 	 *            proposé par l'attaquant
 	 * @param codeTofind:
 	 *            code à trouver par l'attaquant
-	 * @return
+	 * @return la séquence bienPlace: malPlace
 	 */
 
 	private String comparerCode(Code proposition, Code codeTofind) {
@@ -91,7 +91,7 @@ public class Mastermind extends Jeu {
 		Random r = new Random();
 		this.propositionOrdinateur.clear();
 		if ((this.toutesPossibilites == null) || (this.toutesPossibilites.isEmpty())) {
-			this.toutesPossibilites = jeu.Code.getAllPossibilities(taille, etendue);
+			this.toutesPossibilites = Code.getAllPossibilities(taille, etendue);
 		}
 		// propositionOrdinateur est une valeur tirée au hasard dans
 		if (!this.toutesPossibilites.isEmpty()) {

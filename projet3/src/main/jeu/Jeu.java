@@ -1,4 +1,4 @@
-package jeu;
+package main.jeu;
 
 import java.util.Scanner;
 
@@ -122,7 +122,7 @@ public abstract class Jeu {
 		System.out.println("Entrer le code");
 		Scanner sc = new Scanner(System.in);
 		String prop = sc.nextLine();
-		propositionDuJoueur = jeu.Code.extraireCode(prop);
+		propositionDuJoueur = main.jeu.Code.extraireCode(prop);
 	}
 
 	/**
