@@ -6,13 +6,10 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/*
- * TODO passer le scanner en variable de classe ce qui évitera de le déclarer dans chaque fonction
- */
-
 public class Aide {
 	public final static Logger LOGGER = LogManager.getLogger(main.jeu.Aide.class.getName());
 
+	public static Scanner scanner = new Scanner(System.in);
 	/**
 	 * Méthode d'aide à la saisie d'un nombre entre min et max inclus si ce n'est
 	 * pas un entier, on ne prend pas en compte
@@ -29,7 +26,7 @@ public class Aide {
 
 		int value = 0;
 		boolean valide = false;
-		Scanner scanner = new Scanner(System.in);
+		//Scanner scanner = new Scanner(System.in);
 
 		while (!valide) {
 			try {
@@ -67,7 +64,7 @@ public class Aide {
 
 		boolean nok;
 		String propositionUtilisateur;
-		Scanner scanner = new Scanner(System.in);
+		// Scanner scanner = new Scanner(System.in);
 
 		do {
 			nok = false; // On arme le drapeau
@@ -96,7 +93,7 @@ public class Aide {
 	public final static String askString(String values, String msg) {
 		String saisie;
 		boolean valide;
-		Scanner scanner = new Scanner(System.in);
+		// Scanner scanner = new Scanner(System.in);
 
 		do {
 			valide = true; // Positionnement du drapeau

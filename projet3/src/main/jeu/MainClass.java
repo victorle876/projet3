@@ -1,32 +1,30 @@
 package main.jeu;
-import main.resource.*;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import main.resources.*;
+
 public class MainClass {
 
-	private static int etendue = 9;
-	private static int taille = 4;
-	private static int typeChoixJeu = 2;
+	private static int etendue = 9 ;
+	private static int taille = 6;
+	private static int typeChoixJeu = 1;
 	private static int attaqueDefenseChoix = 1;
-	private static int confirmerParametres = 1;
-	private static int nombreEssaiMax = 10;
+	private static int confirmerParametres =1 ;
+	private static int nombreEssaiMax = 10 ;
 	private static boolean debug = false;
 	private static Jeu jeu;
 
 	public final static Logger LOGGER = LogManager.getLogger(main.jeu.MainClass.class.getName());
 
 	/*
-	 * TODO remettre GIT en état (transformer new-master en master d'une façon ou
-	 * d'une autre)
-	 * 
 	 * TODO ajouter les fichiers log4japi et log4jcore au projet OU donner un lien
 	 * de téléchargement de ces fichiers
 	 * 
@@ -36,12 +34,21 @@ public class MainClass {
 	 * TODO passer les variables en globales => supprimer les passages en paramètre
 	 * de toutes les variables globales OU passer toutes les variables en local =>
 	 * pas grand chose d'autre à modifier
-	 * 
-	 * TODO vérifier toutes les javadocs : les @param, les @return qui doivent être
-	 * pertinents et remplis
-	 * 
-	 * TODO vérifier les noms des variables : on passe tout en français pur (cf.
+     */
 	
+	public MainClass() {
+		super();
+	}
+	
+	public MainClass(int etendue, int taille,int nombreEssaiMax,int typeChoixJeu,
+		int attaqueDefenseChoix, int confirmerParametres) {
+		this.etendue = etendue;
+		this.taille = taille;
+		this.nombreEssaiMax = nombreEssaiMax;
+		this.typeChoixJeu = typeChoixJeu;
+		this.attaqueDefenseChoix = attaqueDefenseChoix;
+		this.confirmerParametres = confirmerParametres;
+	}
 
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
@@ -50,7 +57,7 @@ public class MainClass {
 	 * @param args
 	 */
 
-	@SuppressWarnings("resource")
+//	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 
 		Jeu jeu = null;
@@ -71,7 +78,7 @@ public class MainClass {
 				configuration = creerConfiguration();
 				break;
 			default:
-				LOGGER.warn("Configuration invalide"); //
+				LOGGER.warn("Configuration invalide"); 
 			}
 			etendue = Integer.parseInt(configuration.getProperty("etendue"));
 			taille = Integer.parseInt(configuration.getProperty("taille"));
@@ -97,7 +104,7 @@ public class MainClass {
 			switch (attaqueDefenseChoix) {
 			case 1: // Ordinateur attaque
 				//System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, false, true));
-				System.out.println(boucleJeu(false, true));
+				System.out.println(boucleJeu(true, false));
 				break;
 			case 2: // ordinateur défend
 				//System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, false));
@@ -105,7 +112,7 @@ public class MainClass {
 				break;
 			case 3: // attaque/defense
 				//System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, true));
-				System.out.println(boucleJeu(false, true));
+				System.out.println(boucleJeu(true, true));
 				break;
 
 			default:
@@ -140,12 +147,12 @@ public class MainClass {
 
 		// Boucle de recherche de la solution
 		for (int i = 0; i < nombreEssaiMax && (!trouve1 && !trouve2); i++) {
-			if (ordinateurDefenseur) {
+			if (ordinateurAttaquant ) {
 				//trouve1 = coupAttaque(jeu, typeChoixJeu, etendue, taille);
 				trouve1 = coupAttaque();
 				
 			}
-			if (ordinateurAttaquant) {
+			if (ordinateurDefenseur) {
 				//trouve2 = coupDefense(jeu, typeChoixJeu, etendue, taille);
 				trouve2 = coupDefense();
 			}
@@ -175,14 +182,18 @@ public class MainClass {
 		// Si en mode développeur on triche
 		// TODO ajouter un paramètre debug dans le fichier de configuration
 		if (debug) {
+			System.out.println("Voici le code à deviner");
 			LOGGER.info("Voici le code à deviner");
-			LOGGER.info(code1);
+			System.out.println(code1);
+			//LOGGER.info(code1);
 		}
 		LOGGER.info("Entrer un nouveau code?");
+		System.out.println("Entrer un nouveau code?");
 		jeu.enterCode();
 		String resultat = jeu.comparerCode();
 		String res = jeu.getResultatPourLeJoueur();
 		LOGGER.info("Le résultat est : " + res);
+		System.out.println("Le résultat est : " + res);
 		return jeu.isGagne(resultat);
 	}
 
@@ -227,6 +238,7 @@ public class MainClass {
 			Integer.parseInt(prop.getProperty("typeChoixJeu"));
 			Integer.parseInt(prop.getProperty("attaqueDefenseChoix"));
 			Integer.parseInt(prop.getProperty("nombreEssaiMax"));
+			//prop.getProperty("debug");
 
 		} catch (IOException ex) {
 			LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
@@ -259,12 +271,14 @@ public class MainClass {
 			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3,
 					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
+			//debug=Aide.demanderOuiNon("");
 
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);
 			prop.setProperty("typeChoixJeu", "" + typeChoixJeu);
 			prop.setProperty("attaqueDefenseChoix", "" + attaqueDefenseChoix);
 			prop.setProperty("nombreEssaiMax", "" + nombreEssaiMax);
+			//prop.setProperty("debug", "" + debug);
 
 			prop.store(writer, comments);
 
