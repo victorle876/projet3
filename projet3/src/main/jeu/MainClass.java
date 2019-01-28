@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import main.resources.*;
 
 public class MainClass {
 
@@ -31,25 +28,8 @@ public class MainClass {
 	 * TODO GIT : faire un README.md qui indique qu'on doit référencer les fichier
 	 * log4j-api et log4jcore
 	 * 
-	 * TODO passer les variables en globales => supprimer les passages en paramètre
-	 * de toutes les variables globales OU passer toutes les variables en local =>
-	 * pas grand chose d'autre à modifier
-     */
+	 */
 	
-	public MainClass() {
-		super();
-	}
-	
-	public MainClass(int etendue, int taille,int nombreEssaiMax,int typeChoixJeu,
-		int attaqueDefenseChoix, int confirmerParametres) {
-		this.etendue = etendue;
-		this.taille = taille;
-		this.nombreEssaiMax = nombreEssaiMax;
-		this.typeChoixJeu = typeChoixJeu;
-		this.attaqueDefenseChoix = attaqueDefenseChoix;
-		this.confirmerParametres = confirmerParametres;
-	}
-
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
 	 * de choisir le jeu et son mode Saisie des parametres de configuration
@@ -57,10 +37,9 @@ public class MainClass {
 	 * @param args
 	 */
 
-//	@SuppressWarnings("resource")
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 
-		Jeu jeu = null;
 		Properties configuration = null;
 		boolean continuer = true;
 		// TODO boucle jusqu'à ce que l'utilisateur choisisse de ne pas continuer à
@@ -128,15 +107,10 @@ public class MainClass {
 	 * Méthode utilisé soit par l'attaque, soit par la défense, soit l'attaque vs la
 	 * défense
 	 * 
-	 * @param jeu
-	 * @param typeChoixJeu
-	 * @param etendue
-	 * @param taille
+	 * @param ordinateurDefenseur
+	 * @param ordinateurAttaquant
 	 * @return retourne le message du vainqueur du jeu
 	 */
-
-	//public static String boucleJeu(Jeu jeu, int typeChoixJeu, int etendue, int taille, int nombreEssaiMax,
-			//boolean ordinateurDefenseur, boolean ordinateurAttaquant) 
 	public static String boucleJeu(boolean ordinateurDefenseur, boolean ordinateurAttaquant) {
 		boolean trouve1 = false;
 		boolean trouve2 = false;
@@ -170,10 +144,6 @@ public class MainClass {
 	/**
 	 * Méthode utilisée pour la défense du code
 	 * 
-	 * @param jeu
-	 * @param typeChoixJeu
-	 * @param etendue
-	 * @param taille
 	 * @return
 	 */
 	//public static boolean coupDefense(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
@@ -182,28 +152,24 @@ public class MainClass {
 		// Si en mode développeur on triche
 		// TODO ajouter un paramètre debug dans le fichier de configuration
 		if (debug) {
-			System.out.println("Voici le code à deviner");
+			//System.out.println("Voici le code à deviner");
 			LOGGER.info("Voici le code à deviner");
 			System.out.println(code1);
 			//LOGGER.info(code1);
 		}
 		LOGGER.info("Entrer un nouveau code?");
-		System.out.println("Entrer un nouveau code?");
+		//System.out.println("Entrer un nouveau code?");
 		jeu.enterCode();
 		String resultat = jeu.comparerCode();
 		String res = jeu.getResultatPourLeJoueur();
 		LOGGER.info("Le résultat est : " + res);
-		System.out.println("Le résultat est : " + res);
+		//System.out.println("Le résultat est : " + res);
 		return jeu.isGagne(resultat);
 	}
 
 	/**
 	 * Méthode utilisée pour l'attaque du code
 	 * 
-	 * @param jeu
-	 * @param typeChoixJeu
-	 * @param etendue
-	 * @param taille
 	 * @return le booleen isGagne
 	 */
 	//public static boolean coupAttaque(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
@@ -238,7 +204,7 @@ public class MainClass {
 			Integer.parseInt(prop.getProperty("typeChoixJeu"));
 			Integer.parseInt(prop.getProperty("attaqueDefenseChoix"));
 			Integer.parseInt(prop.getProperty("nombreEssaiMax"));
-			//prop.getProperty("debug");
+			prop.getProperty("debug");
 
 		} catch (IOException ex) {
 			LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
@@ -271,14 +237,14 @@ public class MainClass {
 			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3,
 					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
-			//debug=Aide.demanderOuiNon("");
+			debug=Aide.demanderOuiNon("");
 
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);
 			prop.setProperty("typeChoixJeu", "" + typeChoixJeu);
 			prop.setProperty("attaqueDefenseChoix", "" + attaqueDefenseChoix);
 			prop.setProperty("nombreEssaiMax", "" + nombreEssaiMax);
-			//prop.setProperty("debug", "" + debug);
+			prop.setProperty("debug", "" + debug);
 
 			prop.store(writer, comments);
 
