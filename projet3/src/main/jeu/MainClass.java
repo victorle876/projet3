@@ -10,13 +10,13 @@ import org.apache.logging.log4j.Logger;
 
 public class MainClass {
 
-	private static int etendue = 9 ;
-	private static int taille = 6;
-	private static int typeChoixJeu = 1;
-	private static int attaqueDefenseChoix = 1;
-	private static int confirmerParametres =1 ;
-	private static int nombreEssaiMax = 10 ;
-	private static boolean debug = false;
+	private static int etendue ;
+	private static int taille ;
+	private static int typeChoixJeu;
+	private static int attaqueDefenseChoix;
+	private static int confirmerParametres;
+	private static int nombreEssaiMax ;
+	private static boolean debug ;
 	private static Jeu jeu;
 
 	public final static Logger LOGGER = LogManager.getLogger(main.jeu.MainClass.class.getName());
@@ -41,16 +41,15 @@ public class MainClass {
 	public static void main(String[] args) {
 
 		Properties configuration = null;
-		boolean continuer = true;
+//		boolean continuer = true;
 		// TODO boucle jusqu'à ce que l'utilisateur choisisse de ne pas continuer à
 		// jouer
-		do {
+//		do {
 			confirmerParametres = Aide.demandeValeurEntier(1, 2,
 					"Voulez vous changer la configuration du jeu ? Non (1) ou oui (2)");
 			switch (confirmerParametres) {
 			case 1:
 				configuration = lireConfiguration();
-
 				break;
 
 			case 2:
@@ -82,15 +81,12 @@ public class MainClass {
 			// Resolution du jeu
 			switch (attaqueDefenseChoix) {
 			case 1: // Ordinateur attaque
-				//System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, false, true));
 				System.out.println(boucleJeu(true, false));
 				break;
 			case 2: // ordinateur défend
-				//System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, false));
 				System.out.println(boucleJeu(false, true));
 				break;
 			case 3: // attaque/defense
-				//System.out.println(boucleJeu(jeu, typeChoixJeu, etendue, taille, nombreEssaiMax, true, true));
 				System.out.println(boucleJeu(true, true));
 				break;
 
@@ -98,8 +94,8 @@ public class MainClass {
 				LOGGER.warn("Mode de jeu invalide");
 			}
 			// TODO demander à l'utilisateur s'il veut continuer à jouer
-			continuer = Aide.demanderOuiNon("Voulez-vous continuer ?");
-		} while (continuer);
+//			continuer = Aide.demanderOuiNon("Voulez-vous continuer ?");
+//		} while (continuer);
 
 	}
 
@@ -122,12 +118,10 @@ public class MainClass {
 		// Boucle de recherche de la solution
 		for (int i = 0; i < nombreEssaiMax && (!trouve1 && !trouve2); i++) {
 			if (ordinateurAttaquant ) {
-				//trouve1 = coupAttaque(jeu, typeChoixJeu, etendue, taille);
 				trouve1 = coupAttaque();
 				
 			}
 			if (ordinateurDefenseur) {
-				//trouve2 = coupDefense(jeu, typeChoixJeu, etendue, taille);
 				trouve2 = coupDefense();
 			}
 		}
@@ -146,24 +140,20 @@ public class MainClass {
 	 * 
 	 * @return
 	 */
-	//public static boolean coupDefense(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 	public static boolean coupDefense() {	
 		Code code1 = jeu.getCodeATrouverParLeJoueur();
 		// Si en mode développeur on triche
 		// TODO ajouter un paramètre debug dans le fichier de configuration
 		if (debug) {
-			//System.out.println("Voici le code à deviner");
 			LOGGER.info("Voici le code à deviner");
 			System.out.println(code1);
 			//LOGGER.info(code1);
 		}
 		LOGGER.info("Entrer un nouveau code?");
-		//System.out.println("Entrer un nouveau code?");
 		jeu.enterCode();
 		String resultat = jeu.comparerCode();
 		String res = jeu.getResultatPourLeJoueur();
 		LOGGER.info("Le résultat est : " + res);
-		//System.out.println("Le résultat est : " + res);
 		return jeu.isGagne(resultat);
 	}
 
@@ -172,12 +162,9 @@ public class MainClass {
 	 * 
 	 * @return le booleen isGagne
 	 */
-	//public static boolean coupAttaque(Jeu jeu, int typeChoixJeu, int etendue, int taille) {
 	public static boolean coupAttaque() {	
 		LOGGER.info("Le code proposé par l'ordinateur : ");
-		// System.out.println(jeu.chercherSolution());
 		Code code2 = jeu.chercherSolution();
-		// LOGGER.info(jeu.chercherSolution());
 		LOGGER.info(code2);
 		LOGGER.info("Quel est le resultat pour cette proposition ?");
 		String resultat = jeu.demanderAnalyse();
@@ -237,14 +224,14 @@ public class MainClass {
 			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3,
 					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
-			debug=Aide.demanderOuiNon("");
+			debug=Aide.demanderOuiNon("Voulez vous débugger l'application? oui ou non");
 
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);
 			prop.setProperty("typeChoixJeu", "" + typeChoixJeu);
 			prop.setProperty("attaqueDefenseChoix", "" + attaqueDefenseChoix);
 			prop.setProperty("nombreEssaiMax", "" + nombreEssaiMax);
-			prop.setProperty("debug", "" + debug);
+			//prop.setProperty("debug", "" + debug);
 
 			prop.store(writer, comments);
 

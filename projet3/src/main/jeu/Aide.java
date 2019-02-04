@@ -26,7 +26,6 @@ public class Aide {
 
 		int value = 0;
 		boolean valide = false;
-		//Scanner scanner = new Scanner(System.in);
 
 		while (!valide) {
 			try {
@@ -64,7 +63,6 @@ public class Aide {
 
 		boolean nok;
 		String propositionUtilisateur;
-		// Scanner scanner = new Scanner(System.in);
 
 		do {
 			nok = false; // On arme le drapeau
@@ -93,7 +91,6 @@ public class Aide {
 	public final static String askString(String values, String msg) {
 		String saisie;
 		boolean valide;
-		// Scanner scanner = new Scanner(System.in);
 
 		do {
 			valide = true; // Positionnement du drapeau
@@ -105,19 +102,28 @@ public class Aide {
 	}
 
 	// TODO faire la méthode et sa javadoc
+	/**
+	 * Méthode de choix du débuggage ou non en mode developpeur
+	 * 
+	 * @param msg
+	 *            Le message d'information à fournir à l'utilisateur
+	 * @return : retourne la chaîne valide saisie
+	 */
 	public final static boolean demanderOuiNon(String msg) {
 		String reponse;
-		boolean valide = false;
-		Scanner scanner = new Scanner(System.in);
+	//	boolean valide = false;
+		do {
 		reponse = scanner.nextLine();
-		if (reponse == "oui") {
-			valide = true;
+		if (reponse.toLowerCase().equals("oui")) {
+    //         valide = true;
+			return  true;
 		} else {
-			if (reponse == "non") {
-				valide = false;
-			}
-	}
-		return valide;
-
+			if (reponse.toLowerCase().equals("non")) {
+	//			valide = true;
+				return false;
+			}	
+		}
+		} while (true);		
+				
 }
 }
