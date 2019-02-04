@@ -1,8 +1,8 @@
-# projet3 : Mastermind et Plus Ou Moins
+# Projet3 : Mastermind et Plus Ou Moins
 
-Ce projet permettent de choisir différentes le jeu (Mastermind, Plus ou Moins), le mode (attaque, defense, versus). On a aussi ajouté le mode dévelopeur pour voir les traces de débuggae.
+Ce projet permettent de choisir différentes jeux (Mastermind, Plus ou Moins), le mode (attaque, defense, versus). On a aussi ajouté le mode dévelopeur pour voir les traces de débuggae.
 
-Mode opératoire
+# Mode opératoire
 
 1) Il faudra importer tout le projet 3 rangé sur mon dépôt git (https://github.com/victorle876/projet3)
 2) Vérifier que le dossier lib comporte les packages api log4j suivants dans le dossier lib en important: log4j2-api.2.11.1.jar, log4j2-core.2.11.1.jar
