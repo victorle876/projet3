@@ -99,10 +99,9 @@ public class Aide {
 			valide = saisie.matches("^[" + values + "]*$");
 		} while (!valide);
 		return saisie;
-		//
+		//1
 	}
 
-	// TODO faire la méthode et sa javadoc
 	/**
 	 * Méthode de choix du débuggage ou non en mode developpeur
 	 * 
