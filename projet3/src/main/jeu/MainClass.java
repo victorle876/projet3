@@ -1,4 +1,5 @@
 package main.jeu;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,14 +22,6 @@ public class MainClass {
 
 	public final static Logger LOGGER = LogManager.getLogger(main.jeu.MainClass.class.getName());
 
-	/*
-	 * TODO ajouter les fichiers log4japi et log4jcore au projet OU donner un lien
-	 * de téléchargement de ces fichiers
-	 * 
-	 * TODO GIT : faire un README.md qui indique qu'on doit référencer les fichier
-	 * log4j-api et log4jcore
-	 * 
-	 */
 	
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
@@ -37,7 +30,7 @@ public class MainClass {
 	 * @param args
 	 */
 
-	@SuppressWarnings("resource")
+	//@SuppressWarnings("resource")
 	public static void main(String[] args) {
 
 		Properties configuration = null;
@@ -81,10 +74,10 @@ public class MainClass {
 			// Resolution du jeu
 			switch (attaqueDefenseChoix) {
 			case 1: // Ordinateur attaque
-				System.out.println(boucleJeu(true, false));
+				System.out.println(boucleJeu(false, true));
 				break;
 			case 2: // ordinateur défend
-				System.out.println(boucleJeu(false, true));
+				System.out.println(boucleJeu(true, false));
 				break;
 			case 3: // attaque/defense
 				System.out.println(boucleJeu(true, true));
@@ -191,7 +184,7 @@ public class MainClass {
 			Integer.parseInt(prop.getProperty("typeChoixJeu"));
 			Integer.parseInt(prop.getProperty("attaqueDefenseChoix"));
 			Integer.parseInt(prop.getProperty("nombreEssaiMax"));
-			prop.getProperty("debug");
+			Boolean.parseBoolean(prop.getProperty("debug"));
 
 		} catch (IOException ex) {
 			LOGGER.error("Fichier de configuration introuvable. Il faut le recréer.");
@@ -231,7 +224,7 @@ public class MainClass {
 			prop.setProperty("typeChoixJeu", "" + typeChoixJeu);
 			prop.setProperty("attaqueDefenseChoix", "" + attaqueDefenseChoix);
 			prop.setProperty("nombreEssaiMax", "" + nombreEssaiMax);
-			//prop.setProperty("debug", "" + debug);
+			prop.setProperty("debug", "" + (Boolean.toString(debug)));
 
 			prop.store(writer, comments);
 

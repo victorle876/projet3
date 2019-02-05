@@ -110,20 +110,24 @@ public class Aide {
 	 * @return : retourne la chaîne valide saisie
 	 */
 	public final static boolean demanderOuiNon(String msg) {
-		String reponse;
-	//	boolean valide = false;
+		String reponse = "";
+		boolean valide = false;
+		boolean nok ;
 		do {
+		nok = false;
+		System.out.println(msg);		
 		reponse = scanner.nextLine();
-		if (reponse.toLowerCase().equals("oui")) {
-    //         valide = true;
-			return  true;
+		if (reponse.equals("oui")) {
+             valide = true;
+			 nok = true;
 		} else {
-			if (reponse.toLowerCase().equals("non")) {
-	//			valide = true;
-				return false;
+			if (reponse.equals("non")) {
+				valide = false;
+				nok = true;
 			}	
 		}
-		} while (true);		
+		} while (nok);	
+		return valide;
 				
 }
 }
