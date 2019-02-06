@@ -3,15 +3,13 @@ package main.jeu;
 import java.util.ArrayList;
 import java.util.Random;
 
-/*
- * TODO finaliser la javadoc en complétant les @param et @return
- */
 public class Mastermind extends Jeu {
 	private ArrayList<Code> toutesPossibilites = new ArrayList<>();
 
 	public Mastermind() {
 		super();
 	}
+	
 
 	/***
 	 * Constructeur pour la classe Mastermind

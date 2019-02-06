@@ -25,7 +25,7 @@
             <appender-ref ref="jeu.MainClass"/>
         </Logger>
         
-        <Logger name="Aide" level="trace" additivity="true">
+        <Logger name="Aide" additivity="true">
             <appender-ref ref="jeu.Aide" />
         </Logger>
         

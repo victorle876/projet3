@@ -99,9 +99,9 @@ public class Aide {
 			valide = saisie.matches("^[" + values + "]*$");
 		} while (!valide);
 		return saisie;
+		
 	}
 
-	// TODO faire la méthode et sa javadoc
 	/**
 	 * Méthode de choix du débuggage ou non en mode developpeur
 	 * 
@@ -109,7 +109,7 @@ public class Aide {
 	 *            Le message d'information à fournir à l'utilisateur
 	 * @return : retourne la chaîne valide saisie
 	 */
-public final static boolean demanderOuiNon(String msg) {
+	public final static boolean demanderOuiNon(String msg) {
 		String reponse = "";
 		boolean valide = false;
 		boolean nok ;
@@ -127,7 +127,6 @@ public final static boolean demanderOuiNon(String msg) {
 			}	
 		}
 		} while (nok);	
-		return valide;
-				
-}
+		return valide;		
+     }
 }
