@@ -9,6 +9,7 @@ public class Mastermind extends Jeu {
 	public Mastermind() {
 		super();
 	}
+	//
 
 	/***
 	 * Constructeur pour la classe Mastermind
