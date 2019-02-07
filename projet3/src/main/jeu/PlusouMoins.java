@@ -9,10 +9,8 @@ public class PlusouMoins extends Jeu {
 	/**
 	 * Méthode permettant d'ajouter 0 à l'ArrayList Min et etendue ArrayListMax
 	 *
-	 * @param etendue:
-	 *            la plage définie sur le jeu à 1 chiffres
-	 * @param taille:
-	 *            nombre de chiffres que comporte le code
+	 * @param etendue: la plage définie sur le jeu à 1 chiffres
+	 * @param taille: nombre de chiffres que comporte le code
 	 */
 	public PlusouMoins(int etendue, int taille) {
 		this.etendue = etendue;

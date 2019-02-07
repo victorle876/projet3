@@ -10,16 +10,14 @@ public class Aide {
 	public final static Logger LOGGER = LogManager.getLogger(main.jeu.Aide.class.getName());
 
 	public static Scanner scanner = new Scanner(System.in);
+
 	/**
 	 * Méthode d'aide à la saisie d'un nombre entre min et max inclus si ce n'est
 	 * pas un entier, on ne prend pas en compte
 	 * 
-	 * @param min:
-	 *            valeur minimale de la saisie
-	 * @param max:
-	 *            valeur maximale de la saisie
-	 * @param msg
-	 *            : message correspondant
+	 * @param     min: valeur minimale de la saisie
+	 * @param     max: valeur maximale de la saisie
+	 * @param msg : message correspondant
 	 * @return
 	 */
 	public static int demandeValeurEntier(int min, int max, String msg) {
@@ -54,8 +52,7 @@ public class Aide {
 	 * Méthode contrôlant la saisie d'une chaîne avec les seuls caractères autorisés
 	 * +, -, =
 	 * 
-	 * @param msg
-	 *            Le message informatif à afficher à l'utilisateur
+	 * @param msg Le message informatif à afficher à l'utilisateur
 	 * @return
 	 */
 
@@ -82,10 +79,8 @@ public class Aide {
 	 * Méthode d'aide à la saisie d'une chaîne composée uniquement des caractères
 	 * passés dans la premier paramètre
 	 * 
-	 * @param values
-	 *            Les caractères acceptés dans la saisie de l'utilisateur
-	 * @param msg
-	 *            Le message d'information à fournir à l'utilisateur
+	 * @param values Les caractères acceptés dans la saisie de l'utilisateur
+	 * @param msg    Le message d'information à fournir à l'utilisateur
 	 * @return : retourne la chaîne valide saisie
 	 */
 	public final static String askString(String values, String msg) {
@@ -99,34 +94,33 @@ public class Aide {
 			valide = saisie.matches("^[" + values + "]*$");
 		} while (!valide);
 		return saisie;
-		
+
 	}
 
 	/**
 	 * Méthode de choix du débuggage ou non en mode developpeur
 	 * 
-	 * @param msg
-	 *            Le message d'information à fournir à l'utilisateur
+	 * @param msg Le message d'information à fournir à l'utilisateur
 	 * @return : retourne la chaîne valide saisie
 	 */
 	public final static boolean demanderOuiNon(String msg) {
 		String reponse = "";
 		boolean valide = false;
-		boolean nok ;
+		boolean nok = false;
 		do {
-		nok = false;
-		System.out.println(msg);		
-		reponse = scanner.nextLine();
-		if (reponse.equals("oui")) {
-             valide = true;
-			 nok = true;
-		} else {
-			if (reponse.equals("non")) {
-				valide = false;
+			// nok = false;
+			System.out.println(msg);
+			reponse = scanner.nextLine();
+			if (reponse.equals("oui")) {
+				valide = true;
 				nok = true;
-			}	
-		}
-		} while (nok);	
-		return valide;		
-     }
+			} else {
+				if (reponse.equals("non")) {
+					valide = false;
+					nok = true;
+				}
+			}
+		} while (!nok);
+		return valide;
+	}
 }

@@ -11,18 +11,17 @@ import org.apache.logging.log4j.Logger;
 
 public class MainClass {
 
-	private static int etendue ;
-	private static int taille ;
+	private static int etendue;
+	private static int taille;
 	private static int typeChoixJeu;
 	private static int attaqueDefenseChoix;
 	private static int confirmerParametres;
-	private static int nombreEssaiMax ;
-	private static boolean debug ;
+	private static int nombreEssaiMax;
+	private static boolean debug;
 	private static Jeu jeu;
 
 	public final static Logger LOGGER = LogManager.getLogger(main.jeu.MainClass.class.getName());
 
-	
 	/**
 	 * La classe principale permettant de saisir l'étendue et la taille, et ensuite
 	 * de choisir le jeu et son mode Saisie des parametres de configuration
@@ -30,63 +29,67 @@ public class MainClass {
 	 * @param args
 	 */
 
-	//@SuppressWarnings("resource")
+	// @SuppressWarnings("resource")
 	public static void main(String[] args) {
+
+		for (String s : args) {
+			System.out.println(s);
+		}
 
 		Properties configuration = null;
 //		boolean continuer = true;
 		// TODO boucle jusqu'à ce que l'utilisateur choisisse de ne pas continuer à
 		// jouer
 //		do {
-			confirmerParametres = Aide.demandeValeurEntier(1, 2,
-					"Voulez vous changer la configuration du jeu ? Non (1) ou oui (2)");
-			switch (confirmerParametres) {
-			case 1:
-				configuration = lireConfiguration();
-				break;
+		confirmerParametres = Aide.demandeValeurEntier(1, 2,
+				"Voulez vous changer la configuration du jeu ? Non (1) ou oui (2)");
+		switch (confirmerParametres) {
+		case 1:
+			configuration = lireConfiguration();
+			break;
 
-			case 2:
-				configuration = creerConfiguration();
-				break;
-			default:
-				LOGGER.warn("Configuration invalide"); 
-			}
-			etendue = Integer.parseInt(configuration.getProperty("etendue"));
-			taille = Integer.parseInt(configuration.getProperty("taille"));
-			typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
-			attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoix"));
-			nombreEssaiMax = Integer.parseInt(configuration.getProperty("nombreEssaiMax"));
+		case 2:
+			configuration = creerConfiguration();
+			break;
+		default:
+			LOGGER.warn("Configuration invalide");
+		}
+		etendue = Integer.parseInt(configuration.getProperty("etendue"));
+		taille = Integer.parseInt(configuration.getProperty("taille"));
+		typeChoixJeu = Integer.parseInt(configuration.getProperty("typeChoixJeu"));
+		attaqueDefenseChoix = Integer.parseInt(configuration.getProperty("attaqueDefenseChoix"));
+		nombreEssaiMax = Integer.parseInt(configuration.getProperty("nombreEssaiMax"));
 
-			// Creation du jeu
-			switch (typeChoixJeu) {
-			case 1:
-				jeu = new Mastermind(etendue, taille);
-				break;
+		// Creation du jeu
+		switch (typeChoixJeu) {
+		case 1:
+			jeu = new Mastermind(etendue, taille);
+			break;
 
-			case 2:
-				jeu = new PlusouMoins(etendue, taille);
-				break;
-			default:
-				LOGGER.warn("Choix de jeu invalide");
+		case 2:
+			jeu = new PlusouMoins(etendue, taille);
+			break;
+		default:
+			LOGGER.warn("Choix de jeu invalide");
 
-			}
+		}
 
-			// Resolution du jeu
-			switch (attaqueDefenseChoix) {
-			case 1: // Ordinateur attaque
-				System.out.println(boucleJeu(false, true));
-				break;
-			case 2: // ordinateur défend
-				System.out.println(boucleJeu(true, false));
-				break;
-			case 3: // attaque/defense
-				System.out.println(boucleJeu(true, true));
-				break;
+		// Resolution du jeu
+		switch (attaqueDefenseChoix) {
+		case 1: // Ordinateur attaque
+			System.out.println(boucleJeu(false, true));
+			break;
+		case 2: // ordinateur défend
+			System.out.println(boucleJeu(true, false));
+			break;
+		case 3: // attaque/defense
+			System.out.println(boucleJeu(true, true));
+			break;
 
-			default:
-				LOGGER.warn("Mode de jeu invalide");
-			}
-			// TODO demander à l'utilisateur s'il veut continuer à jouer
+		default:
+			LOGGER.warn("Mode de jeu invalide");
+		}
+		// TODO demander à l'utilisateur s'il veut continuer à jouer
 //			continuer = Aide.demanderOuiNon("Voulez-vous continuer ?");
 //		} while (continuer);
 
@@ -110,9 +113,9 @@ public class MainClass {
 
 		// Boucle de recherche de la solution
 		for (int i = 0; i < nombreEssaiMax && (!trouve1 && !trouve2); i++) {
-			if (ordinateurAttaquant ) {
+			if (ordinateurAttaquant) {
 				trouve1 = coupAttaque();
-				
+
 			}
 			if (ordinateurDefenseur) {
 				trouve2 = coupDefense();
@@ -133,14 +136,14 @@ public class MainClass {
 	 * 
 	 * @return
 	 */
-	public static boolean coupDefense() {	
+	public static boolean coupDefense() {
 		Code code1 = jeu.getCodeATrouverParLeJoueur();
 		// Si en mode développeur on triche
 		// TODO ajouter un paramètre debug dans le fichier de configuration
 		if (debug) {
 			LOGGER.info("Voici le code à deviner");
 			System.out.println(code1);
-			//LOGGER.info(code1);
+			// LOGGER.info(code1);
 		}
 		LOGGER.info("Entrer un nouveau code?");
 		jeu.enterCode();
@@ -155,7 +158,7 @@ public class MainClass {
 	 * 
 	 * @return le booleen isGagne
 	 */
-	public static boolean coupAttaque() {	
+	public static boolean coupAttaque() {
 		LOGGER.info("Le code proposé par l'ordinateur : ");
 		Code code2 = jeu.chercherSolution();
 		LOGGER.info(code2);
@@ -175,7 +178,7 @@ public class MainClass {
 	private static Properties lireConfiguration() {
 		Properties prop = new Properties();
 
-		try (FileInputStream  input = new FileInputStream("config.properties")) {
+		try (FileInputStream input = new FileInputStream("config.properties")) {
 			// load a properties file
 			prop.load(input);
 			// Vérification de la validité des données
@@ -217,7 +220,7 @@ public class MainClass {
 			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3,
 					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
-			debug=Aide.demanderOuiNon("Voulez vous débugger l'application? oui ou non");
+			debug = Aide.demanderOuiNon("Voulez vous débugger l'application? oui ou non");
 
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);

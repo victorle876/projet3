@@ -9,7 +9,6 @@ public class Mastermind extends Jeu {
 	public Mastermind() {
 		super();
 	}
-	
 
 	/***
 	 * Constructeur pour la classe Mastermind
@@ -24,8 +23,8 @@ public class Mastermind extends Jeu {
 	}
 
 	/**
-	 * Classe permettant de faire l'extraction bienPlace : malPlace
-	 * retourne un résultat
+	 * Classe permettant de faire l'extraction bienPlace : malPlace retourne un
+	 * résultat
 	 */
 	@Override
 	public String comparerCode() {
@@ -39,12 +38,11 @@ public class Mastermind extends Jeu {
 	}
 
 	/**
-	 * Méthode permet de comparer entre la proposition du joueur et le code de l'ordinateur
-	 * pour les nombres bien placées et mal placées
-	 * @param proposition:code
-	 *            proposé par l'attaquant
-	 * @param codeTofind:
-	 *            code à trouver par l'attaquant
+	 * Méthode permet de comparer entre la proposition du joueur et le code de
+	 * l'ordinateur pour les nombres bien placées et mal placées
+	 * 
+	 * @param proposition:code proposé par l'attaquant
+	 * @param codeTofind: code à trouver par l'attaquant
 	 * @return la séquence bienPlace: malPlace
 	 */
 
@@ -117,6 +115,7 @@ public class Mastermind extends Jeu {
 	 * des codes proposés par l'ordinatateur Si le résultat est le même que celui
 	 * fourni par le joueur, alors c'est un code toujours valable, sinon on le
 	 * supprime
+	 * 
 	 * @param : resultat
 	 */
 	@Override
