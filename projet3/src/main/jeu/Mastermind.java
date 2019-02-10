@@ -23,7 +23,7 @@ public class Mastermind extends Jeu {
 	}
 
 	/**
-	 * Classe permettant de faire l'extraction bienPlace : malPlace retourne un
+	 * Méthode permettant de faire l'extraction bienPlace : malPlace retourne un
 	 * résultat
 	 */
 	@Override

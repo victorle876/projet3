@@ -32,11 +32,9 @@ public class Aide {
 				if ((value >= min) && (value <= max)) {
 					valide = true;
 				} else {
-					// System.out.println("value incorrecte (entre " + min + " et " + max + ")");
 					Aide.LOGGER.info("value incorrecte (entre " + min + " et " + max + ")");
 				}
 			} catch (InputMismatchException ime3) {
-				// System.out.println("Ce n'est pas un entier !");
 				Aide.LOGGER.error("Ce n'est pas un entier !");
 				valide = false;
 			} finally {
