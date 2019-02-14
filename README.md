@@ -29,4 +29,4 @@ packages utilisées: log4j2-api.2.11.1.jar et log4j2-core.2.11.1.jar .
 Voulez vous changer la configuration du jeu ? Non (1) ou oui (2) ou (3) utiliser paramètres  
 
 3. Pour démarrer le jeu, il faut faire le choix 2 pour initialiser les paramètres du jeu.  
-1 signifie que vous utilisez les paramètres du jeu existants et 3 est réservé en mode débuggage
+* 1 signifie que vous utilisez les paramètres du jeu existants et 3 est réservé en mode débuggage
