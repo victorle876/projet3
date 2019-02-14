@@ -33,14 +33,14 @@ packages utilisées: log4j2-api.2.11.1.jar et log4j2-core.2.11.1.jar .
 
 4. Le jeu est démarré; vous avez une série de message permettant d'attester le fonctionnement du jeu  
 
-   Entrer l'étendue
-   9
-   Entrer la taille
-   3
+   Entrer l'étendue  
+   9  
+   Entrer la taille  
+   3  
    Quel jeu voulez vous jouer?
-   1: Mastermind , 2: PlusouMoins
-   1
-   Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?
-   2
-   Entrer le nombre d'essais max
-   3
+   1: Mastermind , 2: PlusouMoins  
+   1  
+   Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?  
+   2  
+   Entrer le nombre d'essais max  
+   3  
