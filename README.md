@@ -12,4 +12,4 @@ Les configurations du jeu seront demandées lors du démarrage (ex: choix du jeu
 
 1. Mon projet a été développé sur l'IDE: éclipse; le jdk utilisé est jdk 1.8.0-191  
 
-2. Chercher le code source du projet3 sur mon dépot github : [https://github.com/victorle876/projet3.git]
+2. Chercher le code source du projet3 sur mon dépot github : [github] (https://github.com/victorle876/projet3.git)
