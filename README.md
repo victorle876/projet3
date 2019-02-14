@@ -13,6 +13,7 @@ Les configurations du jeu seront demandées lors du démarrage (ex: choix du jeu
 1. Mon projet a été développé sur l'IDE: éclipse; le jdk utilisé est jdk 1.8.0-191  
 
 2. Chercher le code source du projet3 sur mon dépot github : [github] (https://github.com/victorle876/projet3.git)  
+branche: master
 
 3. Installer les packages api log4j suivants dans le dossier lib de l'IDE et le push-commit dans github . 
 packages utilisées: log4j2-api.2.11.1.jar et log4j2-core.2.11.1.jar .   
@@ -30,8 +31,10 @@ packages utilisées: log4j2-api.2.11.1.jar et log4j2-core.2.11.1.jar .
 
 3. Pour démarrer le jeu, il faut faire le choix 2 pour initialiser les paramètres du jeu.  
 * 1 signifie que vous utilisez les paramètres du jeu existants et 3 est réservé en mode débuggage  
+* le mode debug est utilisé en rentrant les paramètres dans l'ordre:  
+etendue taille choixdujeu modejeu nombreessaimax debug (dans les arguments > run configuration)
 
-4. Le jeu est démarré; vous avez une série de message permettant d'attester le fonctionnement du jeu  
+4. Le jeu est démarré; vous avez une série de message permettant d'attester le bon fonctionnement du jeu  
 
    Entrer l'étendue  
    9  
