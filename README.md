@@ -10,4 +10,4 @@ Les configurations du jeu seront demandées lors du démarrage (ex: choix du jeu
 
 ## Installation
 
-1. Chercher le code source du projet3 sur mon dépot github: 
+1. Chercher le code source du projet3 sur mon dépot github : [https://github.com/victorle876/projet3.git]
