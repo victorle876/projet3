@@ -228,7 +228,7 @@ public class MainClass {
 			prop.setProperty("typeChoixJeu", "" + typeChoixJeu);
 			prop.setProperty("attaqueDefenseChoix", "" + attaqueDefenseChoix);
 			prop.setProperty("nombreEssaiMax", "" + nombreEssaiMax);
-			prop.setProperty("debug", "" + (Boolean.toString(debug)));
+			//prop.setProperty("debug", "" + (Boolean.toString(debug)));
 
 			prop.store(writer, comments);
 
