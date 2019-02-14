@@ -17,7 +17,7 @@ public class MainClass {
 	private static int attaqueDefenseChoix;
 	private static int confirmerParametres;
 	private static int nombreEssaiMax;
-	private static boolean debug;
+	private static boolean debug = false;
 	private static Jeu jeu;
 	private static String args[];
 
@@ -33,9 +33,9 @@ public class MainClass {
 	// @SuppressWarnings("resource")
 	public static void main(String[] args) {
 
-//		for (String s : args) {
-//			System.out.println(s);
-//		}
+		//for (String s : args) {
+		//	System.out.println(s);
+		//}
 
 		Properties configuration = null;
 		boolean continuer = true;
@@ -223,9 +223,6 @@ public class MainClass {
 			attaqueDefenseChoix = Aide.demandeValeurEntier(1, 3,
 					"Ordinateur attaquant (1) ou défenseur (2) ou Mixte (3) ?");
 			nombreEssaiMax = Aide.demandeValeurEntier(1, 10, "Entrer le nombre d'essais max");
-			// if (attaqueDefenseChoix == 1) {
-			debug = Aide.demanderOuiNon("Voulez vous débugger l'application? oui ou non");
-			// }
 			prop.setProperty("etendue", "" + etendue);
 			prop.setProperty("taille", "" + taille);
 			prop.setProperty("typeChoixJeu", "" + typeChoixJeu);
@@ -250,7 +247,6 @@ public class MainClass {
 			try {
 				if (args.length > 5) {
 					etendue = Integer.parseInt(args[0]);
-					//System.out.println(etendue);
 					taille = Integer.parseInt(args[1]);
 					typeChoixJeu = Integer.parseInt(args[2]);
 					attaqueDefenseChoix = Integer.parseInt(args[3]);

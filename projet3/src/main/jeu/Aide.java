@@ -107,7 +107,7 @@ public class Aide {
 		boolean nok = false;
 		do {
 			// nok = false;
-			System.out.println(msg);
+			LOGGER.info(msg);
 			reponse = scanner.nextLine();
 			if (reponse.equals("oui")) {
 				valide = true;
