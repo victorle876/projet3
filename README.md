@@ -20,9 +20,9 @@ packages utilisées: log4j2-api.2.11.1.jar et log4j2-core.2.11.1.jar .
 
 ## Mode d'emploi
 
-1.Tout d'abord, il faut vérifier que vous avez une fenêtre console dans l'IDE Eclipse
+1. Tout d'abord, il faut vérifier que vous avez une fenêtre console dans l'IDE Eclipse
 
-2.Il faut compiler sur l'IDE et vérifier que vous avez ces messages suivants:  
+2. Il faut compiler sur l'IDE et vérifier que vous avez ces messages suivants:
 
 2019-02-14 15:30:41,378 main WARN Attempt to rename file MainClass.log to itself will be ignored
 2019-02-14 15:30:41,381 main WARN Attempt to rename file Aide.log to itself will be ignored
